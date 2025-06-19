@@ -16,7 +16,9 @@ Proyek ini adalah sebuah website donasi online untuk masjid yang membutuhkan, di
 
 1. Pastikan kamu punya server PHP (bisa pakai Laragon).
 2. Upload seluruh isi project ke folder `www/` (jika lokal).
-3. Akses halaman utama di `http://localhost/pedulimasjid/home`.
+3. Buat database dengan nama `sistem_donasi_masjid`.
+4. Import file yang ada di folder `db`.
+5. Akses halaman utama di `http://localhost/pedulimasjid/home`.
 
 ---
 
