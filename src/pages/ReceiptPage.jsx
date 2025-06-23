@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ReceiptLayout from '../components/layouts/ReceiptLayout'
 
 const ReceiptPage = () => {
   return (
@@ -10,7 +11,7 @@ const ReceiptPage = () => {
           Kembali
         </Link>
       </div>
-      
+      <ReceiptLayout />
     </div>
   )
 }
