@@ -15,7 +15,7 @@ const FormRegister = () => {
         <p className="text-red-500 text-sm"></p>
         <FormInput type="text" name="namaLengkap"  placeholder="John Doe">Masukkan Nama Lengkap</FormInput>
         <FormInput type="text" name="noTelp"  placeholder="08123456789">Masukkan No Telp</FormInput>
-        <FormInput type="text" name="alamat"  placeholder="Masukkan Alamat">Masukkan Alamat</FormInput>
+        <FormInput type="text" name="alamat"  placeholder="Jl. Jend. Sudirman">Masukkan Alamat</FormInput>
         <FormInput type="email" name="email"  placeholder="example@gmail.com" >Masukkan Email</FormInput>
         <FormInput type="password" name="password"  placeholder="********" >Masukkan Password</FormInput>
         <FormSubmit value="Register" name="register" />

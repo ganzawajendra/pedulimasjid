@@ -6,7 +6,7 @@ import FormPayment from "../fragments/FormPayment";
 
 const PaymentLayout = () => {
   return (
-    <div>
+    <div className="border border-gray-300 shadow-lg rounded-xl overflow-hidden pb-13 mt-10">
       <div className="flex items-stretch mb-6 rounded-lg">
         <div className="relative w-full h-64 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/60 to-transparent">
@@ -19,8 +19,8 @@ const PaymentLayout = () => {
 
           <div className="relative z-10 p-6 text-white">
             <SmallFont style="">MASJID AL-FATIH</SmallFont>
-            <div className="flex gap-2 items-center">
-              <i className="fa-solid fa-location-dot text-gray-500"></i>
+            <div className="flex gap-1 items-center">
+              <i className="fa-solid fa-location-dot text-gray-500 text-sm"></i>
               <ExtraSmallFont style="">Jl. Durian no. 45</ExtraSmallFont>
             </div>
             <ExtraSmallFont style=" font-semibold mt-4">Deskripsi Kebutuhan</ExtraSmallFont>

@@ -7,14 +7,13 @@ import ButtonLink from "../elements/Button";
 
 const CardDetailLayout = () => {
   return (
-    <div className="max-w-4xl bg-white py-13 rounded-xl shadow-md overflow-hidden">
+    <div className="max-w-4xl bg-white mt-10 pb-13 rounded-xl shadow-lg border border-gray-300 overflow-hidden">
       <div className="relative h-64">
         <img
-          src="../asset/img/<?= $masjid['dokumen_path']; ?>"
+          src="/images/hero.png"
           alt="tes"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
       </div>
       <div className="p-5 grid grid-cols-2">
         <MediumFont>MASJID AL-FATIH</MediumFont>
@@ -25,7 +24,7 @@ const CardDetailLayout = () => {
         <div class="flex justify-end items-start mb-3">
           <ExtraSmallFont style="bg-green-200 text-green-800 font-semibold px-2.5 py-0.5 rounded-full">Terverifikasi</ExtraSmallFont>
         </div>
-        <div className="col-start-2 row-span-3 border border-gray-400 rounded-lg p-5 row-start-3">
+        <div className="col-start-2 row-span-3 border border-gray-300 rounded-lg p-5 row-start-3">
           <SmallFont style="text-center">INFORMASI MASJID</SmallFont>
           <div className="grid grid-cols-2 mt-3">
             <ExtraSmallFont style="">Donasi Terkumpul</ExtraSmallFont>
