@@ -10,6 +10,10 @@ import PaymentPage from "./pages/PaymentPage.jsx";
 import ReceiptPage from "./pages/ReceiptPage.jsx";
 import AddMasjidPage from "./pages/AddMasjidPage.jsx";
 import DashboardPengurusPage from "./pages/DashboardPengurusPage.jsx";
+import AdminDashboardPage from "./pages/AdminDashboardPage.jsx";
+import AdminMasjidPage from "./pages/AdminMasjidPage.jsx";
+import AdminDanaPage from "./pages/AdminDanaPage.jsx";
+import AdminUserPage from "./pages/AdminUserPage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -23,6 +27,10 @@ createRoot(document.getElementById("root")).render(
         <Route path="/receipt" element={<ReceiptPage />} />
         <Route path="/form-masjid" element={<AddMasjidPage />} />
         <Route path="/dashboard-pengurus" element={<DashboardPengurusPage />} />
+        <Route path="/admin/dashboard" element={<AdminDashboardPage />}></Route>
+        <Route path="/admin/management-masjid" element={<AdminMasjidPage />}></Route>
+        <Route path="/admin/management-dana" element={<AdminDanaPage />}></Route>
+        <Route path="/admin/management-user" element={<AdminUserPage />}></Route>
         <Route path="*" element={"Not Found"} />
       </Routes>
     </Router>

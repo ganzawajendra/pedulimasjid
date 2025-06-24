@@ -75,7 +75,7 @@ const DashboardPengurusLayout = () => {
           <div className="flex gap-2 justify-end">
             <Link
               to="/pengurus/masjid/edit"
-              className="text-sm text-yellow-500 hover:bg-yellow-500 hover:text-white px-4 py-1 rounded duration-300 transition-all"
+              className="text-sm text-orange-500 hover:bg-orange-500 hover:text-white px-4 py-1 rounded duration-300 transition-all"
             >
               Edit
             </Link>
@@ -93,7 +93,7 @@ const DashboardPengurusLayout = () => {
       <div className="bg-white p-6 rounded-lg col-start-3 max-h-max row-start-2 shadow-md border border-gray-200">
         <div className="flex justify-between">
           <div>
-            <p className="text-gray-500 text-sm tracking-wide">Total Donasi</p>
+            <p className="text-gray-500 text-xs uppercase tracking-wide">Total Donasi</p>
             <h3 className="text-xl font-semibold text-gray-800 mt-1">
               Rp <span>1000000</span>
             </h3>
@@ -107,7 +107,7 @@ const DashboardPengurusLayout = () => {
       <div className="bg-white p-6 rounded-xl shadow-md border max-h-max col-start-3 row-start-3 border-gray-200">
         <div className="flex justify-between">
           <div>
-            <p className="text-gray-500 text-sm tracking-wide">
+            <p className="text-gray-500 text-xs tracking-wide uppercase">
               Dana Tersalurkan
             </p>
             <h3 className="text-xl font-semibold text-gray-800 mt-1">
@@ -123,7 +123,7 @@ const DashboardPengurusLayout = () => {
       <div className="bg-white p-6 rounded-xl shadow-md border max-h-max border-gray-200 col-start-3 row-start-4">
         <div className="flex justify-between">
           <div>
-            <p className="text-gray-500 text-sm tracking-wide">Sisa Dana</p>
+            <p className="text-gray-500 text-xs uppercase tracking-wide">Sisa Dana</p>
             <h3 className="text-xl font-semibold text-gray-800 mt-1">
               Rp <span>700000</span>
             </h3>
