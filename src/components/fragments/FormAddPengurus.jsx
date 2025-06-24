@@ -1,13 +1,12 @@
 import React from "react";
 import FormInput from "../elements/FormInput";
 import FormSubmit from "../elements/FormSubmit";
-import SmallFont from "../elements/ListFont/SmallFont";
 
 const FormAddPengurus = () => {
   return (
     <>
       <div className="bg-white p-6 rounded-lg shadow-sm w-full">
-        <SmallFont style="text-center mb-3">Daftar Pengurus Sekarang</SmallFont>
+        <h3 className="text-xl font-semibold text-gray-800 text-center mb-2">Daftar Pengurus Sekarang</h3>
         <form action="/form-masjid" method="post" autoComplete="off" className="flex flex-col space-y-4">
             <FormInput type="text" variant="namaLengkap" placeholder="John Doe">Nama Lengkap</FormInput>
             <FormInput type="email" variant="email" placeholder="example@gmail.com">Email</FormInput>

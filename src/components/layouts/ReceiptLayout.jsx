@@ -1,6 +1,4 @@
 import React from "react";
-import SmallFont from "../elements/ListFont/SmallFont";
-import SupportFont from "../elements/ListFont/SupportFont";
 
 const ReceiptLayout = () => {
   return (
@@ -11,69 +9,74 @@ const ReceiptLayout = () => {
           alt="Masjid Al-Fatih"
           className="w-full h-full object-cover"
         />
-        <SmallFont style="text-center mt-4">Berhasil Melakukan Donasi</SmallFont>
-        <div className="p-4">
-          <SupportFont style="font-semibold my-2 text-gray-800">
+        <div className="py-4 px-10">
+          <h4 className="text-md font-semibold text-gray-800 mb-2">
             Donatur
-          </SupportFont>
+          </h4>
           <div className="flex justify-between mb-2">
-            <SupportFont style="text-sm">Nama</SupportFont>
-            <SupportFont style="text-gray-800">Budi Hartanto</SupportFont>
+            <p className="text-sm text-gray-500">Nama</p>
+            <p className=" text-gray-800">Budi Hartanto</p>
           </div>
           <div className="flex justify-between mb-2">
-            <SupportFont style="text-sm">No Telp</SupportFont>
-            <SupportFont style="text-gray-800">08123456789</SupportFont>
+            <p className="text-sm text-gray-500">No Telp</p>
+            <p className=" text-gray-800">08123456789</p>
           </div>
-          <div className="flex justify-between mb-2 items-center">
-            <SupportFont style="text-sm">Masjid</SupportFont>
+          <div className="flex justify-between mb-2 items-start">
+            <p className="text-sm text-gray-500">Masjid</p>
             <div className="flex items-end flex-col gap-1">
-              <SupportFont style="text-gray-800">Masjid Al-Fatih</SupportFont>
+              <p className=" text-gray-800">Masjid Al-Fatih</p>
               <div className="flex items-center gap-1">
                 <i className="fa-solid fa-location-dot text-gray-500 text-sm"></i>
-                <SupportFont style="text-gray-800 text-xs">
+                <p className="text-xs text-gray-500">
                   Jl. Durian no. 45
-                </SupportFont>
+                </p>
               </div>
             </div>
           </div>
         </div>
-        <div class="p-4 border-b border-t border-gray-300">
-          <SupportFont style="font-semibold my-2 text-gray-800">
+        <div class="py-4 px-10 border-b border-t border-gray-300">
+          <h4 class="text-md font-semibold text-gray-800 mb-2">
             Timestamp
-          </SupportFont>
+          </h4>
           <div class="flex justify-between mb-2">
-            <SupportFont style="text-sm">Nomor Struk</SupportFont>
-            <SupportFont style="text-gray-800">Ber-120605-2</SupportFont>
+            <p className="text-sm text-gray-500">Nomor Struk</p>
+            <p className="text-md text-gray-800">Ber-120605-2</p>
           </div>
           <div class="flex justify-between mb-2">
-            <SupportFont style="text-sm">Tanggal/Waktu</SupportFont>
-            <SupportFont style="text-gray-800">12/06/2023 12:00</SupportFont>
+            <p className="text-sm text-gray-500">Tanggal/Waktu</p>
+            <p className="text-md text-gray-800">12/06/2023 12:00</p>
           </div>
           <div class="flex justify-between mb-2">
-            <SupportFont style="text-sm">Metode Pembayaran</SupportFont>
-            <SupportFont style="text-gray-800">Transfer Bank</SupportFont>
+            <p className="text-sm text-gray-500">Metode Pembayaran</p>
+            <p className="text-md text-gray-800">Transfer Bank</p>
           </div>
           <div class="flex justify-between mb-2">
-            <SupportFont style="text-sm">Status</SupportFont>
-            <SupportFont style="text-gray-800">Berhasil</SupportFont>
+            <p className="text-sm text-gray-500">Status</p>
+            <p className="text-md text-green-600 font-semibold">Berhasil</p>
           </div>
         </div>
 
-        <div class="p-4">
-          <SupportFont style="font-semibold my-2 text-gray-800">
+        <div class="py-4 px-10">
+          <h4 class="text-md font-semibold text-gray-800 mb-2">
             Rincian Donasi
-          </SupportFont>
+          </h4>
           <div class="flex justify-between mb-2">
-            <SupportFont style="text-sm">Nominal Donasi</SupportFont>
-            <SupportFont style="text-gray-800">Rp <span>100000</span></SupportFont>
+            <p className="text-sm text-gray-500">Nominal Donasi</p>
+            <p className="text-md text-gray-800">
+              Rp <span>100000</span>
+            </p>
           </div>
           <div class="flex justify-between mb-2">
-            <SupportFont style="text-sm">Biaya Admin</SupportFont>
-            <SupportFont style="text-gray-800">Rp <span>0</span></SupportFont>
+            <p className="text-sm text-gray-500">Biaya Admin</p>
+            <p className="text-md text-gray-800">
+              Rp <span>0</span>
+            </p>
           </div>
           <div class="flex justify-between mb-2">
-            <SupportFont style="text-sm">Total</SupportFont>
-            <SupportFont style="text-gray-800 font-semibold">Rp <span>100000</span></SupportFont>
+            <p className="text-sm text-gray-500">Total</p>
+            <p className="text-md text-gray-800 font-semibold">
+              Rp <span>100000</span>
+            </p>
           </div>
         </div>
 

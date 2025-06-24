@@ -1,7 +1,4 @@
-import React from "react";
-import SmallFont from "../elements/ListFont/SmallFont";
-import SupportFont from "../elements/ListFont/SupportFont";
-import ExtraSmallFont from "../elements/ListFont/ExtraSmallFont";
+
 import FormPayment from "../fragments/FormPayment";
 
 const PaymentLayout = () => {
@@ -17,16 +14,35 @@ const PaymentLayout = () => {
             />
           </div>
 
-          <div className="relative z-10 p-6 text-white">
-            <SmallFont style="">MASJID AL-FATIH</SmallFont>
-            <div className="flex gap-1 items-center">
-              <i className="fa-solid fa-location-dot text-gray-500 text-sm"></i>
-              <ExtraSmallFont style="">Jl. Durian no. 45</ExtraSmallFont>
+          <div className="relative z-10 p-6 text-white flex flex-col justify-between h-full ">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-800">
+                MASJID AL-FATIH
+              </h3>
+              <div className="flex items-center mb-2 gap-2 row-start-2">
+                <i class="fa-solid fa-location-dot text-gray-500 text-sm"></i>
+                <p className="text-sm text-gray-500">Jl. Durian no. 45</p>
+              </div>
             </div>
-            <ExtraSmallFont style=" font-semibold mt-4">Deskripsi Kebutuhan</ExtraSmallFont>
-            <SupportFont style="line-clamp-3 overflow-hidden w-1/2 text-ellipsis">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci ea ipsam molestiae quidem exercitationem placeat voluptatem eligendi dolorem veniam iusto reprehenderit nisi maxime unde facilis cupiditate perspiciatis perferendis dic</SupportFont>
-            <ExtraSmallFont style=" font-semibold mt-4">Kekurangan</ExtraSmallFont>
-            <SupportFont>Rp <span>500.000</span></SupportFont>
+            <div>
+              <h4 className="text-sm font-medium text-gray-800 uppercase">
+                Deskripsi Kebutuhan
+              </h4>
+              <p className="text-sm text-gray-600 line-clamp-3 overflow-hidden w-1/2 text-ellipsis">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                Adipisci ea ipsam molestiae quidem exercitationem placeat
+                voluptatem eligendi dolorem veniam iusto reprehenderit nisi
+                maxime unde facilis cupiditate perspiciatis perferendis dic
+              </p>
+            </div>
+            <div>
+              <h4 className="text-sm font-medium text-gray-800 uppercase">
+                Kekurangan
+              </h4>
+              <p className="text-sm text-gray-600 ">
+                Rp <span>5000000</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>

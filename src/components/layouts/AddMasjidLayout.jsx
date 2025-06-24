@@ -1,7 +1,5 @@
 import React from "react";
 import FormAddMasjid from "../fragments/FormAddMasjid";
-import SmallFont from "../elements/ListFont/SmallFont";
-import SupportFont from "../elements/ListFont/SupportFont";
 
 const AddMasjidLayout = () => {
   return (
@@ -12,18 +10,18 @@ const AddMasjidLayout = () => {
         </div>
         <div>
           <div className="flex items-center gap-1">
-            <SmallFont>Budi Hartanto</SmallFont>
+            <h5 className="text-md font-semibold text-gray-800">Budi Hartanto</h5>
             {"|"}
-            <SupportFont style="text-sm">budi@gmail.com</SupportFont>
+            <p className="text-sm text-gray-500">budi@gmail.com</p>
           </div>
-          <SupportFont>Jl. Jendral Sudirman no.890</SupportFont>
+          <p className="text-sm text-gray-500">Jl. Jendral Sudirman no.890</p>
         </div>
       </div>
       <div className="w-full bg-white rounded-xl rounded-br-lg shadow-lg p-8 border border-gray-300">
-        <SmallFont>Tambahkan Masjid</SmallFont>
-        <SupportFont style="text-sm">
+        <h3 className="text-xl font-semibold text-gray-800">Tambahkan Masjid</h3>
+        <p className="text-md text-gray-500">
           Silahkan tambahkan masjid sesuai dengan masjid yang anda miliki
-        </SupportFont>
+        </p>
         <FormAddMasjid />
       </div>
     </>

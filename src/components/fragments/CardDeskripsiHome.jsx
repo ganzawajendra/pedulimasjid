@@ -1,14 +1,12 @@
 import React from "react";
 import ListCard from "../elements/ListCard";
-import SmallFont from "../elements/ListFont/SmallFont";
-import SupportFont from "../elements/ListFont/SupportFont";
 
 const CardDeskripsiHome = () => {
   return (
     <>
       <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-300">
-        <SmallFont>Apa itu aplikasi Peduli Masjid?</SmallFont>
-        <SupportFont>Aplikasi Peduli Masjid adalah platform digital yang menghubungkan donatur dengan masjid-masjid yang belum layak di pelosok Indonesia. Kami menyediakan sistem:</SupportFont>
+        <h3 className="text-xl font-semibold text-gray-800">Apa itu aplikasi Peduli Masjid?</h3>
+        <p className="text-md text-gray-500">Aplikasi Peduli Masjid adalah platform digital yang menghubungkan donatur dengan masjid-masjid yang belum layak di pelosok Indonesia. Kami menyediakan sistem:</p>
         <ul>
           <ListCard
             icon="fa-solid fa-circle-check"
@@ -34,7 +32,7 @@ const CardDeskripsiHome = () => {
         </ul>
       </div>
       <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-300">
-        <SmallFont>Setiap Rupiah Anda Akan Membantu:</SmallFont>
+        <h3 className="text-xl font-semibold text-gray-800">Setiap Rupiah Anda Akan Membantu:</h3>
         <ul>
           <ListCard  iconAlt="🕌">
             Renovasi bangunan masjid yang rusak

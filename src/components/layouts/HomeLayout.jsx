@@ -4,10 +4,6 @@ import HeroImage from "/images/hero.png";
 import CardDeskripsiHome from "../fragments/CardDeskripsiHome";
 import ListCard from "../elements/ListCard";
 import CardMasjid from "../fragments/CardMasjid";
-import MainFont from "../elements/ListFont/LargeFont";
-import MediumFont from "../elements/ListFont/MediumFont";
-import SupportFont from "../elements/ListFont/SupportFont";
-import SmallFont from "../elements/ListFont/SmallFont";
 
 const HomeLayout = ({ donasi, masjid, donatur }) => {
   return (
@@ -16,15 +12,15 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
       <div
         className={`bg-[url('/images/hero.png')] bg-contain bg-no-repeat bg-center h-90 flex flex-col items-start px-20 justify-center text-start`}
       >
-        <MainFont>Donasi Masjid Mudah dan Cepat di Peduli Masjid</MainFont>
-        <SmallFont style="mt-4">Temukan informasi donasi masjid dengan mudah dan cepat</SmallFont>
+        <h1 className="text-5xl/15 text-gray-800 w-200">Donasi Masjid Mudah dan Cepat di Peduli Masjid</h1>
+        <p className="text-xl my-2 text-gray-500">Temukan informasi donasi masjid dengan mudah dan cepat</p>
       </div>
 
       {/* Deskripsi Singkat */}
       <div className="w-full flex flex-col items-center justify-center text-center mt-10">
-        <MediumFont>Bantu Wujudkan Masjid Layak untuk Umat</MediumFont>
-        <SupportFont>Platform donasi online transparan untuk pembangunan & renovasi masjid
-          kurang mampu di seluruh Indonesia.</SupportFont>
+        <h2 className="text-2xl font-semibold text-gray-800">Bantu Wujudkan Masjid Layak untuk Umat</h2>
+        <p className="text-md text-gray-500">Platform donasi online transparan untuk pembangunan & renovasi masjid
+          kurang mampu di seluruh Indonesia.</p>
       </div>
 
       {/* Fungsi */}
@@ -40,28 +36,28 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
       </div>
 
       {/* Statistik */}
-      <div className="w-full grid grid-cols-3 mt-10 px-20 border border-gray-300 rounded-lg shadow-lg py-10">
+      <div className="w-full grid grid-cols-3 mt-10 px-20  py-10">
         <div className="border-l border-gray-800 flex flex-col items-center justify-center p-6">
-          <SupportFont>Total Donasi</SupportFont>
-          <SmallFont>Rp <span>{donasi}</span></SmallFont>
+          <h4 className="text-md text-gray-500">Total Donasi</h4>
+          <h3 className="text-lg font-semibold text-gray-800">Rp <span>{donasi}</span></h3>
         </div>
         <div className="border-r border-l border-gray-800 flex flex-col items-center justify-center p-6">
-          <SupportFont>Terbantu</SupportFont>
-          <SmallFont><span>{masjid}</span> Masjid</SmallFont>
+          <h4 className="text-md text-gray-500">Terbantu</h4>
+          <h3 className="text-lg font-semibold text-gray-800"><span>{masjid}</span> Masjid</h3>
         </div>
         <div className="border-r border-gray-800 flex flex-col items-center justify-center p-6">
-          <SupportFont>Lebih dari</SupportFont>
-          <SmallFont><span>{donatur}</span> Donatur</SmallFont>
+          <h4 className="text-md text-gray-500">Lebih dari</h4>
+          <h3 className="text-lg font-semibold text-gray-800"><span>{donatur}</span> Donatur</h3>
         </div>
       </div>
 
       {/* Open Akun Pengurus */}
       <div className="bg-neutral-200 rounded-lg p-8 mt-10 grid grid-cols-3 gap-5">
         <div className="col-span-2 p-6">
-          <MediumFont>Jadi Pengurus Masjid?</MediumFont>
-          <SupportFont>Daftarkan masjid Anda untuk mendapatkan bantuan donasi dari
+          <h2 className="text-2xl font-semibold text-gray-800">Jadi Pengurus Masjid?</h2>
+          <p className="text-md text-gray-500">Daftarkan masjid Anda untuk mendapatkan bantuan donasi dari
             masyarakat. Kami akan membantu memverifikasi dan mempromosikan
-            kebutuhan masjid Anda.</SupportFont>
+            kebutuhan masjid Anda.</p>
           <ul className="space-y-2 text-gray-700">
             <ListCard icon="fa-solid fa-check" style="text-green-500">
               Kelola donasi dengan transparan

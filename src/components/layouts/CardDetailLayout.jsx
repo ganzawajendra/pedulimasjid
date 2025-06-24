@@ -1,8 +1,3 @@
-import React from "react";
-import MediumFont from "../elements/ListFont/MediumFont";
-import SupportFont from "../elements/ListFont/SupportFont";
-import SmallFont from "../elements/ListFont/SmallFont";
-import ExtraSmallFont from "../elements/ListFont/ExtraSmallFont";
 import ButtonLink from "../elements/Button";
 
 const CardDetailLayout = () => {
@@ -16,47 +11,55 @@ const CardDetailLayout = () => {
         />
       </div>
       <div className="p-5 grid grid-cols-2">
-        <MediumFont>MASJID AL-FATIH</MediumFont>
-        <div className="flex items-center gap-2 row-start-2">
-          <i class="fa-solid fa-location-dot text-gray-600"></i>
-          <SupportFont>Jl. Durian no. 45</SupportFont>
+        <h3 className="text-xl font-semibold text-gray-800">MASJID AL-FATIH</h3>
+        <div className="flex items-center mb-2 gap-2 row-start-2">
+          <i class="fa-solid fa-location-dot text-gray-500 text-sm"></i>
+          <p className="text-sm text-gray-500">Jl. Durian no. 45</p>
         </div>
-        <div class="flex justify-end items-start mb-3">
-          <ExtraSmallFont style="bg-green-200 text-green-800 font-semibold px-2.5 py-0.5 rounded-full">Terverifikasi</ExtraSmallFont>
+        <div class="row-start-3">
+          <span class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">
+            Terverifikasi
+          </span>
         </div>
-        <div className="col-start-2 row-span-3 border border-gray-300 rounded-lg p-5 row-start-3">
-          <SmallFont style="text-center">INFORMASI MASJID</SmallFont>
+        <div className="col-start-2 row-span-4 border border-gray-300 rounded-lg p-3 row-start-1">
+          <h4 className="text-sm font-medium text-gray-800">
+            INFORMASI MASJID
+          </h4>
           <div className="grid grid-cols-2 mt-3">
-            <ExtraSmallFont style="">Donasi Terkumpul</ExtraSmallFont>
-            <SupportFont style="text-gray-800 font-semibold row-start-2">
+            <p className="text-xs text-gray-500">Donasi Terkumpul</p>
+            <h3 className="text-md  text-gray-800 row-start-2">
               Rp. <span>1.000.000</span>
-            </SupportFont>
-            <ExtraSmallFont style="text-end">Target</ExtraSmallFont>
-            <SupportFont style="text-gray-800 text-end font-semibold row-start-2">
+            </h3>
+            <p className="text-xs text-gray-500 text-end">Target</p>
+            <h3 className="text-md  text-gray-800 text-end row-start-2">
               Rp. <span>4.000.000</span>
-            </SupportFont>
+            </h3>
             <div className="col-span-2 bg-gray-300 h-2 mt-3 rounded-full relative">
               <div className="absolute bg-blue-500 h-2 top-0 w-1/2 rounded-full"></div>
             </div>
-            <div className="border border-gray-400 rounded-lg p-2 col-span-2 mt-3 flex gap-3 items-center">
-              <div className="size-8 bg-gray-300 rounded-full flex items-center justify-center relative overflow-hidden">
-                <i class="fa-solid fa-user absolute bottom-0 text-2xl"></i>
-              </div>
-              <div>
-                <SupportFont style="font-semibold text-gray-800">Nama Pengurus</SupportFont>
-                <SupportFont>08782093840</SupportFont>
-              </div>
-            </div>
           </div>
         </div>
-        <SmallFont style="mt-5 row-start-3">Deskripsi Kebutuhan</SmallFont>
-        <SupportFont style="row-start-4 text-gray-800">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore id
-          nostrum ipsa? Ullam nihil consequatur laborum pariatur eligendi?
-          Praesentium blanditiis illo similique nam omnis modi possimus maxime
-          minima dicta officia.
-        </SupportFont>
-        <ButtonLink router="/payment" variant="Black" style = "row-start-6 max-w-max">Donasi Sekarang</ButtonLink>
+        <h4 className="mt-4 text-sm font-medium text-gray-800 row-start-5">
+          DESKRIPSI KEBUTUHAN
+        </h4>
+        <p className="px-4 w-full text-sm  col-span-2 mb-4">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
+          impedit nesciunt, eos blanditiis consequatur veritatis nisi similique
+          tempora neque, magnam ipsam laborum cumque unde qui, quasi pariatur
+          quae! Velit eveniet dignissimos, tempore itaque eos facere pariatur
+          maiores animi mollitia architecto voluptatum fuga voluptatem ratione
+          nam dolore ipsa eaque doloremque perferendis debitis explicabo illo?
+          Perspiciatis tempora nisi non veniam itaque nulla quibusdam, mollitia
+          vitae facilis deleniti, delectus accusamus ratione ex nam! Voluptatum
+          nisi omnis alias dicta eligendi? Odio, culpa reprehenderit dolor
+          laudantium magni, ad incidunt sint amet et assumenda porro quos quia a
+          saepe maxime alias quae quaerat quis veritatis natus.
+        </p>
+        <div className="flex row-start-7 col-start-2 justify-end">
+          <ButtonLink router="/payment" variant="Black" style=" max-w-max py-2">
+            Donasi Sekarang
+          </ButtonLink>
+        </div>
       </div>
     </div>
   );
