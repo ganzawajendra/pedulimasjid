@@ -15,7 +15,7 @@ const FormAddMasjid = () => {
         <FormInput style="col-span-2" type="text" name="nama" placeholder="Masjid Al-Husna">Nama Masjid</FormInput>
         <FormInput style="col-span-2" type="text" name="deskripsi_kebutuhan" placeholder="Pembangunan Lt. 2">Deskripsi Kebutuhan Masjid</FormInput>
         <FormInput style="col-span-4" type="text" name="alamat" placeholder="Jl. Jend. Sudirman">Alamat Masjid</FormInput>
-        <FormFileInput style="col-span-4"  name="dokumen_path" accept=".jpg, .png, .jpeg">Upload Dokumen Masji</FormFileInput>
+        <FormFileInput style="col-span-4"  name="dokumen_path" accept=".jpg, .png, .jpeg">Upload Dokumen Masjid</FormFileInput>
         <FormSubmit value="Tambah Masjid" name="tambah_masjid" style="col-start-4"/>
     </form>
   );
