@@ -2,7 +2,7 @@ import React from 'react'
 import Label from '../FormInput/Label'
 import Input from '../FormInput/Input'
 
-const FormFileInput = ({style, name, type, children, accept}) => {
+const FormFileInput = ({style, name, children, accept}) => {
   return (
     <>
     <div className={style}>
