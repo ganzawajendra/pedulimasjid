@@ -9,7 +9,7 @@ const ReceiptLayout = () => {
           alt="Masjid Al-Fatih"
           className="w-full h-full object-cover"
         />
-        <div className="py-4 px-10">
+        <div className="py-5 px-10">
           <h4 className="text-md font-semibold text-gray-800 mb-2">
             Donatur
           </h4>

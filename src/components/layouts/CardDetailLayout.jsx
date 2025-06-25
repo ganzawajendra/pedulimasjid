@@ -2,7 +2,7 @@ import ButtonLink from "../elements/Button";
 
 const CardDetailLayout = () => {
   return (
-    <div className="max-w-4xl bg-white mt-10 pb-13 rounded-xl shadow-lg border border-gray-300 overflow-hidden">
+    <div className="w-full bg-white mt-10 pb-13 rounded-xl shadow-lg border border-gray-300 overflow-hidden">
       <div className="relative h-64">
         <img
           src="/images/hero.png"
@@ -10,7 +10,7 @@ const CardDetailLayout = () => {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="p-5 grid grid-cols-2">
+      <div className="py-5 px-10 grid grid-cols-2">
         <h3 className="text-xl font-semibold text-gray-800">MASJID AL-FATIH</h3>
         <div className="flex items-center mb-2 gap-2 row-start-2">
           <i class="fa-solid fa-location-dot text-gray-500 text-sm"></i>
