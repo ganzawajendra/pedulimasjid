@@ -2,14 +2,13 @@ import React from "react";
 import Label from "../FormInput/Label";
 import SelectInput from "./SelectInput";
 
-const FormSelectInput = ({ name, children }) => {
-  const optionValue = ["Transfer Bank", "E-Wallet", "Qris"];
+const FormSelectInput = ({ name, children, option, style="" }) => {
   return (
-    <div>
+    <div className={style}>
       <Label name={name}>{children}</Label>
       <SelectInput name={name}>
-        {optionValue.map((item, index) => (
-          <option key={index}>{item}</option>
+        {option.map((item, index) => (
+          <option key={index} value={item}>{item}</option>
         ))}
       </SelectInput>
     </div>

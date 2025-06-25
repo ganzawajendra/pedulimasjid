@@ -4,6 +4,7 @@ import FormSelectInput from "../elements/FormSelectInput";
 import FormSubmit from "../elements/FormSubmit";
 
 const FormPayment = () => {
+  const optionValue = ["Transfer Bank", "E-Wallet", "Qris"];
   return (
     <div className="p-5 w-full flex items-center flex-col">
       <h3 className="text-xl font-semibold text-gray-800 text-center mb-2">Donasi Sekarang</h3>
@@ -15,7 +16,7 @@ const FormPayment = () => {
         >
           Nominal Donasi
         </FormInput>
-        <FormSelectInput name="metode_pembayaran">
+        <FormSelectInput name="metode_pembayaran" option={optionValue}>
           Pilih Metode Pembayaran
         </FormSelectInput>
         <div className="w-full flex items-center justify-end">

@@ -46,7 +46,7 @@ const AdminManagementMasjid = () => {
             <td className="px-6 py-4 whitespace-nowrap">created at</td>
             <td className="px-6 py-4 whitespace-nowrap">
               <Link
-                to="edit_masjid.php?id=<?= $masjid['id'] ?>"
+                to="edit-masjid"
                 className="text-orange-500 hover:text-orange-600 hover:underline duration-300 transition-all"
               >
                 Edit
