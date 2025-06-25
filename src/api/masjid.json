@@ -7,7 +7,7 @@
             "status" : "Terverifikasi",
             "demand" : "Seiring berjalannya waktu, kondisi atap masjid kami mengalami kerusakan serius akibat kebocoran dan usia material yang sudah tua, sehingga sangat dibutuhkan renovasi menyeluruh agar aktivitas ibadah tidak terganggu, terutama saat musim hujan tiba.",
             "created_at" : "2022-12-01",
-            "url" : "/images/hero.png"
+            "url" : "/images/masjid1.jpeg"
         },
         {
             "id": 2,
@@ -16,7 +16,7 @@
             "status" : "Terverifikasi",
             "demand" : "Masjid ini saat ini memerlukan perbaikan pada sistem instalasi listrik yang sudah usang dan sering mengalami gangguan, demi menjamin keselamatan jamaah serta mendukung kelancaran kegiatan keagamaan seperti pengajian dan salat berjamaah.",
             "created_at" : "2024-12-01",
-            "url" : "/images/hero.png"
+            "url" : "/images/masjid2.jpg"
         },
         {
             "id": 3,
@@ -25,7 +25,7 @@
             "status" : "Terverifikasi",
             "demand" : "Dinding dan lantai utama masjid telah menunjukkan banyak keretakan serta lapisan cat yang mengelupas, yang tidak hanya mengganggu estetika tetapi juga dapat membahayakan jamaah, sehingga restorasi struktur bangunan menjadi kebutuhan mendesak.",
             "created_at" : "2025-04-01",
-            "url" : "/images/hero.png"
+            "url" : "/images/masjid3.jpg"
         },
         {
             "id": 4,
@@ -34,7 +34,7 @@
             "status" : "Terverifikasi",
             "demand" : "Sebagai pusat kegiatan keagamaan dan sosial masyarakat, masjid kami membutuhkan penggantian karpet yang sudah rusak dan tidak layak pakai agar para jamaah dapat menjalankan salat dengan khusyuk dan nyaman, terutama saat pelaksanaan salat Jumat dan tarawih.",
             "created_at" : "2025-02-01",
-            "url" : "/images/hero.png"
+            "url" : "/images/masjid4.jpeg"
         },
         {
             "id": 5,
@@ -43,7 +43,7 @@
             "status" : "Terverifikasi",
             "demand" : "Fasilitas tempat wudu dan kamar mandi mengalami kerusakan cukup parah akibat pipa yang bocor serta saluran air yang tersumbat, sehingga sangat diperlukan perbaikan segera untuk menjaga kebersihan, kenyamanan, dan kelayakan sarana beribadah bagi masyarakat sekitar.",
             "created_at" : "2023-01-01",
-            "url" : "/images/hero.png"
+            "url" : "/images/masjid5.jpeg"
         },
         {
             "id": 6,
@@ -52,7 +52,7 @@
             "status" : "Terverifikasi",
             "demand" : "Berhubung kegiatan keagamaan dan pengajian rutin masih terus berjalan, masjid kami sangat membutuhkan pengeras suara yang layak dan sistem audio yang berfungsi optimal, karena perangkat yang ada saat ini sering mengalami gangguan dan membuat suara imam tidak terdengar jelas oleh jamaah.",
             "created_at" : "2024-07-01",
-            "url" : "/images/hero.png"
+            "url" : "/images/masjid6.png"
         }
     ]
 }
