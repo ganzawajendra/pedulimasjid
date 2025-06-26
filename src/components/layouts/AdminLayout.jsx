@@ -3,11 +3,14 @@ import { NavLink } from "react-router-dom";
 
 const AdminLayout = ({ children, page }) => {
   const routing = {
-    Dashboard: "/admin/dashboard",
+    "Dashboard": "/admin/dashboard",
     "Management Masjid": "/admin/management-masjid",
     "Management Pencairan Dana": "/admin/management-dana",
     "Management User": "/admin/management-user",
   };
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  
   return (
     <>
       <div className="p-20">
@@ -16,7 +19,9 @@ const AdminLayout = ({ children, page }) => {
             <h1 className="text-xl font-semibold">{page}</h1>
             <p className="text-gray-500">
               Selamat datang kembali{" "}
-              <span className="font-medium text-blue-500">nama</span>, atur
+              <span className="font-medium text-blue-500">
+                {user.name}
+                </span>, atur
               semua data di sini!
             </p>
           </div>
@@ -25,6 +30,7 @@ const AdminLayout = ({ children, page }) => {
               {Object.keys(routing).map((key) => (
                 <NavLink
                   to={routing[key]}
+                  key={key}
                   className={({ isActive }) =>
                     isActive
                       ? "border-manual-blue text-manual-blue whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm"

@@ -6,7 +6,7 @@ const AddMasjidLayout = () => {
     <>
       <div className="max-w-max mb-5 bg-white rounded-xl rounded-br-lg shadow-lg p-5 border border-gray-300 flex items-center gap-5">
         <div className="size-10 bg-gray-300 rounded-full flex items-center justify-center relative overflow-hidden">
-          <i class="fa-solid fa-user absolute bottom-0 text-3xl"></i>
+          <i className="fa-solid fa-user absolute bottom-0 text-3xl"></i>
         </div>
         <div>
           <div className="flex items-center gap-1">

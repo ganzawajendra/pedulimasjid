@@ -5,48 +5,86 @@ import CardDeskripsiHome from "../fragments/CardDeskripsiHome";
 import ListCard from "../elements/ListCard";
 import CardMasjid from "../fragments/CardMasjid";
 import axios from "axios";
-import dataMasjidApi from "../../api/masjid.json";
 
 const HomeLayout = ({ donasi, masjid, donatur }) => {
-  // Jika menggunakan API aktifkan ini
-  // const urlApi = "http://localhost:8000/masjid";
+  const [masjidList, setMasjidList] = useState([]);
 
-  const [dataMasjid, setDatamasjid] = useState([]);
-
-  async function getAllData() {
-    // Jika menggunakan API aktifkan ini
-    // const response = await axios.get(urlApi);
-    
-    setDatamasjid(dataMasjidApi.masjid);
-  }
+  const fetchMasjid = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/masjid");
+      setMasjidList(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    getAllData();
+    fetchMasjid();
   }, []);
 
   return (
     <>
       {/* Hero Section */}
       <div
-        className={`bg-[url('/images/hero.png')] bg-contain bg-no-repeat bg-center h-90 flex flex-col items-start px-20 justify-center text-start`}
+        className={`bg-[url('/images/hero.png')] bg-cover bg-no-repeat bg-center h-90 flex flex-col items-start justify-center text-start transition-all
+          max-sm:h-40 max-sm:px-5 max-sm:mt-15
+          sm:px-5 sm:h-40 sm:mt-15
+          md:px-10 md:h-70 
+          lg:px-20 lg:h-90 
+           `}
       >
-        <h1 className="text-5xl/15 text-gray-800 w-200">
+        <h1
+          className=" text-gray-800 transition-all
+        lg:w-150 lg:text-5xl/15
+        md:w-100 md:text-3xl 
+        sm:w-90 sm:text-xl
+        max-sm: w-70 max-sm:text-xl"
+        >
           Donasi Masjid Mudah dan Cepat di Peduli Masjid
         </h1>
-        <p className="text-xl my-2 text-gray-500">
+        <p
+          className="my-2 text-gray-500 transition-all
+        sm:text-sm
+        md:text-lg 
+        lg:text-xl
+        max-sm:text-xs max-sm:w-3/4"
+        >
           Temukan informasi donasi masjid dengan mudah dan cepat
         </p>
       </div>
 
       {/* Deskripsi Singkat */}
-      <div className="w-full flex flex-col items-center justify-center text-center mt-10">
-        <h2 className="text-2xl font-semibold text-gray-800">
+      <div
+        className="w-full flex flex-col items-center justify-center text-center transition-all
+      lg:mt-10 
+      md:mt-5
+      sm:mt-5
+      max-sm:mt-4"
+      >
+        <h2
+          className=" font-semibold text-gray-800 transition-all
+        lg:text-2xl 
+        md:text-lg
+        sm:text-md
+        max-sm:text-sm"
+        >
           Bantu Wujudkan Masjid Layak untuk Umat
         </h2>
-        <p className="text-md text-gray-500">
-          Platform donasi online transparan untuk pembangunan & renovasi masjid
-          kurang mampu di seluruh Indonesia.
-        </p>
+        <div className="
+        lg:px-5 
+        md:px-3 
+        sm:px-15 
+        max-sm:px-15">
+          <p className=" text-gray-500 transition-all
+        lg:text-lg 
+        md:text-sm
+        sm:text-sm
+        max-sm:text-xs"
+          >
+            Platform donasi online transparan untuk pembangunan & renovasi
+            masjid kurang mampu di seluruh Indonesia.
+          </p>
+        </div>
       </div>
 
       {/* Fungsi */}
@@ -57,7 +95,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
       {/* Card Donasi */}
       <div className="w-full border border-gray-200 shadow-lg  gap-5 mt-10 rounded-lg p-4">
         <div className=" grid grid-cols-4 gap-5">
-          {dataMasjid.map((item, index) => (
+          {masjidList.map((item, index) => (
             <CardMasjid
               key={index}
               name={item.name}

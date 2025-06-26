@@ -9,7 +9,7 @@ const FormAddMasjid = () => {
       action=""
       method="post"
       className="grid grid-cols-4 gap-4 mt-5 items-center "
-      enctype="multipart/form-data"
+      encType="multipart/form-data"
       autoComplete="off"
     >
         <FormInput style="col-span-2" type="text" name="nama" placeholder="Masjid Al-Husna">Nama Masjid</FormInput>

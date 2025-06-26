@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const ButtonLink = (props) => {
+const ButtonLink = (props, onClick) => {
   const {
     router = "#",
     variant = "hover:bg-gray-900 bg-gray-800 text-white",
@@ -18,6 +18,7 @@ const ButtonLink = (props) => {
   return (
     <Link
       to={router}
+      onClick={onClick}
       className={`${variantClass} ${style} rounded px-4 py-1 text-sm transition-all duration-300`}
     >
       {children}

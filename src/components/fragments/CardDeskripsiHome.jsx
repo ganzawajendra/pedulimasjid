@@ -4,9 +4,22 @@ import ListCard from "../elements/ListCard";
 const CardDeskripsiHome = () => {
   return (
     <>
-      <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-300">
-        <h3 className="text-xl font-semibold text-gray-800">Apa itu aplikasi Peduli Masjid?</h3>
-        <p className="text-md text-gray-500">Aplikasi Peduli Masjid adalah platform digital yang menghubungkan donatur dengan masjid-masjid yang belum layak di pelosok Indonesia. Kami menyediakan sistem:</p>
+      <div className="bg-white shadow-lg max-h-max rounded-lg p-6 border border-gray-300 transition-all
+      lg:col-span-1
+      md:col-span-1
+      sm:col-span-2
+      max-sm:col-span-2">
+        <h3 className=" font-semibold text-gray-800 transition-all
+        lg:text-xl
+        md:text-md
+        sm:text-sm
+        max-sm:text-sm">Apa itu aplikasi Peduli Masjid?</h3>
+        <p className=" text-gray-500 transition-all
+        lg:text-md
+        md:text-sm
+        sm:text-xs
+        max-sm:text-xs
+        ">Aplikasi Peduli Masjid adalah platform digital yang menghubungkan donatur dengan masjid-masjid yang belum layak di pelosok Indonesia. Kami menyediakan sistem:</p>
         <ul>
           <ListCard
             icon="fa-solid fa-circle-check"
@@ -31,8 +44,16 @@ const CardDeskripsiHome = () => {
           </ListCard>
         </ul>
       </div>
-      <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-300">
-        <h3 className="text-xl font-semibold text-gray-800">Setiap Rupiah Anda Akan Membantu:</h3>
+      <div className="bg-white shadow-lg max-h-max rounded-lg p-6 border border-gray-300
+      lg:col-span-1
+      md:col-span-1
+      sm:col-span-2
+      max-sm:col-span-2">
+        <h3 className="font-semibold text-gray-800
+        lg:text-xl
+        md:text-md
+        sm:text-sm
+        max-sm:text-sm">Setiap Rupiah Anda Akan Membantu:</h3>
         <ul>
           <ListCard  iconAlt="🕌">
             Renovasi bangunan masjid yang rusak
