@@ -10,6 +10,7 @@ import masjidData from "../../../mock-db.json";
 const HomeLayout = ({ donasi, masjid, donatur }) => {
   const [masjidList, setMasjidList] = useState([]);
 
+  // Fetch with API
   // const fetchMasjid = async () => {
   //   try {
   //     const response = await axios.get("http://localhost:8000/masjid");
@@ -19,10 +20,10 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
   //   }
   // };
 
+  // Fetch with JSON
   const fetchMasjid = () => {
-  setMasjidList(masjidData.masjid);
-};
-
+    setMasjidList(masjidData.masjid);
+  };
 
   useEffect(() => {
     fetchMasjid();
@@ -76,12 +77,15 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
         >
           Bantu Wujudkan Masjid Layak untuk Umat
         </h2>
-        <div className="
+        <div
+          className="
         lg:px-5 
         md:px-3 
         sm:px-15 
-        max-sm:px-15">
-          <p className=" text-gray-500 transition-all
+        max-sm:px-15"
+        >
+          <p
+            className=" text-gray-500 transition-all
         lg:text-lg 
         md:text-sm
         sm:text-sm
@@ -99,7 +103,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
       </div>
 
       {/* Card Donasi */}
-      <div className="w-full border border-gray-200 shadow-lg  gap-5 mt-10 rounded-lg p-4">
+      <div className="w-full  gap-5 mt-10 rounded-lg p-4">
         <div className=" grid grid-cols-4 gap-5">
           {masjidList.map((item, index) => (
             <CardMasjid
@@ -116,34 +120,100 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
       </div>
 
       {/* Statistik */}
-      <div className="w-full grid grid-cols-3 mt-10 px-20  py-10">
+      <div
+        className="w-full grid grid-cols-3 mt-10 transition-all
+      lg:px-20 lg:py-10
+      md:px-10 md:py-5
+      sm:px-5 sm:py-5
+      max-sm:px-5 max-sm:py-5"
+      >
         <div className="border-l border-gray-800 flex flex-col items-center justify-center p-6">
-          <h4 className="text-md text-gray-500">Total Donasi</h4>
-          <h3 className="text-lg font-semibold text-gray-800">
+          <h4
+            className="text-gray-500 transition-all
+          lg:text-md
+        md:text-sm
+        sm:text-xs
+        max-sm:text-xs"
+          >
+            Total Donasi
+          </h4>
+          <h3
+            className="font-semibold text-gray-800 transition-all
+          lg:text-xl
+        md:text-md
+        sm:text-sm
+        max-sm:text-sm"
+          >
             Rp <span>{donasi}</span>
           </h3>
         </div>
         <div className="border-r border-l border-gray-800 flex flex-col items-center justify-center p-6">
-          <h4 className="text-md text-gray-500">Terbantu</h4>
-          <h3 className="text-lg font-semibold text-gray-800">
+          <h4
+            className="text-gray-500 transition-all
+          lg:text-md
+        md:text-sm
+        sm:text-xs
+        max-sm:text-xs"
+          >
+            Terbantu
+          </h4>
+          <h3
+            className="font-semibold text-gray-800 transition-all
+          lg:text-xl
+        md:text-md
+        sm:text-sm
+        max-sm:text-sm"
+          >
             <span>{masjid}</span> Masjid
           </h3>
         </div>
         <div className="border-r border-gray-800 flex flex-col items-center justify-center p-6">
-          <h4 className="text-md text-gray-500">Lebih dari</h4>
-          <h3 className="text-lg font-semibold text-gray-800">
+          <h4
+            className="text-gray-500 transition-all
+          lg:text-md
+        md:text-sm
+        sm:text-xs
+        max-sm:text-xs"
+          >
+            Lebih dari
+          </h4>
+          <h3
+            className="font-semibold text-gray-800 transition-all
+          lg:text-xl
+        md:text-md
+        sm:text-sm
+        max-sm:text-sm"
+          >
             <span>{donatur}</span> Donatur
           </h3>
         </div>
       </div>
 
       {/* Open Akun Pengurus */}
-      <div className="bg-neutral-200 rounded-lg p-8 mt-10 grid grid-cols-3 gap-5">
-        <div className="col-span-2 p-6">
-          <h2 className="text-2xl font-semibold text-gray-800">
+      <div className="bg-neutral-200 rounded-lg p-8 mt-10 grid grid-cols-5 gap-5">
+        <div
+          className=" flex flex-col justify-center
+        lg:col-span-3
+        md:col-span-2
+        sm:col-span-5
+        max-sm:col-span-5"
+        >
+          <h2
+            className="font-semibold text-gray-800
+          lg:text-2xl 
+        md:text-lg
+        sm:text-md
+        max-sm:text-sm"
+          >
             Jadi Pengurus Masjid?
           </h2>
-          <p className="text-md text-gray-500">
+          <p
+            className="text-gray-500
+          lg:text-lg 
+        md:text-sm
+        sm:text-sm
+        max-sm:text-xs"
+          >
             Daftarkan masjid Anda untuk mendapatkan bantuan donasi dari
             masyarakat. Kami akan membantu memverifikasi dan mempromosikan
             kebutuhan masjid Anda.
@@ -160,7 +230,13 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
             </ListCard>
           </ul>
         </div>
-        <div className="col-span-1">
+        <div
+          className="
+        lg:col-span-2
+        md:col-span-3
+        sm:col-span-5
+        max-sm:col-span-5"
+        >
           <FormAddPengurus />
         </div>
       </div>
