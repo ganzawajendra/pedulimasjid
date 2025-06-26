@@ -56,7 +56,7 @@ const CardMasjid = ({ name, address, status, demand, created_at, url }) => {
           max-sm:text-xs"
           ></i>
           <p
-            className=" font-medium text-gray-400 transition-all
+            className=" font-medium text-gray-400 transition-all line-clamp-1 overflow-hidden w-full text-ellipsis
           lg:text-sm
           md:text-xs
           sm:text-xs
@@ -116,7 +116,7 @@ const CardMasjid = ({ name, address, status, demand, created_at, url }) => {
         <div className="flex justify-end items-center">
           <Link
             to="/card-detail"
-            className="font-medium text-blue-600 hover:text-blue-800 transition-all
+            className="font-medium flex items-center text-blue-600 hover:text-blue-800 transition-all
             lg:text-md 
             md:text-xs
             sm:text-sm

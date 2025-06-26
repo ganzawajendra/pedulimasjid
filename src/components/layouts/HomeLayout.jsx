@@ -129,7 +129,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
       >
         <div className="border-l border-gray-800 flex flex-col items-center justify-center p-6">
           <h4
-            className="text-gray-500 transition-all
+            className="text-gray-500 text-center transition-all
           lg:text-md
         md:text-sm
         sm:text-xs
@@ -138,7 +138,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
             Total Donasi
           </h4>
           <h3
-            className="font-semibold text-gray-800 transition-all
+            className="font-semibold text-center text-gray-800 transition-all
           lg:text-xl
         md:text-md
         sm:text-sm
@@ -149,7 +149,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
         </div>
         <div className="border-r border-l border-gray-800 flex flex-col items-center justify-center p-6">
           <h4
-            className="text-gray-500 transition-all
+            className="text-gray-500 text-center transition-all
           lg:text-md
         md:text-sm
         sm:text-xs
@@ -158,7 +158,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
             Terbantu
           </h4>
           <h3
-            className="font-semibold text-gray-800 transition-all
+            className="font-semibold text-center text-gray-800 transition-all
           lg:text-xl
         md:text-md
         sm:text-sm
@@ -169,7 +169,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
         </div>
         <div className="border-r border-gray-800 flex flex-col items-center justify-center p-6">
           <h4
-            className="text-gray-500 transition-all
+            className="text-gray-500 text-center transition-all
           lg:text-md
         md:text-sm
         sm:text-xs
@@ -178,7 +178,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
             Lebih dari
           </h4>
           <h3
-            className="font-semibold text-gray-800 transition-all
+            className="font-semibold text-center text-gray-800 transition-all
           lg:text-xl
         md:text-md
         sm:text-sm
