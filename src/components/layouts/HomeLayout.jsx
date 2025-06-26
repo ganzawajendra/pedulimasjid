@@ -5,18 +5,24 @@ import CardDeskripsiHome from "../fragments/CardDeskripsiHome";
 import ListCard from "../elements/ListCard";
 import CardMasjid from "../fragments/CardMasjid";
 import axios from "axios";
+import masjidData from "../../../mock-db.json";
 
 const HomeLayout = ({ donasi, masjid, donatur }) => {
   const [masjidList, setMasjidList] = useState([]);
 
-  const fetchMasjid = async () => {
-    try {
-      const response = await axios.get("http://localhost:8000/masjid");
-      setMasjidList(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchMasjid = async () => {
+  //   try {
+  //     const response = await axios.get("http://localhost:8000/masjid");
+  //     setMasjidList(response.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const fetchMasjid = () => {
+  setMasjidList(masjidData.masjid);
+};
+
 
   useEffect(() => {
     fetchMasjid();

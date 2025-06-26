@@ -3,19 +3,24 @@ import { Link } from "react-router-dom";
 
 const CardMasjid = ({ name, address, status, demand, created_at, url }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 
+    lg:col-span-1
+    md:col-span-1
+    sm:col-span-2">
       <div className="bg-gray-400 h-32 shadow-lg">
         <img src={url} alt={name} className="w-full h-full object-cover" />
       </div>
       <div
         className="grid grid-cols-3 transition-all
       lg:p-4
-      md:p-2"
+      md:p-2
+      sm:p-2"
       >
         <h3
           className="font-semibold text-gray-800 line-clamp-1 overflow-hidden w-full text-ellipsis transition-all
           lg:text-xl lg:col-span-2 lg:col-start-1
-          md:text-md md:col-span-3"
+          md:text-md md:col-span-3
+          sm:text-sm sm:col-span-3"
         >
           {name}
         </h3>
