@@ -8,7 +8,7 @@ const CardDeskripsiHome = () => {
       lg:col-span-1
       md:col-span-1
       sm:col-span-2
-      max-sm:col-span-2">
+      max-sm:col-span-2 max-sm:rounded-none max-sm:p-4">
         <h3 className=" font-semibold text-gray-800 transition-all
         lg:text-xl
         md:text-md
@@ -48,7 +48,7 @@ const CardDeskripsiHome = () => {
       lg:col-span-1
       md:col-span-1
       sm:col-span-2
-      max-sm:col-span-2">
+      max-sm:col-span-2 max-sm:rounded-none max-sm:p-4">
         <h3 className="font-semibold text-gray-800
         lg:text-xl
         md:text-md

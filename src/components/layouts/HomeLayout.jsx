@@ -28,9 +28,9 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
     <>
       {/* Hero Section */}
       <div
-        className={`bg-[url('/images/hero.png')] bg-cover bg-no-repeat bg-center h-90 flex flex-col items-start justify-center text-start transition-all
-          max-sm:h-40 max-sm:px-5 max-sm:mt-10
-          sm:px-5 sm:h-40 sm:mt-10
+        className={`bg-[url('/images/hero.png')] bg-cover bg-no-repeat bg-center flex flex-col items-start justify-center text-start transition-all
+          max-sm:h-40 max-sm:px-5
+          sm:h-60 sm:px-5 
           md:px-10 md:h-70 
           lg:px-20 lg:h-90 
            `}
@@ -93,7 +93,11 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
       </div>
 
       {/* Fungsi */}
-      <div className="grid grid-cols-2 gap-10 mt-10">
+      <div className="grid grid-cols-2 gap-10 mt-10
+      lg:gap-10 lg:mt-10
+      md:gap-10 md:mt-10
+      sm:gap-5 sm:mt-5
+      max-sm:gap-0 max-sm:mt-5">
         <CardDeskripsiHome />
       </div>
 
