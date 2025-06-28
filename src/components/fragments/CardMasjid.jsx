@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CardMasjid = ({ name, address, status, demand, created_at, url }) => {
+const CardMasjid = ({ name, address, status, demand, created_at, url, id }) => {
+
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 
     lg:col-span-1
@@ -116,7 +117,7 @@ const CardMasjid = ({ name, address, status, demand, created_at, url }) => {
         <div className="flex justify-end items-center
         max-sm:row-start-6 max-sm:col-start-3">
           <Link
-            to="/card-detail"
+            to={`/card-detail/${id}`}
             className="font-medium flex items-center text-blue-600 hover:text-blue-800 transition-all
             lg:text-md 
             md:text-xs

@@ -137,6 +137,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
               demand={item.demand}
               created_at={item.created_at}
               url={item.url}
+              id={item.id}
             />
           ))}
         </div>
@@ -219,7 +220,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
         lg:col-span-3
         md:col-span-2
         sm:col-span-5
-        max-sm:col-span-5"
+        max-sm:col-span-5 max-sm:rounded-none"
         >
           <h2
             className="font-semibold text-gray-800
