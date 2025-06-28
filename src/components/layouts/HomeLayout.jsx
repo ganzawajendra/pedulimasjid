@@ -5,25 +5,20 @@ import CardDeskripsiHome from "../fragments/CardDeskripsiHome";
 import ListCard from "../elements/ListCard";
 import CardMasjid from "../fragments/CardMasjid";
 import axios from "axios";
-import masjidData from "../../../mock-db.json";
 
 const HomeLayout = ({ donasi, masjid, donatur }) => {
   const [masjidList, setMasjidList] = useState([]);
 
   // Fetch with API
-  // const fetchMasjid = async () => {
-  //   try {
-  //     const response = await axios.get("http://localhost:8000/masjid");
-  //     setMasjidList(response.data);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // Fetch with JSON
-  const fetchMasjid = () => {
-    setMasjidList(masjidData.masjid);
+  const fetchMasjid = async () => {
+    try {
+      const response = await axios.get("/mock-db.json");
+      setMasjidList(response.data.masjid);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
 
   useEffect(() => {
     fetchMasjid();
@@ -34,8 +29,8 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
       {/* Hero Section */}
       <div
         className={`bg-[url('/images/hero.png')] bg-cover bg-no-repeat bg-center h-90 flex flex-col items-start justify-center text-start transition-all
-          max-sm:h-40 max-sm:px-5 max-sm:mt-15
-          sm:px-5 sm:h-40 sm:mt-15
+          max-sm:h-40 max-sm:px-5 max-sm:mt-10
+          sm:px-5 sm:h-40 sm:mt-10
           md:px-10 md:h-70 
           lg:px-20 lg:h-90 
            `}

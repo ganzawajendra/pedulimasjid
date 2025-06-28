@@ -113,7 +113,8 @@ const CardMasjid = ({ name, address, status, demand, created_at, url }) => {
             </p>
           </div>
         </div>
-        <div className="flex justify-end items-center">
+        <div className="flex justify-end items-center
+        max-sm:row-start-6 max-sm:col-start-3">
           <Link
             to="/card-detail"
             className="font-medium flex items-center text-blue-600 hover:text-blue-800 transition-all

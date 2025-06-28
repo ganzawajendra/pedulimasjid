@@ -19,7 +19,11 @@ const ButtonLink = (props, onClick) => {
     <Link
       to={router}
       onClick={onClick}
-      className={`${variantClass} ${style} rounded px-4 py-1 text-sm transition-all duration-300`}
+      className={`${variantClass} ${style} rounded text-sm transition-all duration-300
+      lg:px-4 lg:py-2 lg:text-sm
+      md:px-3 md:py-1 md:text-xs
+      sm:px-3 sm:py-1 sm:text-xs
+      max-sm:px-2 max-sm:py-1 max-sm:text-xs`}
     >
       {children}
     </Link>

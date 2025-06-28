@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import ButtonLink from "../elements/Button";
 import { logout } from "../../services/auth.service";
-import { use } from "react";
 
 const Navbar = () => {
 
@@ -14,8 +13,16 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed z-10 w-full flex justify-between items-center h-13 px-20 bg-white shadow-lg">
-      <Link to="/" className="text-xl font-semibold text-gray-800">
+    <nav className="fixed z-10 w-full flex justify-between items-center bg-white shadow-lg
+    lg:px-20 lg:h-13
+    md:px-10 md:h-12
+    sm:px-5 sm:h-10
+    max-sm:px-4 max-sm:h-10">
+      <Link to="/" className="font-semibold text-gray-800 transition-all
+      lg:text-xl
+      md:text-lg
+      sm:text-md
+      max-sm:text-sm">
         Peduli Masjid
       </Link>
       <div className="flex space-x-4 items-center">
