@@ -5,9 +5,11 @@ import CardDeskripsiHome from "../fragments/CardDeskripsiHome";
 import ListCard from "../elements/ListCard";
 import CardMasjid from "../fragments/CardMasjid";
 import axios from "axios";
+import ButtonLink from "../elements/Button";
 
 const HomeLayout = ({ donasi, masjid, donatur }) => {
   const [masjidList, setMasjidList] = useState([]);
+  const [isSmall, setIsSmall] = useState(false);
 
   // Fetch with API
   const fetchMasjid = async () => {
@@ -19,9 +21,17 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
     }
   };
 
-
   useEffect(() => {
     fetchMasjid();
+
+    const checkSize = () => {
+      setIsSmall(window.innerWidth < 640);
+    };
+    checkSize();
+    window.addEventListener("resize", checkSize);
+    return () => {
+      window.removeEventListener("resize", checkSize);
+    }
   }, []);
 
   return (
@@ -92,12 +102,26 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
         </div>
       </div>
 
+      {/* Kalau Small */}
+      {isSmall && (
+        <div className="flex items-center justify-center gap-5 my-5 transition-all">
+            <ButtonLink router="/login" variant="Black">
+              Login
+            </ButtonLink>
+            <ButtonLink router="/register" variant="White">
+              Register
+            </ButtonLink>
+        </div>
+      )}
+
       {/* Fungsi */}
-      <div className="grid grid-cols-2 gap-10 mt-10
+      <div
+        className="grid grid-cols-2 gap-10 mt-10
       lg:gap-10 lg:mt-10
       md:gap-10 md:mt-10
       sm:gap-5 sm:mt-5
-      max-sm:gap-0 max-sm:mt-5">
+      max-sm:gap-0 max-sm:mt-5"
+      >
         <CardDeskripsiHome />
       </div>
 
