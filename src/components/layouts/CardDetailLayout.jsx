@@ -21,7 +21,8 @@ const CardDetailLayout = ({id}) => {
 
   return (
     <div className="w-full bg-white mt-10 pb-13 rounded-xl shadow-lg border border-gray-300 overflow-hidden
-    max-sm:rounded-none">
+    sm:pb-7
+    max-sm:rounded-none max-sm:pb-5">
       <div className="relative bg-neutral-200 transition-all
       lg:h-150
       md:h-100
@@ -34,7 +35,11 @@ const CardDetailLayout = ({id}) => {
           />
         
       </div>
-      <div className="py-5 px-10 grid grid-cols-2">
+      <div className="py-5 px-10 grid grid-cols-2
+      lg:py-5 lg:px-10
+      md:py-5 md:px-10
+      sm:py-3 sm:px-7
+      max-sm:py-3 max-sm:px-5">
         <h3 className="font-semibold text-gray-800
         lg:text-xl
         md:text-lg
