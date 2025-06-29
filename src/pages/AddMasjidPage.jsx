@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const AddMasjidPage = () => {
   return (
-    <div className="py-13 px-90 ">
+    <div className="transition-all flex items-center justify-center min-h-screen">
       <AddMasjidLayout />
     </div>
   );

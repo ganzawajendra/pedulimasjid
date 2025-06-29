@@ -39,9 +39,21 @@ const FormLogin = () => {
   };
 
   return (
-    <div className="w-full max-w-md bg-white rounded-tr-lg rounded-br-lg shadow-md p-8">
-      <h3 className="text-xl font-semibold text-gray-800">Login</h3>
-      <p className="text-md text-gray-500">
+    <div className="w-full bg-white transition-all shadow-md p-8
+    lg:col-span-1 lg:rounded-tr-xl lg:rounded-br-xl lg:rounded-bl-none
+    md:col-span-1 md:rounded-tr-xl md:rounded-br-xl md:rounded-bl-none
+    sm:col-span-2 sm:rounded-tr-none sm:rounded-bl-xl sm:rounded-br-xl
+    max-sm:col-span-2 max-sm:rounded-tr-none max-sm:rounded-bl-xl max-sm:rounded-br-xl">
+      <h3 className="font-semibold text-gray-800 transition-all
+      lg:text-xl
+      md:text-lg
+      sm:text-md
+      max-sm:text-sm">Login</h3>
+      <p className="text-gray-500 transition-all
+      lg:text-md
+      md:text-sm
+      sm:text-xs
+      max-sm:text-xs">
         Silakan masukkan email dan kata sandi Anda untuk masuk.
       </p>
 
@@ -70,7 +82,11 @@ const FormLogin = () => {
         </FormInput>
         <FormSubmit value="Login" name="login" />
       </form>
-      <p className="text-md text-center text-gray-500 mt-3">
+      <p className="text-center text-gray-500 mt-3
+      lg:text-md
+      md:text-sm
+      sm:text-xs
+      max-sm:text-xs">
         Belum punya akun?{" "}
         <Link to="/register" className="text-blue-500 hover:text-blue-800">
           Daftar disini

@@ -7,7 +7,11 @@ const DashboardPengurusPage = () => {
   return (
     <>
       <Navbar />
-      <div className="p-20">
+      <div className="transition-all
+    lg:px-20 lg:pt-12
+      md:px-10 md:pt-8
+      sm:px-5 sm:pt-6
+      max-sm:px-0 max-sm:pt-6">
         <DashboardPengurusLayout />
       </div>
       <Footer />
