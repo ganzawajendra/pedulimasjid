@@ -12,12 +12,12 @@ const ReceiptPage = () => {
         className=" transition-all min-h-screen
     lg:px-20 lg:pt-22
       md:px-10 md:pt-17
-      sm:px-5 sm:pt-16
-      max-sm:p-0 max-sm:pt-15"
+      sm:px-5 sm:pt-17
+      max-sm:p-0 max-sm:pt-17"
       >
         <div
           className="w-full text-left 
-      max-sm:px-10"
+      max-sm:px-3"
         >
           <Link to="/" className="text-manual-white font-semibold text-sm ">
             <i className="fa-solid fa-arrow-left"></i> Kembali ke Halaman Utama

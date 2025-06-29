@@ -20,7 +20,7 @@ const CardDetailLayout = ({id}) => {
   }, [id])
 
   return (
-    <div className="w-full bg-white mt-10 pb-13 rounded-xl shadow-lg border border-gray-300 overflow-hidden
+    <div className="w-full bg-white mt-5 pb-13 rounded-xl shadow-lg border border-gray-300 overflow-hidden
     sm:pb-7
     max-sm:rounded-none max-sm:pb-5">
       <div className="relative bg-neutral-200 transition-all
@@ -105,7 +105,7 @@ const CardDetailLayout = ({id}) => {
         <div className="flex row-start-7 col-start-2 justify-end
         sm:row-start-10
         max-sm:row-start-10">
-          <ButtonLink router="/payment" variant="Black" style=" max-w-max py-2">
+          <ButtonLink router={`/payment/${dataMasjid?.id}`} variant="Black" style=" max-w-max py-2">
             Donasi Sekarang
           </ButtonLink>
         </div>

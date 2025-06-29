@@ -48,7 +48,7 @@ const Navbar = () => {
             </button>
           </div>
         ) : (
-            isNotSmall && <div className="transition-all">
+            isNotSmall && <div className="transition-all space-x-4">
             <ButtonLink router="/login" variant="Black">
               Login
             </ButtonLink>

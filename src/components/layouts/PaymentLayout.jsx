@@ -1,7 +1,26 @@
 
+import { useEffect, useState } from "react";
 import FormPayment from "../fragments/FormPayment";
+import axios from "axios";
 
-const PaymentLayout = () => {
+const PaymentLayout = ({id}) => {
+
+  const [dataMasjid, setDataMasjid] = useState();
+
+  const fetchMasjidById = async () => {
+    try {
+      const response = await axios.get('/mock-db.json');
+      const result = await response.data.masjid.find((item) => item.id === id);
+      setDataMasjid(result);
+    } catch (err) {
+      console.error("Terjadi kesalahan saat mengambil data masjid:", err);
+    }
+  }
+
+  useEffect(() => {
+    fetchMasjidById();
+  }, [id])
+
   return (
     <div className="transition-all overflow-hidden pb-13 mt-5 
     lg:rounded-xl lg:border lg:border-gray-200 lg:shadow-lg
@@ -16,8 +35,8 @@ const PaymentLayout = () => {
         max-sm:h-50">
           <div className="absolute inset-0 bg-gradient-to-r from-white/70 via-white/60 to-transparent">
             <img
-              src="/images/hero.png"
-              alt="Masjid Al-Fatih"
+              src={dataMasjid?.url}
+              alt={dataMasjid?.name}
               className="w-full h-full object-cover mix-blend-overlay"
             />
           </div>
@@ -29,7 +48,7 @@ const PaymentLayout = () => {
               md:text-lg
               sm:text-md
               max-sm:text-sm">
-                MASJID AL-FATIH
+                {dataMasjid?.name}
               </h3>
               <div className="flex items-center mb-2 gap-2 row-start-2">
                 <i class="fa-solid fa-location-dot text-gray-500
@@ -41,7 +60,7 @@ const PaymentLayout = () => {
                 lg:text-sm
                 md:text-sm
                 sm:text-xs
-                max-sm:text-xs">Jl. Durian no. 45</p>
+                max-sm:text-xs">{dataMasjid?.address}</p>
               </div>
             </div>
             <div>
@@ -57,10 +76,7 @@ const PaymentLayout = () => {
                 md:text-sm
                 sm:text-xs
                 max-sm:text-xs">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Adipisci ea ipsam molestiae quidem exercitationem placeat
-                voluptatem eligendi dolorem veniam iusto reprehenderit nisi
-                maxime unde facilis cupiditate perspiciatis perferendis dic
+                {dataMasjid?.demand}
               </p>
             </div>
             <div>

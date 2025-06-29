@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const AuthLayout = ({ children }) => {
   return (
     <>
-      <div className=" grid grid-cols-2 mt-10">
+      <div className=" grid grid-cols-2 mt-5">
           <div className="flex flex-col items-center justify-center gap-4  p-8 shadow-lg bg-neutral-200 transition-all
           lg:col-span-1 lg:rounded-bl-xl
           md:col-span-1 md:rounded-tl-xl md:rounded-tr-none md:rounded-bl-xl

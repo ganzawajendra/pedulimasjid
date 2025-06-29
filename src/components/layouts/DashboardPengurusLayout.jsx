@@ -10,36 +10,37 @@ const DashboardPengurusLayout = () => {
       value: 1000000,
       icon: "fa-solid fa-dollar-sign",
       color: "text-green-800",
-      bg : "bg-green-200"
-
+      bg: "bg-green-200",
     },
     {
       title: "Dana Tersalurkan",
       value: 300000,
       icon: "fa-regular fa-clipboard",
       color: "text-blue-800",
-      bg : "bg-blue-200"
+      bg: "bg-blue-200",
     },
     {
       title: "Sisa Dana",
       value: 700000,
       icon: "fa-regular fa-clock",
       color: "text-red-800",
-      bg: "bg-red-200"
+      bg: "bg-red-200",
     },
   ];
 
   return (
     <div className="mt-10 grid grid-cols-3 gap-5">
-      <h1
-        className="font-semibold
-      lg:text-xl
-      md:text-lg
-      sm:text-md
-      max-sm:text-sm max-sm:text-center"
-      >
-        Dashboard Pengurus
-      </h1>
+      <div className=" col-span-3">
+        <h1
+          className="font-semibold w-full 
+        lg:text-xl
+        md:text-lg
+        sm:text-md
+        max-sm:text-sm max-sm:text-center"
+        >
+          Dashboard Pengurus
+        </h1>
+      </div>
       {/* Profil Masjid dan Pengurus */}
       <div
         className="border row-start-2 row-span-4 border-gray-300 rounded-lg overflow-hidden
@@ -226,65 +227,67 @@ const DashboardPengurusLayout = () => {
       </div>
 
       {/* Statistik */}
-      <div className="flex gap-5
+      <div
+        className="flex gap-5
       lg:col-start-3 lg:row-span-3 lg:row-start-2 lg:flex-col
       md:col-start-3 md:row-span-3 md:row-start-2 md:flex-col
       sm:col-start-3 sm:row-span-3 sm:row-start-2 sm:flex-col
-      max-sm:row-start-6 max-sm:col-start-1 max-sm:col-span-3 max-sm:justify-center">
-      {statistic.map((item, index) => (
-        <div
-          key={index}
-          className="bg-white w-full p-6 rounded-lg max-h-max row-start-2 shadow-md border border-gray-200
+      max-sm:row-start-6 max-sm:col-start-1 max-sm:col-span-3 max-sm:justify-center"
+      >
+        {statistic.map((item, index) => (
+          <div
+            key={index}
+            className="bg-white w-full p-6 rounded-lg max-h-max row-start-2 shadow-md border border-gray-200
       lg:p-6
       md:p-4
       sm:p-4
       max-sm:p-2"
-        >
-          <div className="grid grid-cols-3">
-            <p
-              className="text-gray-500 text-xs uppercase tracking-wide
+          >
+            <div className="grid grid-cols-3">
+              <p
+                className="text-gray-500 text-xs uppercase tracking-wide
             lg:col-span-2 lg:row-start-1
             md:col-span-2 md:row-start-1
             sm:col-span-3 sm:row-start-2
             max-sm:col-span-3 max-sm:row-start-2 max-sm:text-center"
-            >
-              {item.title}
-            </p>
-            <h3
-              className="font-semibold text-gray-800
+              >
+                {item.title}
+              </p>
+              <h3
+                className="font-semibold text-gray-800
             lg:text-xl lg:mt-1
             md:text-lg md:col-span-2 md:row-start-2 md:mt-1
             sm:text-md sm:col-span-3 sm:row-start-3 sm:mt-0
             max-sm:text-sm max-sm:col-span-3 max-sm:row-start-3 max-sm:mt-0 max-sm:text-center"
-            >
+              >
                 {item.value.toLocaleString("id-ID", {
                   style: "currency",
                   currency: "IDR",
                 })}
-            </h3>
-            <div
-              className="flex items-center justify-end
+              </h3>
+              <div
+                className="flex items-center justify-end
           lg:col-span-1 lg:row-span-2 lg:justify-end lg:mb-0
           md:col-span-1 md:row-span-2 md:justify-end md:mb-0
           sm:col-span-3 sm:row-start-1 sm:justify-start sm:mb-2
           max-sm:col-span-3 max-sm:row-start-1 max-sm:justify-center max-sm:mb-2"
-            >
-              <div
-                className={`${item.bg} w-10 h-10 rounded-lg relative
+              >
+                <div
+                  className={`${item.bg} w-10 h-10 rounded-lg relative
             lg:size-10
             md:size-8 
             sm:size-7`}
-              >
-                <i
-                  className={`${item.icon} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${item.color}
+                >
+                  <i
+                    className={`${item.icon} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${item.color}
               lg:text-lg
               md:text-lg`}
-                ></i>
+                  ></i>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
       </div>
 
       {/* Aktivitas Terkini */}

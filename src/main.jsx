@@ -26,7 +26,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/card-detail/:cardId" element={<CardDetailPage />} />
-        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/payment/:cardId" element={<PaymentPage />} />
         <Route path="/receipt" element={<ReceiptPage />} />
         <Route path="/form-masjid" element={<AddMasjidPage />} />
         <Route path="/dashboard-pengurus" element={<DashboardPengurusPage />} />

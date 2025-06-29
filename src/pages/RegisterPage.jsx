@@ -15,7 +15,7 @@ const RegisterPage = () => {
       >
         <div
           className="w-full text-left 
-      max-sm:px-10"
+      max-sm:px-3"
         >
           <Link to="/" className="text-manual-white font-semibold text-sm ">
             <i className="fa-solid fa-arrow-left"></i> Kembali
