@@ -48,7 +48,7 @@ const AdminManagementDana = () => {
                         lg:text-md
             md:text-sm
             sm:text-xs
-            max-sm:text-xs"><span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Pending</span></td>
+            max-sm:text-xs"><span className="px-2 inline-flex text-xs leading-5 font-semibold rounded bg-green-100 text-green-800">Pending</span></td>
                         <td className="px-6 py-4 whitespace-nowrap
                         lg:text-md
             md:text-sm

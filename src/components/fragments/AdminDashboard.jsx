@@ -131,10 +131,26 @@ const AdminDashboard = () => {
             </thead>
             <tbody>
               <tr className="text-center border-b border-gray-300">
-                <td className="px-6 py-4 whitespace-nowrap text-start">1</td>
-                <td className="px-6 py-4 whitespace-nowrap text-start">Donatur 1</td>
-                <td className="px-6 py-4 whitespace-nowrap text-start">Masjid 1</td>
-                <td className="px-6 py-4 whitespace-nowrap text-start">RP 1.000.000</td>
+                <td className="px-6 py-4 whitespace-nowrap text-start
+                lg:text-md
+            md:text-sm
+            sm:text-xs
+            max-sm:text-xs">1</td>
+                <td className="px-6 py-4 whitespace-nowrap text-start
+                lg:text-md
+            md:text-sm
+            sm:text-xs
+            max-sm:text-xs">Donatur 1</td>
+                <td className="px-6 py-4 whitespace-nowrap text-start
+                lg:text-md
+            md:text-sm
+            sm:text-xs
+            max-sm:text-xs">Masjid 1</td>
+                <td className="px-6 py-4 whitespace-nowrap text-start
+                lg:text-md
+            md:text-sm
+            sm:text-xs
+            max-sm:text-xs">RP 1.000.000</td>
               </tr>
             </tbody>
           </table>

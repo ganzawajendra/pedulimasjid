@@ -239,11 +239,11 @@ const DashboardPengurusLayout = () => {
         {statistic.map((item, index) => (
           <div
             key={index}
-            className="bg-white w-full p-6 rounded-lg max-h-max row-start-2 shadow-md border border-gray-200
-      lg:p-6
-      md:p-4
-      sm:p-4
-      max-sm:p-2"
+            className="bg-white w-full p-6 max-h-max row-start-2 shadow-md border border-gray-200
+      lg:p-6 lg:rounded-xl
+      md:p-4 md:rounded-xl
+      sm:p-4 sm:rounded-xl
+      max-sm:p-2 max-sm:rounded-none"
           >
             <div className="grid grid-cols-3">
               <p

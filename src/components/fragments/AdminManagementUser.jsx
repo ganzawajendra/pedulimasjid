@@ -80,7 +80,11 @@ const AdminManagementUser = () => {
                   Donatur
                 </span>
               </td>
-              <td className="px-6 py-4">Jl. Raya No. 1</td>
+              <td className="px-6 py-4
+              lg:text-md
+                        md:text-sm
+                        sm:text-xs
+            max-sm:text-xs">Jl. Raya No. 1</td>
               <td
                 className="px-6 py-4 whitespace-nowrap
                         lg:text-md
