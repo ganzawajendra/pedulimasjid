@@ -4,9 +4,20 @@ const AdminDashboard = () => {
   return (
     <div className="grid grid-cols-8 my-10 gap-5">
       {/* Total Masjid */}
-      <div className="col-span-3 flex items-start p-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max">
-        <div className="bg-gray-800 size-10 rounded-full relative">
-          <i className="fa-solid fa-mosque text-white absolute text-sm top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+      <div className="col-span-3 flex items-start p-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max
+      lg:col-span-3 lg:col-start-1 lg:row-start-1
+      md:col-span-5 md:col-start-1 md:row-start-1
+      sm:col-span-8 sm:col-start-1 sm:row-start-1
+      ">
+        <div className="bg-gray-800 rounded-lg relative
+        lg:size-10
+            md:size-8 
+            sm:size-7">
+          <i className="fa-solid fa-mosque text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+          lg:text-sm
+          md:text-sm
+          sm:text-xs
+          max-sm:text-xs"></i>
         </div>
         <div>
           <div className="flex items-end flex-col mb-4">
@@ -28,9 +39,19 @@ const AdminDashboard = () => {
       </div>
 
       {/* Total Pengguna */}
-      <div className="col-span-3 flex items-start p-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max">
-        <div className="bg-gray-800 size-10 rounded-full relative">
-          <i className="fa-solid fa-user text-white text-sm absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+      <div className="col-span-3 flex items-start p-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max
+      lg:col-span-3 lg:col-start-4 lg:row-start-1
+      md:col-span-8 md:col-start-1 md:row-start-2
+      sm:col-span-8 sm:col-start-1 sm:row-start-1">
+        <div className="bg-gray-800 rounded-lg relative
+        lg:size-10
+            md:size-8 
+            sm:size-7">
+          <i className="fa-solid fa-user text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+          lg:text-sm
+          md:text-sm
+          sm:text-xs
+          max-sm:text-xs"></i>
         </div>
         <div>
           <div className="flex items-end flex-col mb-4 ">
@@ -49,9 +70,19 @@ const AdminDashboard = () => {
       </div>
 
         {/* Total Donasi */}
-      <div className="col-span-2 flex items-start p-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max">
-        <div className="bg-gray-800 size-10 rounded-full relative">
-          <i className="fa-solid fa-dollar-sign text-sm text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+      <div className="flex items-start p-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white
+      lg:col-span-2 lg:col-start-7 lg:row-start-1 lg:max-h-max lg:items-start
+      md:col-span-3 md:col-start-6 md:row-start-1 md:items-center
+      sm:col-span-8 sm:col-start-1 sm:row-start-1">
+        <div className="bg-gray-800 rounded-lg relative
+        lg:size-10
+            md:size-8 
+            sm:size-7">
+          <i className="fa-solid fa-dollar-sign text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+          lg:text-sm
+          md:text-sm
+          sm:text-xs
+          max-sm:text-xs"></i>
         </div>
         <div>
           <div className="flex items-end flex-col">
@@ -64,8 +95,15 @@ const AdminDashboard = () => {
       </div>
 
       <div className="col-span-8 flex items-start p-5 gap-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max">
-        <div className="bg-gray-800 size-10 rounded-full relative">
-          <i className="fa-solid fa-info text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+        <div className="bg-gray-800 rounded-lg relative
+        lg:size-10
+            md:size-8 
+            sm:size-7">
+          <i className="fa-solid fa-info text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+          lg:text-sm
+          md:text-sm
+          sm:text-xs
+          max-sm:text-xs"></i>
         </div>
         <div className="w-full">
           <div className="flex items-end flex-col">

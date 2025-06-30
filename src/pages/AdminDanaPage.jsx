@@ -12,6 +12,7 @@ const AdminDanaPage = () => {
         <AdminManagementDana />
     </AdminLayout>
     <Footer />
+    
     </>
   )
 }
