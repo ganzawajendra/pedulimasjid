@@ -24,7 +24,7 @@ const AdminLayout = ({ children, page }) => {
             lg:text-md
         md:text-sm
         sm:text-xs
-        max-sm:text-xs">
+        max-sm:text-xs max-sm:text-center">
               Selamat datang kembali{" "}
               <span className="font-medium text-blue-500">
                 tes
@@ -33,15 +33,15 @@ const AdminLayout = ({ children, page }) => {
             </p>
           </div>
           <div className="border-b border-gray-200">
-            <div className="mb-px flex justify-around" aria-label="Tabs">
+            <div className="mb-px flex justify-around overflow-x-auto" aria-label="Tabs">
               {Object.keys(routing).map((key) => (
                 <NavLink
                   to={routing[key]}
                   key={key}
                   className={({ isActive }) =>
                     isActive
-                      ? "border-manual-blue text-manual-blue whitespace-nowrap py-4 px-1 border-b-2 font-medium lg:text-sm md:text-sm sm:text-xs max-sm:text-xs  transition-all"
-                      : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-all lg:text-sm md:text-sm sm:text-xs max-sm:text-xs"
+                      ? "mx-4 border-manual-blue text-manual-blue whitespace-nowrap py-4 px-1 border-b-2 font-medium lg:text-sm md:text-sm sm:text-xs max-sm:text-xs  transition-all"
+                      : "mx-4 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm transition-all lg:text-sm md:text-sm sm:text-xs max-sm:text-xs"
                   }
                 >
                   {key}

@@ -8,11 +8,18 @@ const AdminDanaPage = () => {
   return (
     <>
     <Navbar />
-    <AdminLayout page="Management Pencairan Dana">
-        <AdminManagementDana />
-    </AdminLayout>
-    <Footer />
-    
+      <div
+        className="transition-all  min-h-screen
+    lg:px-20 lg:pt-12
+      md:px-10 md:pt-8
+      sm:px-5 sm:pt-6
+      max-sm:px-0 max-sm:pt-6"
+      >
+        <AdminLayout page="Halaman Pencairan Dana">
+          <AdminManagementDana />
+        </AdminLayout>
+      </div>
+      <Footer />
     </>
   )
 }
