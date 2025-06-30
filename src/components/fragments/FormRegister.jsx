@@ -34,7 +34,7 @@ const FormRegister = () => {
       lg:text-xl
       md:text-lg
       sm:text-md
-      max-sm:text-sm">Register</h3>
+      max-sm:text-sm max-sm:font-bold">Register</h3>
       <p className=" text-gray-500 
       lg:text-md
       md:text-sm

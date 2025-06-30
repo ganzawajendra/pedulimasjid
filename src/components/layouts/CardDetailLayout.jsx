@@ -44,7 +44,7 @@ const CardDetailLayout = ({id}) => {
         lg:text-xl
         md:text-lg
         sm:text-md
-        max-sm:text-sm">{dataMasjid?.name}</h3>
+        max-sm:text-sm max-sm:font-bold">{dataMasjid?.name}</h3>
         <div className="flex items-center mb-2 gap-2 row-start-2">
           <i className="fa-solid fa-location-dot text-gray-500 
           lg:text-sm
@@ -71,7 +71,7 @@ const CardDetailLayout = ({id}) => {
           lg:text-sm
           md:text-sm
           sm:text-xs
-          max-sm:text-xs">
+          max-sm:text-xs max-sm:font-bold">
             INFORMASI MASJID
           </h4>
           <div className="grid grid-cols-2 mt-3">
@@ -92,7 +92,7 @@ const CardDetailLayout = ({id}) => {
         lg:text-sm
           md:text-sm
           sm:text-xs sm:row-start-8
-          max-sm:text-xs max-sm:row-start-8">
+          max-sm:text-xs max-sm:row-start-8 max-sm:font-bold">
           DESKRIPSI KEBUTUHAN
         </h4>
         <p className="px-4 w-full col-span-2 mb-4

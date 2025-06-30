@@ -65,7 +65,7 @@ const DashboardPengurusLayout = () => {
             lg:text-sm
             md:text-sm
             sm:text-xs
-            max-sm:text-xs"
+            max-sm:text-xs max-sm:font-bold"
             >
               Profil Pengurus
             </h5>
@@ -113,7 +113,7 @@ const DashboardPengurusLayout = () => {
             lg:text-sm
             md:text-sm
             sm:text-xs
-            max-sm:text-xs"
+            max-sm:text-xs max-sm:font-bold"
             >
               Profil Masjid
             </h5>
@@ -125,7 +125,7 @@ const DashboardPengurusLayout = () => {
                   lg:text-md
           md:text-md
           sm:text-sm
-          max-sm:text-sm"
+          max-sm:text-sm max-sm:font-bold"
                   >
                     Masjid Al-Fatih
                   </h4>
@@ -157,7 +157,7 @@ const DashboardPengurusLayout = () => {
                 lg:text-md
           md:text-md
           sm:text-sm
-          max-sm:text-sm"
+          max-sm:text-sm max-sm:font-bold"
                 >
                   Deskripsi Kebutuhan
                 </h4>
@@ -187,7 +187,7 @@ const DashboardPengurusLayout = () => {
                 lg:text-md
           md:text-md
           sm:text-sm
-          max-sm:text-sm"
+          max-sm:text-sm max-sm:font-bold"
                 >
                   Status
                 </h4>
@@ -260,7 +260,7 @@ const DashboardPengurusLayout = () => {
             lg:text-xl lg:mt-1
             md:text-lg md:col-span-2 md:row-start-2 md:mt-1
             sm:text-md sm:col-span-3 sm:row-start-3 sm:mt-0
-            max-sm:text-sm max-sm:col-span-3 max-sm:row-start-3 max-sm:mt-0 max-sm:text-center"
+            max-sm:text-sm max-sm:col-span-3 max-sm:row-start-3 max-sm:mt-0 max-sm:text-center max-sm:font-bold"
               >
                 {item.value.toLocaleString("id-ID", {
                   style: "currency",
@@ -300,7 +300,7 @@ const DashboardPengurusLayout = () => {
           lg:text-sm
           md:text-sm
           sm:text-xs
-          max-sm:text-xs"
+          max-sm:text-xs max-sm:font-bold"
           >
             Aktivitas Terkini
           </h2>
@@ -416,7 +416,7 @@ const DashboardPengurusLayout = () => {
           lg:text-sm
                       md:text-sm
                       sm:text-xs
-                      max-sm:text-xs"
+                      max-sm:text-xs max-sm:font-bold"
           >
             Update Progres Pembangunan
           </h2>
@@ -441,7 +441,7 @@ const DashboardPengurusLayout = () => {
           lg:text-sm
                       md:text-sm
                       sm:text-xs
-                      max-sm:text-xs"
+                      max-sm:text-xs max-sm:font-bold"
           >
             Ajukan Pencairan Dana
           </h2>

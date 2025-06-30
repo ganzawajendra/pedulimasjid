@@ -48,7 +48,7 @@ const FormLogin = () => {
       lg:text-xl
       md:text-lg
       sm:text-md
-      max-sm:text-sm">Login</h3>
+      max-sm:text-sm max-sm:font-bold">Login</h3>
       <p className="text-gray-500 transition-all
       lg:text-md
       md:text-sm

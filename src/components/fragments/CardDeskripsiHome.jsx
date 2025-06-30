@@ -13,7 +13,7 @@ const CardDeskripsiHome = () => {
         lg:text-xl
         md:text-md
         sm:text-sm
-        max-sm:text-sm">Apa itu aplikasi Peduli Masjid?</h3>
+        max-sm:text-sm max-sm:font-bold">Apa itu aplikasi Peduli Masjid?</h3>
         <p className=" text-gray-500 transition-all
         lg:text-md
         md:text-sm
@@ -53,7 +53,7 @@ const CardDeskripsiHome = () => {
         lg:text-xl
         md:text-md
         sm:text-sm
-        max-sm:text-sm">Setiap Rupiah Anda Akan Membantu:</h3>
+        max-sm:text-sm max-sm:font-bold">Setiap Rupiah Anda Akan Membantu:</h3>
         <ul>
           <ListCard  iconAlt="🕌">
             Renovasi bangunan masjid yang rusak

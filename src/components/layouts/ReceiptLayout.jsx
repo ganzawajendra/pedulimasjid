@@ -18,7 +18,7 @@ const ReceiptLayout = () => {
           lg:text-2xl
           md:text-xl
           sm:text-lg
-          max-sm:text-md">Struk Bukti Pembayaran</h3>
+          max-sm:text-md max-sm:font-bold">Struk Bukti Pembayaran</h3>
           <p className="text-gray-500 text-center px-5
           lg:text-md
           md:text-md

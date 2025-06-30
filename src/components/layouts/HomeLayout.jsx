@@ -50,7 +50,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
         lg:w-150 lg:text-5xl/15
         md:w-100 md:text-3xl 
         sm:w-90 sm:text-xl
-        max-sm: w-70 max-sm:text-xl"
+        max-sm: w-70 max-sm:text-xl max-sm:font-bold"
         >
           Donasi Masjid Mudah dan Cepat di Peduli Masjid
         </h1>
@@ -78,7 +78,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
         lg:text-2xl 
         md:text-lg
         sm:text-md
-        max-sm:text-sm"
+        max-sm:text-sm max-sm:font-bold"
         >
           Bantu Wujudkan Masjid Layak untuk Umat
         </h2>
@@ -166,7 +166,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
           lg:text-xl
         md:text-md
         sm:text-sm
-        max-sm:text-sm"
+        max-sm:text-sm max-sm:font-bold"
           >
             Rp <span>{donasi}</span>
           </h3>
@@ -186,7 +186,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
           lg:text-xl
         md:text-md
         sm:text-sm
-        max-sm:text-sm"
+        max-sm:text-sm max-sm:font-bold"
           >
             <span>{masjid}</span> Masjid
           </h3>
@@ -206,7 +206,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
           lg:text-xl
         md:text-md
         sm:text-sm
-        max-sm:text-sm"
+        max-sm:text-sm max-sm:font-bold"
           >
             <span>{donatur}</span> Donatur
           </h3>
@@ -227,7 +227,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
           lg:text-2xl 
         md:text-lg
         sm:text-md
-        max-sm:text-sm"
+        max-sm:text-sm max-sm:font-bold"
           >
             Jadi Pengurus Masjid?
           </h2>

@@ -47,7 +47,7 @@ const PaymentLayout = ({id}) => {
               lg:text-xl
               md:text-lg
               sm:text-md
-              max-sm:text-sm">
+              max-sm:text-sm max-sm:font-bold">
                 {dataMasjid?.name}
               </h3>
               <div className="flex items-center mb-2 gap-2 row-start-2">
@@ -68,7 +68,7 @@ const PaymentLayout = ({id}) => {
               lg:text-sm
                 md:text-sm
                 sm:text-xs
-                max-sm:text-xs">
+                max-sm:text-xs max-sm:font-bold">
                 Deskripsi Kebutuhan
               </h4>
               <p className="text-gray-600 line-clamp-3 overflow-hidden w-1/2 text-ellipsis
@@ -84,7 +84,7 @@ const PaymentLayout = ({id}) => {
               lg:text-sm
                 md:text-sm
                 sm:text-xs
-                max-sm:text-xs">
+                max-sm:text-xs max-sm:font-bold">
                 Kekurangan
               </h4>
               <p className="text-gray-600 

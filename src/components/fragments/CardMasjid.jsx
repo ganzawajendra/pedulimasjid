@@ -24,7 +24,7 @@ const CardMasjid = ({ name, address, status, demand, created_at, url, id }) => {
           lg:text-xl lg:col-span-2 lg:col-start-1
           md:text-md md:col-span-3
           sm:text-lg sm:col-span-3
-          max-sm:text-md max-sm:col-span-3"
+          max-sm:text-md max-sm:col-span-3 max-sm:font-bold"
         >
           {name}
         </h3>
@@ -77,7 +77,7 @@ const CardMasjid = ({ name, address, status, demand, created_at, url, id }) => {
           lg:text-sm lg:tracking-tight
           md:text-xs md:tracking-tight
           sm:text-sm sm:tracking-tight
-          max-sm:text-xs max-sm:tracking-tight"
+          max-sm:text-xs max-sm:tracking-tight max-sm:font-bold"
           >
             Kebutuhan:
           </h4>
