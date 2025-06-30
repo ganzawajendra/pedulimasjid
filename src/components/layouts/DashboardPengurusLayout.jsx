@@ -54,7 +54,9 @@ const DashboardPengurusLayout = () => {
           alt="<?= $masjid['nama']; ?>"
           className="object-cover w-full
           lg:h-50
-          md:h-40"
+          md:h-40
+          sm:h-30
+          max-sm:h-30"
         />
         <div className="lg:p-10 md:p-5 sm:p-4 max-sm:p-3">
           <div>
@@ -232,7 +234,7 @@ const DashboardPengurusLayout = () => {
       lg:col-start-3 lg:row-span-3 lg:row-start-2 lg:flex-col
       md:col-start-3 md:row-span-3 md:row-start-2 md:flex-col
       sm:col-start-3 sm:row-span-3 sm:row-start-2 sm:flex-col
-      max-sm:row-start-6 max-sm:col-start-1 max-sm:col-span-3 max-sm:justify-center"
+      max-sm:row-start-6 max-sm:col-start-1 max-sm:col-span-3 max-sm:flex-wrap"
       >
         {statistic.map((item, index) => (
           <div
