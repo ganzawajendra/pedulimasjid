@@ -12,12 +12,16 @@ const FormUpdateDana = () => {
         method="post"
         className="grid grid-cols-4 gap-4 mt-5 items-center"
       >
-        <div className="col-span-2 row-span-4">
+        <div className="col-span-2 row-span-4
+        lg:row-span-4 lg:col-span-2
+      md:row-span-1 md:col-span-4
+      sm:row-span-1 sm:col-span-4
+      max-sm:row-span-1 max-sm:col-span-4 max-sm:rounded-none">
           <div className=" h-80 bg-neutral-200 rounded-lg overflow-hidden">
             <img
               src="/images/hero.png"
               alt=""
-              className="h-full object-contain"
+              className="h-full object-cover"
             />
           </div>
           <div className="flex item-center justify-around">
@@ -51,22 +55,28 @@ const FormUpdateDana = () => {
             </div>
           </div>
         </div>
-        <FormInputReadOnly type="text" name="id" value="1" >
+        <FormInputReadOnly type="text" name="id" value="1" style="
+        lg:col-span-1 lg:col-start-3">
           ID
         </FormInputReadOnly>
-        <FormInputReadOnly type="text" name="nama_lengkap" value="Taslim" style="row-start-2 col-start-3">
+        <FormInputReadOnly type="text" name="nama_lengkap" value="Taslim" style="
+        lg:col-span-1 lg:col-start-3 lg:row-start-2">
           Nama Pengurus
         </FormInputReadOnly>
-        <FormInputReadOnly type="text" name="nama_masjid" value="Masjid An-Nur" style="row-start-2 col-start-4">
+        <FormInputReadOnly type="text" name="nama_masjid" value="Masjid An-Nur" style="
+        lg:col-span-1 lg:col-start-4 lg:row-start-2">
           Nama Masjid
         </FormInputReadOnly>
-        <FormInputReadOnly type="number" name="nominal" value="1000000" style="row-start-3 col-start-3">
+        <FormInputReadOnly type="number" name="nominal" value="1000000" style="
+        lg:col-span-1 lg:col-start-3 lg:row-start-3">
           Nominal
         </FormInputReadOnly>
-        <FormSelectInput name="status" option={optionValue} style="row-start-3 col-start-4">
+        <FormSelectInput name="status" option={optionValue} style="
+        lg:col-span-1 lg:col-start-4 lg:row-start-1">
           Status
         </FormSelectInput>
-        <FormSubmit value="Simpan Perubahan" name="edit_pencairan_dana" style="row-start-4 col-start-4"/>
+        <FormSubmit value="Simpan Perubahan" name="edit_pencairan_dana" style="
+        lg:col-span-1 lg:col-start-4 lg:row-start-3"/>
       </form>
     </>
   );
