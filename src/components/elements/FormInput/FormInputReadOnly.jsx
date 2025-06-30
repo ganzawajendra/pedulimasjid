@@ -9,7 +9,11 @@ const FormInputReadOnly = ({type, name, value, children, style}) => {
         type={type}
         name={name}
         id={name}
-        className="w-full text-gray-500 px-4 py-2 border border-gray-400 border-b-2 border-b-gray-800 focus:border-x-1 focus:border-t-1 focus:ring-0 focus:outline-none transition-all duration-300"
+        className="w-full text-gray-500 px-4 py-2 border border-gray-400 border-b-2 border-b-gray-800 focus:border-x-1 focus:border-t-1 focus:ring-0 focus:outline-none transition-all duration-300
+        lg:text-md
+        md:text-md
+        sm:text-sm
+        max-sm:text-xs"
         readonly
         value={value}
       />

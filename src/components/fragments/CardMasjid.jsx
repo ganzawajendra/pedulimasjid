@@ -99,7 +99,7 @@ const CardMasjid = ({ name, address, status, demand, created_at, url, id }) => {
           lg:text-sm
           md:text-xs
           sm:text-sm
-          max-sm:text-xs"
+          max-sm:text-xs max-sm:font-bold"
             >
               Terdaftar:
             </h4>
