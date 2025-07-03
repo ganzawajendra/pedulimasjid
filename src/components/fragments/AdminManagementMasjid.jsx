@@ -4,7 +4,7 @@ import TableAdminMasjid from "./TableAdminMasjid";
 
 const AdminManagementMasjid = () => {
   return (
-    <div className="min-h-screen my-10">
+    <div className="min-h-screen my-0">
       <TableAdminMasjid />
     </div>
   );

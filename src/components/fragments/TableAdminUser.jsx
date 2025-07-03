@@ -2,23 +2,23 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const TableAdminMasjid = () => {
-  const [masjidList, setMasjidList] = useState();
+const TableAdminUser = () => {
+  const [userList, setUserList] = useState();
 
-  const fetchDataMasjid = async () => {
+  const fetchUser = async () => {
     try {
       const response = await axios.get("/mock-db.json");
-      setMasjidList(response.data.masjid);
+      setUserList(response.data.userList);
     } catch (error) {
-      console.error("Terjadi kesalahan saat mengambil data donatur:", error);
+      console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchDataMasjid();
+    fetchUser();
   }, []);
 
-  if (!masjidList) {
+  if (!userList) {
     return (
       <div className="w-full h-screen flex items-center justify-center">
         Loading...
@@ -27,27 +27,27 @@ const TableAdminMasjid = () => {
   }
 
   return (
-    <div className="overflow-x-auto p-6">
+    <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
             <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              id
+              No
             </td>
             <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Nama Masjid
+              Nama Lengkap
+            </td>
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Email
+            </td>
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              No Telp
+            </td>
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Role
             </td>
             <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Alamat
-            </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Deskripsi Kebutuhan
-            </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Status
-            </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Tanggal Dibuat
             </td>
             <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Aksi
@@ -55,21 +55,21 @@ const TableAdminMasjid = () => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {masjidList.map((item, index) => (
-            <tr key={index} className="odd:bg-white even:bg-slate-100">
+          {userList.map((item, index) => (
+            <tr key={index}>
               <td
                 className="px-6 py-4 whitespace-nowrap
-                lg:text-md
-                md:text-sm
-                sm:text-xs
-                max-sm:text-xs"
+                        lg:text-md
+            md:text-sm
+            sm:text-xs
+            max-sm:text-xs"
               >
                 {index + 1}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
-            lg:text-md
-            md:text-sm
+                className="px-6 py-4
+                        lg:text-md
+                        md:text-sm
             sm:text-xs
             max-sm:text-xs"
               >
@@ -77,54 +77,58 @@ const TableAdminMasjid = () => {
               </td>
               <td
                 className="px-6 py-4 whitespace-nowrap
-            lg:text-md
-            md:text-sm
+                        lg:text-md
+                        md:text-sm
+                        sm:text-xs
+                        max-sm:text-xs"
+              >
+                {item.email}
+              </td>
+              <td
+                className="px-6 py-4 whitespace-nowrap
+                        lg:text-md
+                        md:text-sm
+                        sm:text-xs
+                        max-sm:text-xs"
+              >
+                {item.noTelp}
+              </td>
+              <td
+                className="px-6 py-4 whitespace-nowrap
+                        lg:text-md
+                        md:text-sm
             sm:text-xs
+            max-sm:text-xs"
+              >
+                {item.role === "pengurus" ? (
+                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                    Pengurus
+                  </span>
+                ) : (
+                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-200 text-blue-800">
+                    Donatur
+                  </span>
+                )}
+              </td>
+              <td
+                className="px-6 py-4
+              lg:text-md
+                        md:text-sm
+                        sm:text-xs
             max-sm:text-xs"
               >
                 {item.address}
               </td>
               <td
-                className="px-6 py-4 
-            lg:text-md
-            md:text-sm
-            sm:text-xs
-            max-sm:text-xs"
-              >
-                <div className="line-clamp-3 overflow-hidden text-ellipsis">
-                  {item.demand}
-                </div>
-              </td>
-              <td
                 className="px-6 py-4 whitespace-nowrap
-            lg:text-md
-            md:text-sm
-            sm:text-xs
-            max-sm:text-xs"
-              >
-                <span className="px-2 py-1 rounded bg-green-100 text-green-700 text-xs font-semibold">
-                  {item.status}
-                </span>
-              </td>
-              <td
-                className="px-6 py-4 whitespace-nowrap
-            lg:text-md
-            md:text-sm
-            sm:text-xs
-            max-sm:text-xs"
-              >
-                {item.created_at}
-              </td>
-              <td
-                className="px-6 py-4 whitespace-nowrap
-            lg:text-md
-            md:text-sm
-            sm:text-xs
+                        lg:text-md
+                        md:text-sm
+                        sm:text-xs
             max-sm:text-xs"
               >
                 <Link
-                  to="edit-masjid"
-                  className="text-orange-500 hover:text-orange-600 hover:underline duration-300 transition-all"
+                  to="edit-user"
+                  className="text-orange-500 hover:text-orange-600 hover:underline"
                 >
                   Edit
                 </Link>
@@ -137,4 +141,4 @@ const TableAdminMasjid = () => {
   );
 };
 
-export default TableAdminMasjid;
+export default TableAdminUser;

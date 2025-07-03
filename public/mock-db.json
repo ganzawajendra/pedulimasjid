@@ -150,55 +150,249 @@
     }
   ],
   "lastDonaturs": [
+    {
+      "name": "Maya Kartika",
+      "masjid_name": "Masjid Al-Husna",
+      "nominal": 4500000
+    },
+    {
+      "name": "Dani Nugroho",
+      "masjid_name": "Masjid Al-Fatih",
+      "nominal": 6500000
+    },
+    {
+      "name": "Sinta Larasati",
+      "masjid_name": "Masjid Baitur Rohim",
+      "nominal": 2200000
+    },
+    {
+      "name": "Fajar Ramadhan",
+      "masjid_name": "Masjid Al-Amin",
+      "nominal": 5000000
+    },
+    {
+      "name": "Dewi Ayuningtyas",
+      "masjid_name": "Masjid Sudalmiah Rais",
+      "nominal": 1200000
+    },
+    {
+      "name": "Reza Mahendra",
+      "masjid_name": "Majid Ar-Rahman",
+      "nominal": 3900000
+    },
+    {
+      "name": "Aldi Firmansyah",
+      "masjid_name": "Masjid Al-Husna",
+      "nominal": 7200000
+    },
+    {
+      "name": "Tika Permata",
+      "masjid_name": "Masjid Al-Amin",
+      "nominal": 3100000
+    },
+    {
+      "name": "Lita Anjani",
+      "masjid_name": "Masjid Sudalmiah Rais",
+      "nominal": 800000
+    },
+    {
+      "name": "Imam Fauzan",
+      "masjid_name": "Masjid Baitur Rohim",
+      "nominal": 9500000
+    }
+  ],
+  "pencairanDanas": [
+    {
+      "pengurus_name": "Rizki Darmawan",
+      "masjid_name": "Masjid Al-Husna",
+      "nominal": 3000000,
+      "tujuan": "Renovasi toilet masjid",
+      "status": "Disetujui",
+      "created_at": "2025-06-20"
+    },
+    {
+      "pengurus_name": "Siti Nurhaliza",
+      "masjid_name": "Masjid Al-Fatih",
+      "nominal": 4500000,
+      "tujuan": "Perbaikan sistem sound masjid",
+      "status": "Pending",
+      "created_at": "2025-06-22"
+    },
+    {
+      "pengurus_name": "Dimas Saputra",
+      "masjid_name": "Masjid Baitur Rohim",
+      "nominal": 5500000,
+      "tujuan": "Pengecatan ulang dinding luar masjid",
+      "status": "Disetujui",
+      "created_at": "2025-06-23"
+    },
+    {
+      "pengurus_name": "Nur Aini",
+      "masjid_name": "Masjid Al-Amin",
+      "nominal": 7000000,
+      "tujuan": "Renovasi ruang wudhu",
+      "status": "Disetujui",
+      "created_at": "2025-06-25"
+    },
+    {
+      "pengurus_name": "Agus Maulana",
+      "masjid_name": "Masjid Sudalmiah Rais",
+      "nominal": 6000000,
+      "tujuan": "Perbaikan keramik lantai utama masjid",
+      "status": "Pending",
+      "created_at": "2025-06-26"
+    },
+    {
+      "pengurus_name": "Laila Salsabila",
+      "masjid_name": "Majid Ar-Rahman",
+      "nominal": 4800000,
+      "tujuan": "Perbaikan kipas angin & ventilasi",
+      "status": "Disetujui",
+      "created_at": "2025-06-27"
+    },
+    {
+      "pengurus_name": "Fauzan Hakim",
+      "masjid_name": "Masjid Al-Fatih",
+      "nominal": 7500000,
+      "tujuan": "Pemasangan CCTV untuk keamanan jamaah",
+      "status": "Disetujui",
+      "created_at": "2025-06-28"
+    },
+    {
+      "pengurus_name": "Rani Permatasari",
+      "masjid_name": "Masjid Al-Amin",
+      "nominal": 3600000,
+      "tujuan": "Renovasi pagar masjid",
+      "status": "Pending",
+      "created_at": "2025-06-29"
+    },
+    {
+      "pengurus_name": "Arif Wibowo",
+      "masjid_name": "Masjid Sudalmiah Rais",
+      "nominal": 9100000,
+      "tujuan": "Penggantian karpet ruang salat utama",
+      "status": "Disetujui",
+      "created_at": "2025-07-01"
+    },
+    {
+      "pengurus_name": "Intan Rahmadani",
+      "masjid_name": "Masjid Al-Husna",
+      "nominal": 5200000,
+      "tujuan": "Renovasi menara masjid",
+      "status": "Pending",
+      "created_at": "2025-07-02"
+    },
+    {
+      "pengurus_name": "Hendra Saputra",
+      "masjid_name": "Majid Ar-Rahman",
+      "nominal": 4700000,
+      "tujuan": "Perbaikan saluran air masjid",
+      "status": "Disetujui",
+      "created_at": "2025-07-03"
+    },
+    {
+      "pengurus_name": "Linda Apriani",
+      "masjid_name": "Masjid Baitur Rohim",
+      "nominal": 6300000,
+      "tujuan": "Renovasi tempat parkir jamaah",
+      "status": "Disetujui",
+      "created_at": "2025-07-04"
+    },
+    {
+      "pengurus_name": "Zaki Alfarizi",
+      "masjid_name": "Masjid Al-Husna",
+      "nominal": 800000,
+      "tujuan": "Perbaikan tempat penyimpanan Al-Qur'an",
+      "status": "Pending",
+      "created_at": "2025-07-05"
+    },
+    {
+      "pengurus_name": "Nabila Kusuma",
+      "masjid_name": "Masjid Al-Fatih",
+      "nominal": 3800000,
+      "tujuan": "Pemasangan lampu taman masjid",
+      "status": "Disetujui",
+      "created_at": "2025-07-06"
+    },
+    {
+      "pengurus_name": "Samsul Arifin",
+      "masjid_name": "Masjid Al-Amin",
+      "nominal": 2900000,
+      "tujuan": "Renovasi perpustakaan kecil masjid",
+      "status": "Pending",
+      "created_at": "2025-07-07"
+    }
+  ],
+  "userList":[
   {
-    "name": "Maya Kartika",
-    "masjid_name": "Masjid Al-Husna",
-    "nominal": 4500000
+    "name": "Rafi Pradana",
+    "email": "rafi.pdn@example.com",
+    "noTelp": "081288334455",
+    "role": "pengurus",
+    "address": "Jl. Melati Raya no.12"
   },
   {
-    "name": "Dani Nugroho",
-    "masjid_name": "Masjid Al-Fatih",
-    "nominal": 6500000
+    "name": "Dewi Handayani",
+    "email": "dewi.hdy@example.com",
+    "noTelp": "082134561234",
+    "role": "donatur",
+    "address": "Jl. Sisingamangaraja no.8"
   },
   {
-    "name": "Sinta Larasati",
-    "masjid_name": "Masjid Baitur Rohim",
-    "nominal": 2200000
+    "name": "Gilang Mahendra",
+    "email": "gilang.mhd@example.com",
+    "noTelp": "081298765432",
+    "role": "pengurus",
+    "address": "Jl. Kartini no.17"
   },
   {
-    "name": "Fajar Ramadhan",
-    "masjid_name": "Masjid Al-Amin",
-    "nominal": 5000000
+    "name": "Ayu Kusuma",
+    "email": "ayu.ksm@example.com",
+    "noTelp": "082111223344",
+    "role": "donatur",
+    "address": "Jl. Dr. Sutomo no.5"
   },
   {
-    "name": "Dewi Ayuningtyas",
-    "masjid_name": "Masjid Sudalmiah Rais",
-    "nominal": 1200000
+    "name": "Bayu Irwansyah",
+    "email": "bayu.irw@example.com",
+    "noTelp": "081233344455",
+    "role": "pengurus",
+    "address": "Jl. Diponegoro no.19"
   },
   {
-    "name": "Reza Mahendra",
-    "masjid_name": "Majid Ar-Rahman",
-    "nominal": 3900000
+    "name": "Nadia Safitri",
+    "email": "nadia.sft@example.com",
+    "noTelp": "081299887766",
+    "role": "donatur",
+    "address": "Jl. Mangga Dua no.11"
   },
   {
-    "name": "Aldi Firmansyah",
-    "masjid_name": "Masjid Al-Husna",
-    "nominal": 7200000
+    "name": "Farhan Hakim",
+    "email": "farhan.hk@example.com",
+    "noTelp": "081244556677",
+    "role": "pengurus",
+    "address": "Jl. Tentara Pelajar no.4"
   },
   {
-    "name": "Tika Permata",
-    "masjid_name": "Masjid Al-Amin",
-    "nominal": 3100000
+    "name": "Intan Wardani",
+    "email": "intan.wrd@example.com",
+    "noTelp": "082122334455",
+    "role": "donatur",
+    "address": "Jl. R.A. Kartini no.9"
   },
   {
-    "name": "Lita Anjani",
-    "masjid_name": "Masjid Sudalmiah Rais",
-    "nominal": 800000
+    "name": "Fikri Abdullah",
+    "email": "fikri.abd@example.com",
+    "noTelp": "081255667788",
+    "role": "pengurus",
+    "address": "Jl. Teuku Umar no.20"
   },
   {
-    "name": "Imam Fauzan",
-    "masjid_name": "Masjid Baitur Rohim",
-    "nominal": 9500000
+    "name": "Putri Andini",
+    "email": "putri.and@example.com",
+    "noTelp": "082133445566",
+    "role": "donatur",
+    "address": "Jl. Kebon Jeruk no.3"
   }
 ]
 }

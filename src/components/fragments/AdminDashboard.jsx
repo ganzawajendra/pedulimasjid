@@ -10,7 +10,7 @@ const AdminDashboard = () => {
       lg:col-span-3 lg:col-start-1 lg:row-start-1
       md:col-span-5 md:col-start-1 md:row-start-1
       sm:col-span-8 sm:col-start-1 sm:row-start-1
-      max-sm:col-span-8 max-sm:col-start-1 max-sm:row-start-1 max-sm:rounded-none
+      max-sm:col-span-8 max-sm:col-start-1 max-sm:row-start-1 max-sm:rounded-none max-sm:flex-col
       "
       >
         <div
@@ -28,7 +28,7 @@ const AdminDashboard = () => {
           max-sm:text-xs"
           ></i>
         </div>
-        <div>
+        <div className="w-full">
           <div className="flex items-end flex-col mb-4">
             <p className="text-xs text-gray-500">TOTAL MASJID</p>
             <h1 className="text-xl font-semibold text-gray-800 mt-1">
@@ -58,7 +58,7 @@ const AdminDashboard = () => {
       lg:col-span-3 lg:col-start-4 lg:row-start-1
       md:col-span-8 md:col-start-1 md:row-start-2
       sm:col-span-8 sm:col-start-1 sm:row-start-2
-      max-sm:col-span-8 max-sm:col-start-1 max-sm:row-start-2 max-sm:rounded-none"
+      max-sm:col-span-8 max-sm:col-start-1 max-sm:row-start-2 max-sm:rounded-none max-sm:flex-col"
       >
         <div
           className="bg-gray-800 rounded-lg relative
@@ -75,7 +75,7 @@ const AdminDashboard = () => {
           max-sm:text-xs"
           ></i>
         </div>
-        <div>
+        <div className="w-full">
           <div className="flex items-end flex-col mb-4 ">
             <p className="text-xs text-gray-500">TOTAL PENGGUNA</p>
             <h1 className="text-xl font-semibold text-gray-800 mt-1">
@@ -102,7 +102,7 @@ const AdminDashboard = () => {
       lg:col-span-2 lg:col-start-7 lg:row-start-1 lg:max-h-max lg:items-start
       md:col-span-3 md:col-start-6 md:row-start-1 md:items-center
       sm:col-span-8 sm:col-start-1 sm:row-start-3
-      max-sm:col-span-8 max-sm:col-start-1 max-sm:row-start-3 max-sm:rounded-none"
+      max-sm:col-span-8 max-sm:col-start-1 max-sm:row-start-3 max-sm:rounded-none max-sm:flex-col"
       >
         <div
           className="bg-gray-800 rounded-lg relative
@@ -119,7 +119,7 @@ const AdminDashboard = () => {
           max-sm:text-xs"
           ></i>
         </div>
-        <div>
+        <div className="w-full">
           <div className="flex items-end flex-col">
             <p className="text-xs text-gray-500">TOTAL DONASI</p>
             <h1 className="text-xl font-semibold text-gray-800 mt-1">
@@ -130,8 +130,8 @@ const AdminDashboard = () => {
       </div>
 
       <div
-        className="col-span-8 flex items-start p-5 gap-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max 
-      max-sm:rounded-none"
+        className="col-span-8 flex items-start p-5 gap-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max
+      max-sm:rounded-none max-sm:flex-col"
       >
         <div
           className="bg-gray-800 rounded-lg relative

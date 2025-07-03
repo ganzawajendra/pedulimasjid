@@ -2,23 +2,23 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const TableAdminMasjid = () => {
-  const [masjidList, setMasjidList] = useState();
+const TableAdminDana = () => {
+  const [danaList, setDanaList] = useState();
 
-  const fetchDataMasjid = async () => {
+  const fetchDana = async () => {
     try {
       const response = await axios.get("/mock-db.json");
-      setMasjidList(response.data.masjid);
+      setDanaList(response.data.pencairanDanas);
     } catch (error) {
-      console.error("Terjadi kesalahan saat mengambil data donatur:", error);
+      console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchDataMasjid();
+    fetchDana();
   }, []);
 
-  if (!masjidList) {
+  if (!danaList) {
     return (
       <div className="w-full h-screen flex items-center justify-center">
         Loading...
@@ -32,22 +32,22 @@ const TableAdminMasjid = () => {
         <thead className="bg-gray-50">
           <tr>
             <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              id
+              Id
+            </td>
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              Pengurus
             </td>
             <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Nama Masjid
             </td>
             <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Alamat
+              Nominal
             </td>
             <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Deskripsi Kebutuhan
+              Tujuan
             </td>
             <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Status
-            </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              Tanggal Dibuat
             </td>
             <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Aksi
@@ -55,78 +55,85 @@ const TableAdminMasjid = () => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {masjidList.map((item, index) => (
-            <tr key={index} className="odd:bg-white even:bg-slate-100">
+          {danaList.map((item, index) => (
+            <tr key={index}>
               <td
                 className="px-6 py-4 whitespace-nowrap
-                lg:text-md
-                md:text-sm
-                sm:text-xs
-                max-sm:text-xs"
+                        lg:text-md
+            md:text-sm
+            sm:text-xs
+            max-sm:text-xs"
               >
                 {index + 1}
               </td>
               <td
                 className="px-6 py-4 whitespace-nowrap
-            lg:text-md
+                lg:text-md
             md:text-sm
             sm:text-xs
             max-sm:text-xs"
               >
-                {item.name}
+                {item.pengurus_name}
               </td>
               <td
                 className="px-6 py-4 whitespace-nowrap
-            lg:text-md
+                        lg:text-md
             md:text-sm
             sm:text-xs
             max-sm:text-xs"
               >
-                {item.address}
-              </td>
-              <td
-                className="px-6 py-4 
-            lg:text-md
-            md:text-sm
-            sm:text-xs
-            max-sm:text-xs"
-              >
-                <div className="line-clamp-3 overflow-hidden text-ellipsis">
-                  {item.demand}
-                </div>
+                {item.masjid_name}
               </td>
               <td
                 className="px-6 py-4 whitespace-nowrap
-            lg:text-md
+                        lg:text-md
             md:text-sm
             sm:text-xs
             max-sm:text-xs"
               >
-                <span className="px-2 py-1 rounded bg-green-100 text-green-700 text-xs font-semibold">
-                  {item.status}
-                </span>
+                {item.nominal.toLocaleString("id-ID", {
+                  style: "currency",
+                  currency: "IDR",
+                })}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
-            lg:text-md
+                className="px-6 py-4
+                        lg:text-md
             md:text-sm
             sm:text-xs
             max-sm:text-xs"
               >
-                {item.created_at}
+                {item.tujuan}
               </td>
               <td
                 className="px-6 py-4 whitespace-nowrap
-            lg:text-md
+                        lg:text-md
+            md:text-sm
+            sm:text-xs
+            max-sm:text-xs"
+              >
+                {item.status === "Pending" ? (
+                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded bg-orange-100 text-orange-800">
+                    {item.status}
+                  </span>
+                ) : (
+                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded bg-green-100 text-green-800">
+                    {item.status}
+                  </span>
+                )}
+              </td>
+              <td
+                className="px-6 py-4 whitespace-nowrap
+                        lg:text-md
             md:text-sm
             sm:text-xs
             max-sm:text-xs"
               >
                 <Link
-                  to="edit-masjid"
-                  className="text-orange-500 hover:text-orange-600 hover:underline duration-300 transition-all"
+                  to="edit-dana"
+                  className="text-orange-500 hover:text-orange-600 hover:underline"
                 >
-                  Edit
+                  Detail
                 </Link>
               </td>
             </tr>
@@ -137,4 +144,4 @@ const TableAdminMasjid = () => {
   );
 };
 
-export default TableAdminMasjid;
+export default TableAdminDana;
