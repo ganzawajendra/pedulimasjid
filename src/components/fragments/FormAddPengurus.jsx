@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import FormInput from "../elements/FormInput";
 import FormSubmit from "../elements/FormSubmit";
-import { handleInput, register } from "../../services/auth.service";
+import { register } from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";
+import { handleInput } from "../../services/input.service";
 
 const FormAddPengurus = () => {
   const navigate = useNavigate()

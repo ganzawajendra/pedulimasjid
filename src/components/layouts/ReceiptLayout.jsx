@@ -1,16 +1,18 @@
 import React from "react";
 
 const ReceiptLayout = () => {
+  if(localStorage.getItem("user") === null) window.location.href = "/login";
+  const getPayment = localStorage.getItem("payment") ? JSON.parse(localStorage.getItem("payment")) : null;
   return (
     <>
-      <div class="border border-gray-300 shadow-lg rounded-xl overflow-hidden pb-13 mt-5
+      <div className="border border-gray-300 shadow-lg rounded-xl overflow-hidden pb-13 mt-5
       lg:rounded-xl lg:border lg:border-gray-200 lg:shadow-lg
       md:rounded-xl md:border md:border-gray-200 md:shadow-lg
       sm:rounded-xl sm:border sm:border-gray-200 sm:shadow-lg
       max-sm:rounded-none max-sm:border-none max-sm:shadow-none">
         <img
-          src="/images/hero.png"
-          alt="Masjid Al-Fatih"
+          src={getPayment.masjid_url}
+          alt={getPayment.masjid_name}
           className="w-full h-full object-cover"
         />
         <div className="flex items-center flex-col py-5 border-b border-gray-300">
@@ -43,7 +45,7 @@ const ReceiptLayout = () => {
             lg:text-md
           md:text-md
           sm:text-sm
-          max-sm:text-sm">Budi Hartanto</p>
+          max-sm:text-sm">{getPayment.donatur_name}</p>
           </div>
           <div className="flex justify-between mb-2">
             <p className="text-gray-500
@@ -68,28 +70,28 @@ const ReceiptLayout = () => {
               lg:text-md
           md:text-md
           sm:text-sm
-          max-sm:text-sm">Masjid Al-Fatih</p>
+          max-sm:text-sm">{getPayment.masjid_name}</p>
               <div className="flex items-center gap-1">
                 <i className="fa-solid fa-location-dot text-gray-500 lg:text-sm
                 md:text-sm
                 sm:text-xs
                 max-sm:text-xs"></i>
                 <p className="text-xs text-gray-500">
-                  Jl. Durian no. 45
+                  {getPayment.masjid_address}
                 </p>
               </div>
             </div>
           </div>
         </div>
-        <div class="py-4 px-10 border-b border-t border-gray-300">
-          <h4 class="font-semibold text-gray-800 mb-2
+        <div className="py-4 px-10 border-b border-t border-gray-300">
+          <h4 className="font-semibold text-gray-800 mb-2
           lg:text-md
           md:text-md
           sm:text-sm
           max-sm:text-sm">
             Timestamp
           </h4>
-          <div class="flex justify-between mb-2">
+          <div className="flex justify-between mb-2">
             <p className="text-sm text-gray-500
             lg:text-sm
             md:text-sm
@@ -99,9 +101,9 @@ const ReceiptLayout = () => {
             lg:text-md
           md:text-md
           sm:text-sm
-          max-sm:text-sm">Ber-120605-2</p>
+          max-sm:text-sm">Ber-{getPayment.created_at.split("-")}-{getPayment.masjid_id}</p>
           </div>
-          <div class="flex justify-between mb-2">
+          <div className="flex justify-between mb-2">
             <p className="text-gray-500
             lg:text-sm
             md:text-sm
@@ -111,9 +113,9 @@ const ReceiptLayout = () => {
             lg:text-md
           md:text-md
           sm:text-sm
-          max-sm:text-sm">12/06/2023 12:00</p>
+          max-sm:text-sm">{getPayment.created_at.split("-").join("/")}</p>
           </div>
-          <div class="flex justify-between mb-2">
+          <div className="flex justify-between mb-2">
             <p className="text-gray-500
             lg:text-sm
             md:text-sm
@@ -123,9 +125,9 @@ const ReceiptLayout = () => {
             lg:text-md
           md:text-md
           sm:text-sm
-          max-sm:text-sm">Transfer Bank</p>
+          max-sm:text-sm">{getPayment.metode}</p>
           </div>
-          <div class="flex justify-between mb-2">
+          <div className="flex justify-between mb-2">
             <p className="text-gray-500
             lg:text-sm
             md:text-sm
@@ -139,15 +141,15 @@ const ReceiptLayout = () => {
           </div>
         </div>
 
-        <div class="py-4 px-10">
-          <h4 class="font-semibold text-gray-800 mb-2
+        <div className="py-4 px-10">
+          <h4 className="font-semibold text-gray-800 mb-2
           lg:text-sm
             md:text-sm
             sm:text-xs
             max-sm:text-xs">
             Rincian Donasi
           </h4>
-          <div class="flex justify-between mb-2">
+          <div className="flex justify-between mb-2">
             <p className="text-gray-500
             lg:text-sm
             md:text-sm
@@ -158,10 +160,10 @@ const ReceiptLayout = () => {
           md:text-md
           sm:text-sm
           max-sm:text-sm">
-              Rp <span>100000</span>
+              Rp <span>{getPayment.amount}</span>
             </p>
           </div>
-          <div class="flex justify-between mb-2">
+          <div className="flex justify-between mb-2">
             <p className="text-gray-500
             lg:text-sm
             md:text-sm
@@ -175,7 +177,7 @@ const ReceiptLayout = () => {
               Rp <span>0</span>
             </p>
           </div>
-          <div class="flex justify-between mb-2">
+          <div className="flex justify-between mb-2">
             <p className="text-gray-500
             lg:text-sm
             md:text-sm
@@ -186,14 +188,14 @@ const ReceiptLayout = () => {
           md:text-md
           sm:text-sm
           max-sm:text-sm">
-              Rp <span>100000</span>
+              Rp <span>{getPayment.amount}</span>
             </p>
           </div>
         </div>
 
-        <div class="text-center text-xs text-gray-500">
+        <div className="text-center text-xs text-gray-500">
           <p>Struk ini sah sebagai bukti transaksi</p>
-          <p class="mt-1">www.pedulimasjid.com | 0800-1234-5678</p>
+          <p className="mt-1">www.pedulimasjid.com | 0800-1234-5678</p>
         </div>
       </div>
     </>

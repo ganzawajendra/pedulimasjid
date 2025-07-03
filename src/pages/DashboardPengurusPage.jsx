@@ -4,6 +4,7 @@ import Navbar from "../components/fragments/Navbar";
 import Footer from "../components/fragments/Footer";
 
 const DashboardPengurusPage = () => {
+  if (localStorage.getItem("user") === null && localStorage.getItem("user").role !== "pengurus") window.location.href = "/login";
   return (
     <>
       <Navbar />

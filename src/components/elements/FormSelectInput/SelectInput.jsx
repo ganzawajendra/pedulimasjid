@@ -1,6 +1,6 @@
 import React from "react";
 
-const SelectInput = ({name, children}) => {
+const SelectInput = ({name, children, ...props}) => {
   return (
     <select
       name={name}
@@ -10,6 +10,7 @@ const SelectInput = ({name, children}) => {
         md:text-md
         sm:text-sm
         max-sm:text-xs"
+      {...props}
     >
         {children}
     </select>

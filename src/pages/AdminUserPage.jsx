@@ -5,6 +5,7 @@ import AdminManagementUser from '../components/fragments/AdminManagementUser'
 import Footer from '../components/fragments/Footer'
 
 const AdminUserPage = () => {
+  if (localStorage.getItem("user") === null && localStorage.getItem("user").role !== "admin") window.location.href = "/login";
   return (
     <>
     <Navbar />

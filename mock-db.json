@@ -55,7 +55,17 @@
       "url": "/images/masjid6.png"
     }
   ],
-  "user": [
+  "users": [
+    {
+      "id": "0e71",
+      "name": "Ganza Wajendra Ekasakti",
+      "noTelp": "0812920923",
+      "address": "Jl. Menco X no.7",
+      "email": "ganza@gmail.com",
+      "password": "123",
+      "role": "donatur",
+      "created_at": "2025-06-25"
+    },
     {
       "id": "ae93",
       "name": "Admin",
@@ -77,6 +87,54 @@
       "created_at": "2025-06-26"
     }
   ],
-  "donaturs" : [{
-  }]
+  "donaturs": [
+    {}
+  ],
+  "payments": [
+    {
+      "id": "87a1",
+      "donatur_id": "47ad",
+      "donatur_name": "Tes",
+      "masjid_id": "3",
+      "masjid_name": "Masjid Baitur Rohim",
+      "masjid_address": "Jl. Budi Utomo no.23",
+      "masjid_demand": "Dinding dan lantai utama masjid telah menunjukkan banyak keretakan serta lapisan cat yang mengelupas, yang tidak hanya mengganggu estetika tetapi juga dapat membahayakan jamaah, sehingga restorasi struktur bangunan menjadi kebutuhan mendesak.",
+      "masjid_url": "/images/masjid3.jpg",
+      "amount": "1",
+      "metode": "",
+      "created_at": "2025-07-01"
+    },
+    {
+      "id": "a22a",
+      "donatur_id": "47ad",
+      "donatur_name": "Tes",
+      "amount": "123",
+      "metode": "",
+      "created_at": "2025-07-01"
+    },
+    {
+      "id": "9f69",
+      "donatur_id": "47ad",
+      "donatur_name": "Tes",
+      "amount": "123",
+      "metode": "",
+      "created_at": "2025-07-01"
+    },
+    {
+      "id": "320d",
+      "donatur_id": "47ad",
+      "donatur_name": "Tes",
+      "amount": "123",
+      "metode": "E-Wallet",
+      "created_at": "2025-07-01"
+    },
+    {
+      "id": "0654",
+      "donatur_id": "47ad",
+      "donatur_name": "Tes",
+      "amount": "123",
+      "metode": "E-Wallet",
+      "created_at": "2025-07-01"
+    }
+  ]
 }

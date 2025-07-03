@@ -2,6 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const AdminUpdateLayout = ({children, to="", page=""}) => {
+
+
+
   return (
     <div className="min-h-screen w-full bg-white rounded-xl mt-5">
         <h1 className="text-xl font-semibold col-span-2

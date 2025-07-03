@@ -5,6 +5,8 @@ import AdminManagementDana from '../components/fragments/AdminManagementDana'
 import Footer from '../components/fragments/Footer'
 
 const AdminDanaPage = () => {
+  if (localStorage.getItem("user") === null) window.location.href = "/login";
+  if (localStorage.getItem("user").role !== "admin") window.location.href = "/";
   return (
     <>
     <Navbar />

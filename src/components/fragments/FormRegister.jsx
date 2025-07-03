@@ -2,7 +2,8 @@ import  { useState } from "react";
 import FormInput from "../elements/FormInput";
 import FormSubmit from "../elements/FormSubmit";
 import { Link, useNavigate } from "react-router-dom";
-import { handleInput, register } from "../../services/auth.service";
+import { register, registerToLocalStorage } from "../../services/auth.service";
+import { handleInput } from "../../services/input.service";
 
 const FormRegister = () => {
   const navigate = useNavigate()
@@ -21,7 +22,13 @@ const FormRegister = () => {
   }
 
   const handleRegister = (e) =>{
-    register(e, valueRegister, () => navigate('/login'));
+    // Fetch ke API
+    // register(e, valueRegister, () => navigate('/login'));
+
+    // Post ke Local Storage
+    e.preventDefault();
+    registerToLocalStorage(valueRegister);
+    navigate('/login');
   }
 
   return (

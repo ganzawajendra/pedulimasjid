@@ -5,7 +5,9 @@ import axios from "axios";
 
 const PaymentLayout = ({id}) => {
 
-  const [dataMasjid, setDataMasjid] = useState();
+  const [dataMasjid, setDataMasjid] = useState(null);
+
+  if(localStorage.getItem("user") === null) window.location.href = "/login";
 
   const fetchMasjidById = async () => {
     try {
@@ -51,7 +53,7 @@ const PaymentLayout = ({id}) => {
                 {dataMasjid?.name}
               </h3>
               <div className="flex items-center mb-2 gap-2 row-start-2">
-                <i class="fa-solid fa-location-dot text-gray-500
+                <i className="fa-solid fa-location-dot text-gray-500
                 lg:text-sm
                 md:text-sm
                 sm:text-xs
@@ -98,7 +100,7 @@ const PaymentLayout = ({id}) => {
           </div>
         </div>
       </div>
-      <FormPayment />
+      <FormPayment id={dataMasjid?.id}/>
     </div>
   );
 };
