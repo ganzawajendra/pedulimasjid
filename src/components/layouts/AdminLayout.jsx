@@ -27,7 +27,7 @@ const AdminLayout = ({ children, page }) => {
         max-sm:text-xs max-sm:text-center">
               Selamat datang kembali{" "}
               <span className="font-medium text-blue-500">
-                tes
+                {user.name}
                 </span>, atur
               semua data di sini!
             </p>

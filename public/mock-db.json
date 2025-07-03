@@ -77,6 +77,128 @@
       "created_at": "2025-06-26"
     }
   ],
-  "donaturs" : [{
-  }]
+  "donaturs": [
+    {
+      "name": "Maya Kartika",
+      "email": "maya.kt@example.com",
+      "nominal": 1500000,
+      "created_at": "2025-06-22",
+      "status": "Berhasil"
+    },
+    {
+      "name": "Dani Nugroho",
+      "email": "dani.nugroho@example.com",
+      "nominal": 500000,
+      "created_at": "2025-06-23",
+      "status": "Berhasil"
+    },
+    {
+      "name": "Sinta Larasati",
+      "email": "sinta.lrs@example.com",
+      "nominal": 10000000,
+      "created_at": "2025-06-24",
+      "status": "Berhasil"
+    },
+    {
+      "name": "Fajar Ramadhan",
+      "email": "fajar.rmdn@example.com",
+      "nominal": 750000,
+      "created_at": "2025-06-25",
+      "status": "Berhasil"
+    },
+    {
+      "name": "Dewi Ayuningtyas",
+      "email": "dewi.ayun@example.com",
+      "nominal": 2500000,
+      "created_at": "2025-06-26",
+      "status": "Berhasil"
+    },
+    {
+      "name": "Aldi Firmansyah",
+      "email": "aldi.fm@example.com",
+      "nominal": 3000000,
+      "created_at": "2025-06-27",
+      "status": "Berhasil"
+    },
+    {
+      "name": "Tika Permata",
+      "email": "tika.prmt@example.com",
+      "nominal": 850000,
+      "created_at": "2025-06-28",
+      "status": "Berhasil"
+    },
+    {
+      "name": "Reza Mahendra",
+      "email": "reza.mhdra@example.com",
+      "nominal": 1200000,
+      "created_at": "2025-06-29",
+      "status": "Berhasil"
+    },
+    {
+      "name": "Lita Anjani",
+      "email": "lita.anjani@example.com",
+      "nominal": 9800000,
+      "created_at": "2025-06-30",
+      "status": "Berhasil"
+    },
+    {
+      "name": "Imam Fauzan",
+      "email": "imam.fz@example.com",
+      "nominal": 600000,
+      "created_at": "2025-07-01",
+      "status": "Berhasil"
+    }
+  ],
+  "lastDonaturs": [
+  {
+    "name": "Maya Kartika",
+    "masjid_name": "Masjid Al-Husna",
+    "nominal": 4500000
+  },
+  {
+    "name": "Dani Nugroho",
+    "masjid_name": "Masjid Al-Fatih",
+    "nominal": 6500000
+  },
+  {
+    "name": "Sinta Larasati",
+    "masjid_name": "Masjid Baitur Rohim",
+    "nominal": 2200000
+  },
+  {
+    "name": "Fajar Ramadhan",
+    "masjid_name": "Masjid Al-Amin",
+    "nominal": 5000000
+  },
+  {
+    "name": "Dewi Ayuningtyas",
+    "masjid_name": "Masjid Sudalmiah Rais",
+    "nominal": 1200000
+  },
+  {
+    "name": "Reza Mahendra",
+    "masjid_name": "Majid Ar-Rahman",
+    "nominal": 3900000
+  },
+  {
+    "name": "Aldi Firmansyah",
+    "masjid_name": "Masjid Al-Husna",
+    "nominal": 7200000
+  },
+  {
+    "name": "Tika Permata",
+    "masjid_name": "Masjid Al-Amin",
+    "nominal": 3100000
+  },
+  {
+    "name": "Lita Anjani",
+    "masjid_name": "Masjid Sudalmiah Rais",
+    "nominal": 800000
+  },
+  {
+    "name": "Imam Fauzan",
+    "masjid_name": "Masjid Baitur Rohim",
+    "nominal": 9500000
+  }
+]
 }

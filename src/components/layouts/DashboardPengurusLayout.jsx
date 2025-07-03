@@ -1,33 +1,60 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { data, Link } from "react-router-dom";
 import FormUpdateProgres from "../fragments/FormUpdateProgres";
 import FormAddPencairan from "../fragments/FormAddPencairan";
+import axios from "axios";
+import TableDonatur from "../fragments/TableDonatur";
 
 const DashboardPengurusLayout = () => {
+
+  const[dataMasjid, setDataMasjid] = useState();
+  const [profile, setProfile] = useState({
+    name: "",
+    email: "",
+    address:""
+  });
+  const fetchMasjid = async () => {
+    try {
+      const response = await axios.get("/mock-db.json");
+      const result = await response.data.masjid[3];
+      setDataMasjid(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMasjid();
+    const getUser = localStorage.getItem("user");
+    setProfile(JSON.parse(getUser));
+  }, []);
+
   const statistic = [
     {
       title: "Total Donasi",
-      value: 1000000,
+      value: 53600000,
       icon: "fa-solid fa-dollar-sign",
       color: "text-green-800",
       bg: "bg-green-200",
     },
     {
       title: "Dana Tersalurkan",
-      value: 300000,
+      value: 23000000,
       icon: "fa-regular fa-clipboard",
       color: "text-blue-800",
       bg: "bg-blue-200",
     },
     {
       title: "Sisa Dana",
-      value: 700000,
+      value: 30600000,
       icon: "fa-regular fa-clock",
       color: "text-red-800",
       bg: "bg-red-200",
     },
   ];
-
+  if (!dataMasjid || !profile) {
+    return <div className="w-full h-screen flex items-center justify-center">Loading...</div>;
+  }
   return (
     <div className="mt-10 grid grid-cols-3 gap-5">
       <div className=" col-span-3">
@@ -50,8 +77,8 @@ const DashboardPengurusLayout = () => {
       max-sm:col-span-3 max-sm:rounded-none"
       >
         <img
-          src="/images/hero.png"
-          alt="<?= $masjid['nama']; ?>"
+          src={dataMasjid.url}
+          alt={dataMasjid.name}
           className="object-cover w-full
           lg:h-50
           md:h-40
@@ -82,7 +109,7 @@ const DashboardPengurusLayout = () => {
           sm:text-sm
           max-sm:text-sm"
                   >
-                    Budi Hartanto
+                    {profile.name}
                   </h4>
                   {"|"}
                   <p
@@ -92,7 +119,7 @@ const DashboardPengurusLayout = () => {
           sm:text-xs
           max-sm:text-xs"
                   >
-                    budi@gmail.com
+                    {profile.email}
                   </p>
                 </div>
                 <p
@@ -102,7 +129,7 @@ const DashboardPengurusLayout = () => {
           sm:text-xs
           max-sm:text-xs"
                 >
-                  Jl. Jendral Sudirman no.890
+                  {profile.address}
                 </p>
               </div>
             </div>
@@ -127,7 +154,7 @@ const DashboardPengurusLayout = () => {
           sm:text-sm
           max-sm:text-sm max-sm:font-bold"
                   >
-                    Masjid Al-Fatih
+                    {dataMasjid.name}
                   </h4>
                   <div className="flex items-center gap-2">
                     <i
@@ -143,12 +170,12 @@ const DashboardPengurusLayout = () => {
                     sm:text-xs
                     max-sm:text-xs"
                     >
-                      Jl. Durian no. 45
+                      {dataMasjid.address}
                     </p>
                   </div>
                 </div>
                 <span className="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">
-                  Terverifikasi
+                  {dataMasjid.status}
                 </span>
               </div>
               <div className="my-4">
@@ -168,17 +195,7 @@ const DashboardPengurusLayout = () => {
                     sm:text-xs
                     max-sm:text-xs"
                 >
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Blanditiis autem maxime mollitia alias voluptatem dolor
-                  officia vero. Perferendis veniam vel architecto reprehenderit
-                  numquam at error voluptatum expedita, beatae, unde ratione
-                  facilis atque delectus voluptatibus accusamus suscipit
-                  possimus quasi consectetur doloribus cupiditate repellat
-                  earum, voluptas perspiciatis illo! Impedit autem quos corporis
-                  velit harum amet. Ea impedit minima cumque eveniet porro
-                  accusantium aliquid quisquam harum labore, consectetur magni
-                  dolores pariatur nisi dicta fuga quo voluptatem est maxime
-                  eligendi voluptate facere, et repudiandae.
+                  {dataMasjid.demand}
                 </p>
               </div>
               <div>
@@ -205,7 +222,7 @@ const DashboardPengurusLayout = () => {
           </div>
           <div className="flex gap-2 justify-end">
             <Link
-              to="/pengurus/masjid/edit"
+              to="/dashboard-pengurus/edit"
               className="text-orange-500 hover:bg-orange-500 hover:text-white px-4 py-1 rounded duration-300 transition-all
               lg:text-sm
                     md:text-xs
@@ -305,111 +322,20 @@ const DashboardPengurusLayout = () => {
             Aktivitas Terkini
           </h2>
         </div>
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                >
-                  Donatur
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                >
-                  Nominal
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                >
-                  Tanggal
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                >
-                  Status
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              <tr>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex items-center">
-                    <div className="flex size-8">
-                      <div className="size-8 bg-gray-300 rounded-full flex items-center justify-center relative overflow-hidden">
-                        <i className="fa-solid fa-user absolute bottom-0 text-2xl"></i>
-                      </div>
-                    </div>
-                    <div className="ml-4">
-                      <div
-                        className="font-medium text-gray-800
-                      lg:text-sm
-                      md:text-sm
-                      sm:text-xs
-                      max-sm:text-xs"
-                      >
-                        Budi Doremi
-                      </div>
-                      <div
-                        className="text-gray-500
-                      lg:text-sm
-                      md:text-sm
-                      sm:text-xs
-                      max-sm:text-xs"
-                      >
-                        budi@gmail.com
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div
-                    className="text-gray-800 font-medium
-                  lg:text-sm
-                      md:text-sm
-                      sm:text-xs
-                      max-sm:text-xs"
-                  >
-                    Rp <span>300000</span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div
-                    className="text-gray-800 font-medium
-                  lg:text-sm
-                      md:text-sm
-                      sm:text-xs
-                      max-sm:text-xs"
-                  >
-                    20/11/2022
-                  </div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    Berhasil
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <TableDonatur />
       </div>
 
       {/* Update Progress */}
       <div
-        class="bg-white p-6 rounded-xl shadow-sm border border-gray-200
+        className="bg-white p-6 rounded-xl shadow-sm border border-gray-200
       lg:col-span-1
       md:col-span-3
       sm:col-span-3
       max-sm:col-span-3"
       >
-        <div class="flex items-center mb-6 gap-5">
-          <div class="bg-blue-100 size-10 relative rounded-lg">
-            <i class="fa-regular fa-image text-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-blue-600"></i>
+        <div className="flex items-center mb-6 gap-5">
+          <div className="bg-blue-100 size-10 relative rounded-lg">
+            <i className="fa-regular fa-image text-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-blue-600"></i>
           </div>
           <h2
             className="text-center uppercase font-semibold
@@ -426,15 +352,15 @@ const DashboardPengurusLayout = () => {
 
       {/* Ajukan Pencairan */}
       <div
-        class="bg-white p-6 rounded-xl shadow-sm border  border-gray-200 max-h-max
+        className="bg-white p-6 rounded-xl shadow-sm border  border-gray-200 max-h-max
       lg:col-span-1
       md:col-span-3
       sm:col-span-3
       max-sm:col-span-3"
       >
-        <div class="flex items-center mb-6 gap-5">
-          <div class="bg-green-200 size-10 relative rounded-lg">
-            <i class="fa-solid fa-plus text-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-green-800"></i>
+        <div className="flex items-center mb-6 gap-5">
+          <div className="bg-green-200 size-10 relative rounded-lg">
+            <i className="fa-solid fa-plus text-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-green-800"></i>
           </div>
           <h2
             className="text-center uppercase font-semibold

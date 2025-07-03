@@ -8,8 +8,8 @@ const FormUpdateProgres = ({style = "", action = ""}) => {
     <form
       action={action}
       method="post"
-      autocomplete="off"
-      enctype="multipart/form-data"
+      autoComplete="off"
+      encType="multipart/form-data"
       className={style}
     >
       <FormFileInput name="dokumen_path" accept=".jpg, .png, .jpeg">

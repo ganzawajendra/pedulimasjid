@@ -4,7 +4,7 @@ import FormSubmit from "../elements/FormSubmit";
 
 const FormAddPencairan = ({style = "", action = ""}) => {
   return (
-    <form action={action} method="post" autocomplete="off" className={style}>
+    <form action={action} method="post" autoComplete="off" className={style}>
       <FormInput type="number" name="nominal" placeholder="Rp 300000">
         Nominal
       </FormInput>
