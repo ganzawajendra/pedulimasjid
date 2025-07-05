@@ -20,7 +20,7 @@ const FormLogin = () => {
     e.preventDefault();
     try {
       const response = await axios.get("/mock-db.json");
-      if (response) {
+      if (response && response.data.user > 0 && response.data) {
         const matchUser = response.data.user.find(
           (user) =>
             user.email === valueLogin.email &&
