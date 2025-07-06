@@ -4,7 +4,7 @@ import ListCard from "../elements/ListCard";
 const CardDeskripsiHome = () => {
   return (
     <>
-      <div className="bg-white shadow-lg max-h-max rounded-lg p-6 border border-gray-300 transition-all
+      <div className="bg-white shadow-lg max-h-max rounded-lg p-6 border border-gray-300 transition-all apearLeftRight
       lg:col-span-1
       md:col-span-1
       sm:col-span-2
@@ -44,7 +44,7 @@ const CardDeskripsiHome = () => {
           </ListCard>
         </ul>
       </div>
-      <div className="bg-white shadow-lg max-h-max rounded-lg p-6 border border-gray-300
+      <div className="bg-white shadow-lg max-h-max rounded-lg p-6 border border-gray-300 apearRightLeft
       lg:col-span-1
       md:col-span-1
       sm:col-span-2

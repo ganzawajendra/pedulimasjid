@@ -38,7 +38,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
     <>
       {/* Hero Section */}
       <div
-        className={`bg-[url('/images/hero.png')] bg-cover bg-no-repeat bg-center flex flex-col items-start justify-center text-start transition-all
+        className={`bg-[url('/images/hero.png')] bg-cover bg-no-repeat bg-center flex flex-col items-start justify-center text-start transition-all apearUpDown
           max-sm:h-40 max-sm:px-5
           sm:h-60 sm:px-5 
           md:px-10 md:h-70 
@@ -67,7 +67,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
 
       {/* Deskripsi Singkat */}
       <div
-        className="w-full flex flex-col items-center justify-center text-center transition-all
+        className="w-full flex flex-col items-center justify-center text-center transition-all apearZoom
       lg:mt-10 
       md:mt-5
       sm:mt-5
@@ -104,7 +104,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
 
       {/* Kalau Small */}
       {isSmall && (
-        <div className="flex items-center justify-center gap-5 my-5 transition-all">
+        <div className="flex items-center justify-center gap-5 my-5 transition-all apearZoom">
             <ButtonLink router="/login" variant="Black">
               Login
             </ButtonLink>
@@ -214,9 +214,9 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
       </div>
 
       {/* Open Akun Pengurus */}
-      <div className="bg-neutral-200 rounded-lg p-8 mt-10 grid grid-cols-5 gap-5">
+      <div className="bg-neutral-200 rounded-lg p-8 mt-10 grid grid-cols-5 gap-5 apear">
         <div
-          className=" flex flex-col justify-center
+          className=" flex flex-col justify-center apear
         lg:col-span-3
         md:col-span-2
         sm:col-span-5
@@ -255,7 +255,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
           </ul>
         </div>
         <div
-          className="
+          className=" apear
         lg:col-span-2
         md:col-span-3
         sm:col-span-5

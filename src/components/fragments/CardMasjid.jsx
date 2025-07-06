@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const CardMasjid = ({ name, address, status, demand, created_at, url, id }) => {
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 apear 
     lg:col-span-1
     md:col-span-1
     sm:col-span-2
