@@ -20,7 +20,7 @@ const DashboardPengurusPage = () => {
           navigate("/");
         } else {
           setLoading(false); // akses admin, loading selesai
-          navigate("/dashboard/pengurus");
+          navigate("/dashboard-pengurus");
         }
       } catch (err) {
         console.error("User parsing failed:", err);
