@@ -11,6 +11,8 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
   const [masjidList, setMasjidList] = useState([]);
   const [isSmall, setIsSmall] = useState(false);
 
+  const user = JSON.parse(localStorage.getItem("user"));
+
   // Fetch with API
   const fetchMasjid = async () => {
     try {
@@ -103,7 +105,7 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
       </div>
 
       {/* Kalau Small */}
-      {isSmall && (
+      {!user && isSmall && (
         <div className="flex items-center justify-center gap-5 my-5 transition-all apearZoom">
             <ButtonLink router="/login" variant="Black">
               Login
