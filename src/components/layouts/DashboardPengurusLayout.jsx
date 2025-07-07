@@ -6,12 +6,11 @@ import axios from "axios";
 import TableDonatur from "../fragments/TableDonatur";
 
 const DashboardPengurusLayout = () => {
-
-  const[dataMasjid, setDataMasjid] = useState();
+  const [dataMasjid, setDataMasjid] = useState();
   const [profile, setProfile] = useState({
     name: "",
     email: "",
-    address:""
+    address: "",
   });
   const fetchMasjid = async () => {
     try {
@@ -53,13 +52,17 @@ const DashboardPengurusLayout = () => {
     },
   ];
   if (!dataMasjid || !profile) {
-    return <div className="w-full h-screen flex items-center justify-center">Loading...</div>;
+    return (
+      <div className="w-full h-screen flex items-center justify-center">
+        Loading...
+      </div>
+    );
   }
   return (
     <div className="mt-10 grid grid-cols-3 gap-5">
-      <div className=" col-span-3">
+      <div className=" col-span-3 overflow-hidden">
         <h1
-          className="font-semibold w-full 
+          className="font-semibold w-full apearLeftRight
         lg:text-xl
         md:text-lg
         sm:text-md
@@ -79,7 +82,7 @@ const DashboardPengurusLayout = () => {
         <img
           src={dataMasjid.url}
           alt={dataMasjid.name}
-          className="object-cover w-full
+          className="object-cover w-full apearZoom
           lg:h-50
           md:h-40
           sm:h-30
@@ -88,7 +91,7 @@ const DashboardPengurusLayout = () => {
         <div className="lg:p-10 md:p-5 sm:p-4 max-sm:p-3">
           <div>
             <h5
-              className="text-center uppercase font-semibold
+              className="text-center uppercase font-semibold apearZoom
             lg:text-sm
             md:text-sm
             sm:text-xs
@@ -97,13 +100,13 @@ const DashboardPengurusLayout = () => {
               Profil Pengurus
             </h5>
             <div className="max-w-max mb-5 bg-white p-5 flex items-center gap-5">
-              <div className="size-10 bg-gray-300 rounded-full flex items-center justify-center relative overflow-hidden">
+              <div className="size-10 bg-gray-300 rounded-full flex items-center justify-center relative overflow-hidden apearZoom">
                 <i className="fa-solid fa-user absolute bottom-0 text-3xl"></i>
               </div>
               <div>
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-1 overflow-hidden">
                   <h4
-                    className="font-semibold
+                    className="font-semibold apearLeftRight
                   lg:text-md
           md:text-md
           sm:text-sm
@@ -111,32 +114,36 @@ const DashboardPengurusLayout = () => {
                   >
                     {profile.name}
                   </h4>
-                  {"|"}
+                  <span className="apearZoom">|</span>
+                  <div className="overflow-hidden">
+                    <p
+                      className=" text-gray-500 apearLeftRight
+                    lg:text-sm
+                    md:text-sm
+                    sm:text-xs
+                    max-sm:text-xs"
+                    >
+                      {profile.email}
+                    </p>
+                  </div>
+                </div>
+                <div className="overflow-hidden">
                   <p
-                    className=" text-gray-500
+                    className=" text-gray-500 apearUpDown
                   lg:text-sm
-          md:text-sm
-          sm:text-xs
-          max-sm:text-xs"
+                  md:text-sm
+                  sm:text-xs
+                  max-sm:text-xs"
                   >
-                    {profile.email}
+                    {profile.address}
                   </p>
                 </div>
-                <p
-                  className=" text-gray-500
-                lg:text-sm
-          md:text-sm
-          sm:text-xs
-          max-sm:text-xs"
-                >
-                  {profile.address}
-                </p>
               </div>
             </div>
           </div>
           <div>
             <h5
-              className="text-center font-semibold uppercase
+              className="text-center font-semibold uppercase apearZoom
             lg:text-sm
             md:text-sm
             sm:text-xs
@@ -146,9 +153,9 @@ const DashboardPengurusLayout = () => {
             </h5>
             <div className="p-5">
               <div className="flex items-center justify-between">
-                <div>
+                <div className="overflow-hidden">
                   <h4
-                    className="font-semibold
+                    className="font-semibold apearLeftRight
                   lg:text-md
           md:text-md
           sm:text-sm
@@ -156,7 +163,7 @@ const DashboardPengurusLayout = () => {
                   >
                     {dataMasjid.name}
                   </h4>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 apearLeftRight">
                     <i
                       className="fa-solid fa-location-dot text-gray-500 lg:text-sm
                     md:text-xs
@@ -174,13 +181,13 @@ const DashboardPengurusLayout = () => {
                     </p>
                   </div>
                 </div>
-                <span className="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">
-                  {dataMasjid.status}
-                </span>
+                  <span className="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full apearZoom">
+                    {dataMasjid.status}
+                  </span>
               </div>
-              <div className="my-4">
+              <div className="my-4 overflow-hidden">
                 <h4
-                  className="font-semibold
+                  className="font-semibold apearLeftRight
                 lg:text-md
           md:text-md
           sm:text-sm
@@ -189,7 +196,7 @@ const DashboardPengurusLayout = () => {
                   Deskripsi Kebutuhan
                 </h4>
                 <p
-                  className="text-gray-500 line-clamp-3 overflow-hidden w-full text-ellipsis
+                  className="text-gray-500 line-clamp-3 overflow-hidden w-full text-ellipsis apearLeftRight
                 lg:text-sm
                     md:text-xs
                     sm:text-xs
@@ -198,9 +205,9 @@ const DashboardPengurusLayout = () => {
                   {dataMasjid.demand}
                 </p>
               </div>
-              <div>
+              <div className="overflow-hidden">
                 <h4
-                  className="font-semibold
+                  className="font-semibold apearLeftRight
                 lg:text-md
           md:text-md
           sm:text-sm
@@ -209,7 +216,7 @@ const DashboardPengurusLayout = () => {
                   Status
                 </h4>
                 <p
-                  className="text-gray-500
+                  className="text-gray-500 apearLeftRight
                 lg:text-sm
                     md:text-xs
                     sm:text-xs
@@ -247,7 +254,7 @@ const DashboardPengurusLayout = () => {
 
       {/* Statistik */}
       <div
-        className="flex gap-5
+        className="flex gap-5 overflow-hidden
       lg:col-start-3 lg:row-span-3 lg:row-start-2 lg:flex-col
       md:col-start-3 md:row-span-3 md:row-start-2 md:flex-col
       sm:col-start-3 sm:row-span-3 sm:row-start-2 sm:flex-col
@@ -256,13 +263,13 @@ const DashboardPengurusLayout = () => {
         {statistic.map((item, index) => (
           <div
             key={index}
-            className="bg-white w-full p-6 max-h-max row-start-2 shadow-md border border-gray-200
+            className="bg-white w-full p-6 max-h-max row-start-2 shadow-md border border-gray-200 apearUpDown
       lg:p-6 lg:rounded-xl
       md:p-4 md:rounded-xl
       sm:p-4 sm:rounded-xl
       max-sm:p-2 max-sm:rounded-none"
           >
-            <div className="grid grid-cols-3">
+            <div className="grid grid-cols-3 overflow-hidden">
               <p
                 className="text-gray-500 text-xs uppercase tracking-wide
             lg:col-span-2 lg:row-start-1
@@ -273,12 +280,12 @@ const DashboardPengurusLayout = () => {
                 {item.title}
               </p>
               <h3
-                className="font-semibold text-gray-800
-            lg:text-xl lg:mt-1
-            md:text-lg md:col-span-2 md:row-start-2 md:mt-1
-            sm:text-md sm:col-span-3 sm:row-start-3 sm:mt-0
-            max-sm:text-sm max-sm:col-span-3 max-sm:row-start-3 max-sm:mt-0 max-sm:text-center max-sm:font-bold"
-              >
+                className="font-semibold text-gray-800 apearLeftRight 
+                lg:text-xl lg:mt-1
+                md:text-lg md:col-span-2 md:row-start-2 md:mt-1
+                sm:text-md sm:col-span-3 sm:row-start-3 sm:mt-0
+                max-sm:text-sm max-sm:col-span-3 max-sm:row-start-3 max-sm:mt-0 max-sm:text-center max-sm:font-bold"
+                >
                 {item.value.toLocaleString("id-ID", {
                   style: "currency",
                   currency: "IDR",
@@ -310,7 +317,7 @@ const DashboardPengurusLayout = () => {
       </div>
 
       {/* Aktivitas Terkini */}
-      <div className="col-span-3 bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-8">
+      <div className="col-span-3 bg-white p-6 rounded-xl shadow-sm border border-gray-200 mb-8 apear">
         <div className="flex justify-between items-center mb-6">
           <h2
             className="text-center uppercase font-semibold
@@ -327,7 +334,7 @@ const DashboardPengurusLayout = () => {
 
       {/* Update Progress */}
       <div
-        className="bg-white p-6 rounded-xl shadow-sm border border-gray-200
+        className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 apear
       lg:col-span-1
       md:col-span-3
       sm:col-span-3
@@ -352,7 +359,7 @@ const DashboardPengurusLayout = () => {
 
       {/* Ajukan Pencairan */}
       <div
-        className="bg-white p-6 rounded-xl shadow-sm border  border-gray-200 max-h-max
+        className="bg-white p-6 rounded-xl shadow-sm border  border-gray-200 max-h-max apear
       lg:col-span-1
       md:col-span-3
       sm:col-span-3

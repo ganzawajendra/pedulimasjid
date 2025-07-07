@@ -3,10 +3,10 @@ import TableAdminDashboard from "./TableAdminDashboard";
 
 const AdminDashboard = () => {
   return (
-    <div className="grid grid-cols-8 my-10 gap-5">
+    <div className="grid grid-cols-8 my-10 gap-5 overflow-hidden">
       {/* Total Masjid */}
       <div
-        className="col-span-3 flex items-start p-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max
+        className="col-span-3 flex items-start p-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max apearUpDown
       lg:col-span-3 lg:col-start-1 lg:row-start-1
       md:col-span-5 md:col-start-1 md:row-start-1
       sm:col-span-8 sm:col-start-1 sm:row-start-1
@@ -37,15 +37,15 @@ const AdminDashboard = () => {
           </div>
           <div
             className="flex items-center justify-end gap-5
-          max-sm:flex-wrap"
+          max-sm:flex-wrap overflow-hidden"
           >
-            <p className="bg-orange-200 p-2 rounded-md text-orange-600 text-xs font-semibold">
+            <p className="bg-orange-200 p-2 rounded-md text-orange-600 text-xs font-semibold apearRightLeft">
               Pending : <span>10</span>
             </p>
-            <p className="bg-red-200 p-2 rounded-md text-red-500 text-xs font-semibold">
+            <p className="bg-red-200 p-2 rounded-md text-red-500 text-xs font-semibold apearRightLeft">
               Ditolak : <span>10</span>
             </p>
-            <p className="bg-green-200 p-2 rounded-md text-green-800 text-xs font-semibold">
+            <p className="bg-green-200 p-2 rounded-md text-green-800 text-xs font-semibold apearRightLeft">
               Terverifikasi : <span>10</span>
             </p>
           </div>
@@ -54,7 +54,7 @@ const AdminDashboard = () => {
 
       {/* Total Pengguna */}
       <div
-        className="col-span-3 flex items-start p-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max
+        className="col-span-3 flex items-start p-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max apearUpDown
       lg:col-span-3 lg:col-start-4 lg:row-start-1
       md:col-span-8 md:col-start-1 md:row-start-2
       sm:col-span-8 sm:col-start-1 sm:row-start-2
@@ -84,12 +84,12 @@ const AdminDashboard = () => {
           </div>
           <div
             className="flex items-center justify-end gap-5
-          max-sm:flex-wrap"
+          max-sm:flex-wrap overflow-hidden"
           >
-            <p className="bg-blue-100 text-blue-800 p-2 rounded-md text-xs font-semibold">
+            <p className="bg-blue-100 text-blue-800 p-2 rounded-md text-xs font-semibold apearRightLeft">
               Donatur : <span>100</span>
             </p>
-            <p className="bg-teal-100 text-teal-800 p-2 rounded-md text-xs font-semibold">
+            <p className="bg-teal-100 text-teal-800 p-2 rounded-md text-xs font-semibold apearRightLeft">
               Pengurus Masjid : <span>300</span>
             </p>
           </div>
@@ -98,7 +98,7 @@ const AdminDashboard = () => {
 
       {/* Total Donasi */}
       <div
-        className="flex items-start p-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white
+        className="flex items-start p-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white apearUpDown
       lg:col-span-2 lg:col-start-7 lg:row-start-1 lg:max-h-max lg:items-start
       md:col-span-3 md:col-start-6 md:row-start-1 md:items-center
       sm:col-span-8 sm:col-start-1 sm:row-start-3
@@ -130,7 +130,7 @@ const AdminDashboard = () => {
       </div>
 
       <div
-        className="col-span-8 flex items-start p-5 gap-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max
+        className="col-span-8 flex items-start p-5 gap-5 justify-between rounded-lg shadow-lg border border-gray-300 hover:scale-98 hover:border-gray-800 transition-all duration-300 bg-white max-h-max apearZoom
       max-sm:rounded-none max-sm:flex-col"
       >
         <div

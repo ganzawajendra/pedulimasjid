@@ -31,25 +31,25 @@ const TableAdminMasjid = () => {
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               id
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Nama Masjid
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Alamat
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Deskripsi Kebutuhan
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Status
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Tanggal Dibuat
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Aksi
             </td>
           </tr>
@@ -58,7 +58,7 @@ const TableAdminMasjid = () => {
           {masjidList.map((item, index) => (
             <tr key={index} className="odd:bg-white even:bg-slate-100">
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
                 lg:text-md
                 md:text-sm
                 sm:text-xs
@@ -67,7 +67,7 @@ const TableAdminMasjid = () => {
                 {index + 1}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
             lg:text-md
             md:text-sm
             sm:text-xs
@@ -76,7 +76,7 @@ const TableAdminMasjid = () => {
                 {item.name}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
             lg:text-md
             md:text-sm
             sm:text-xs
@@ -85,7 +85,7 @@ const TableAdminMasjid = () => {
                 {item.address}
               </td>
               <td
-                className="px-6 py-4 
+                className="px-6 py-4 apearZoom
             lg:text-md
             md:text-sm
             sm:text-xs
@@ -96,7 +96,7 @@ const TableAdminMasjid = () => {
                 </div>
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
             lg:text-md
             md:text-sm
             sm:text-xs
@@ -107,7 +107,7 @@ const TableAdminMasjid = () => {
                 </span>
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
             lg:text-md
             md:text-sm
             sm:text-xs
@@ -116,7 +116,7 @@ const TableAdminMasjid = () => {
                 {item.created_at}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
             lg:text-md
             md:text-sm
             sm:text-xs

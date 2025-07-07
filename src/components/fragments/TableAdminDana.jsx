@@ -29,27 +29,27 @@ const TableAdminDana = () => {
   return (
     <div className="overflow-x-auto p-6">
       <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+        <thead className="bg-gray-50 ">
           <tr>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Id
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Pengurus
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Nama Masjid
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Nominal
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Tujuan
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Status
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Aksi
             </td>
           </tr>
@@ -58,7 +58,7 @@ const TableAdminDana = () => {
           {danaList.map((item, index) => (
             <tr key={index}>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
                         lg:text-md
             md:text-sm
             sm:text-xs
@@ -67,7 +67,7 @@ const TableAdminDana = () => {
                 {index + 1}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
                 lg:text-md
             md:text-sm
             sm:text-xs
@@ -76,7 +76,7 @@ const TableAdminDana = () => {
                 {item.pengurus_name}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
                         lg:text-md
             md:text-sm
             sm:text-xs
@@ -85,7 +85,7 @@ const TableAdminDana = () => {
                 {item.masjid_name}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
                         lg:text-md
             md:text-sm
             sm:text-xs
@@ -97,7 +97,7 @@ const TableAdminDana = () => {
                 })}
               </td>
               <td
-                className="px-6 py-4
+                className="px-6 py-4 apearZoom
                         lg:text-md
             md:text-sm
             sm:text-xs
@@ -106,7 +106,7 @@ const TableAdminDana = () => {
                 {item.tujuan}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
                         lg:text-md
             md:text-sm
             sm:text-xs
@@ -123,7 +123,7 @@ const TableAdminDana = () => {
                 )}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
                         lg:text-md
             md:text-sm
             sm:text-xs

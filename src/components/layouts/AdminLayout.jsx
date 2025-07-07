@@ -14,13 +14,13 @@ const AdminLayout = ({ children, page }) => {
   return (
     <>
         <div className="mt-10 ">
-          <div className="mb-8">
-            <h1 className="font-semibold
+          <div className="mb-8 overflow-hidden">
+            <h1 className="font-semibold apearLeftRight
             lg:text-xl
         md:text-lg
         sm:text-md
         max-sm:text-sm max-sm:text-center">{page}</h1>
-            <p className="text-gray-500
+            <p className="text-gray-500 apearLeftRight
             lg:text-md
         md:text-sm
         sm:text-xs

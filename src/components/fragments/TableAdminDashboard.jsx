@@ -30,16 +30,16 @@ const TabelAdminDashboard = () => {
       <table className="w-full mt-5">
         <thead>
           <tr className="text-center bg-gray-100 text-xs text-gray-500">
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               NO
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               NAMA DONATUR
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               NAMA MASJID
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               TOTAL DONASI
             </td>
           </tr>

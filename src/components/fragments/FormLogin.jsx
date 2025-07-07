@@ -18,41 +18,47 @@ const FormLogin = () => {
   };
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.get("/mock-db.json");
-      if (response && response.data.user > 0 && response.data) {
-        const matchUser = response.data.user.find(
-          (user) =>
-            user.email === valueLogin.email &&
-            user.password === valueLogin.password
-        );
 
+    let response = null;
+    try {
+      response = await axios.get("/mock-db.json");
+    } catch (error) {
+      console.error("Gagal mendapatkan data dari JSON:", error);
+    }
+
+    if (response && response.data && response.data.user.length > 0) {
+      const matchUser = response.data.user.find(
+        (user) =>
+          user.email === valueLogin.email &&
+          user.password === valueLogin.password
+      );
+
+      if (matchUser) {
+        localStorage.setItem("user", JSON.stringify(matchUser));
         switch (matchUser.role) {
           case "pengurus":
-            localStorage.setItem("user", JSON.stringify(matchUser));
             navigate("/dashboard-pengurus");
             break;
           case "admin":
-            localStorage.setItem("user", JSON.stringify(matchUser));
             navigate("/admin/dashboard");
             break;
           default:
             break;
         }
-      } else {
-        const localUser = JSON.parse(localStorage.getItem("user"));
-        if (
-          localUser &&
-          valueLogin.email === localUser.email &&
-          valueLogin.password === localUser.password
-        ) {
-          navigate("/");
-        } else {
-          setError("Email atau Password salah!");
-        }
+        return;
       }
-    } catch (error) {
-      setError("Akun belum terdaftar");
+    }
+
+    // Cek localStorage sebagai fallback
+    const localUser = JSON.parse(localStorage.getItem("user"));
+    if (
+      localUser &&
+      valueLogin.email === localUser.email &&
+      valueLogin.password === localUser.password
+    ) {
+      navigate("/");
+    } else {
+      setError("Email atau Password salah!");
     }
   };
 

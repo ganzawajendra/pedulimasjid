@@ -31,25 +31,25 @@ const TableAdminUser = () => {
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               No
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Nama Lengkap
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Email
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               No Telp
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Role
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Alamat
             </td>
-            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <td className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider apearLeftRight">
               Aksi
             </td>
           </tr>
@@ -58,7 +58,7 @@ const TableAdminUser = () => {
           {userList.map((item, index) => (
             <tr key={index}>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
                         lg:text-md
             md:text-sm
             sm:text-xs
@@ -67,7 +67,7 @@ const TableAdminUser = () => {
                 {index + 1}
               </td>
               <td
-                className="px-6 py-4
+                className="px-6 py-4 apearZoom
                         lg:text-md
                         md:text-sm
             sm:text-xs
@@ -76,7 +76,7 @@ const TableAdminUser = () => {
                 {item.name}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
                         lg:text-md
                         md:text-sm
                         sm:text-xs
@@ -85,7 +85,7 @@ const TableAdminUser = () => {
                 {item.email}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
                         lg:text-md
                         md:text-sm
                         sm:text-xs
@@ -94,7 +94,7 @@ const TableAdminUser = () => {
                 {item.noTelp}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
                         lg:text-md
                         md:text-sm
             sm:text-xs
@@ -111,7 +111,7 @@ const TableAdminUser = () => {
                 )}
               </td>
               <td
-                className="px-6 py-4
+                className="px-6 py-4 apearZoom
               lg:text-md
                         md:text-sm
                         sm:text-xs
@@ -120,7 +120,7 @@ const TableAdminUser = () => {
                 {item.address}
               </td>
               <td
-                className="px-6 py-4 whitespace-nowrap
+                className="px-6 py-4 whitespace-nowrap apearZoom
                         lg:text-md
                         md:text-sm
                         sm:text-xs

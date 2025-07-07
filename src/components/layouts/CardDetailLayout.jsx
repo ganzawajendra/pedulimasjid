@@ -31,7 +31,7 @@ const CardDetailLayout = ({id}) => {
           <img
           src={dataMasjid?.url}
           alt={dataMasjid?.name}
-          className="w-full h-full object-contain"
+          className="w-full h-full object-contain apearZoom"
           />
         
       </div>
@@ -40,29 +40,29 @@ const CardDetailLayout = ({id}) => {
       md:py-5 md:px-10
       sm:py-3 sm:px-7
       max-sm:py-3 max-sm:px-5">
-        <h3 className="font-semibold text-gray-800
+        <h3 className="font-semibold text-gray-800 apearLeftRight
         lg:text-xl
         md:text-lg
         sm:text-md
         max-sm:text-sm max-sm:font-bold">{dataMasjid?.name}</h3>
-        <div className="flex items-center mb-2 gap-2 row-start-2">
+        <div className="flex items-center mb-2 gap-2 row-start-2 apearLeftRight">
           <i className="fa-solid fa-location-dot text-gray-500 
           lg:text-sm
           md:text-sm
           sm:text-xs
           max-sm:text-xs"></i>
-          <p className="text-sm text-gray-500
+          <p className="text-sm text-gray-500 
           lg:text-sm
           md:text-sm
           sm:text-xs
           max-sm:text-xs">{dataMasjid?.address}</p>
         </div>
-        <div className="row-start-3">
+        <div className="row-start-3 apearLeftRight">
           <span className="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">
             {dataMasjid?.status}
           </span>
         </div>
-        <div className="row-span-4 border border-gray-300 rounded-lg p-3 
+        <div className="row-span-4 border border-gray-300 rounded-lg p-3 apearRightLeft
         lg:row-start-1 lg:col-span-1 lg:mt-0
         md:row-start-1 md:col-span-1 md:mt-0
         sm:row-start-4 sm:mt-5 sm:col-span-2
@@ -88,14 +88,14 @@ const CardDetailLayout = ({id}) => {
             </div>
           </div>
         </div>
-        <h4 className="mt-4 font-medium text-gray-800 row-start-5
+        <h4 className="mt-4 font-medium text-gray-800 row-start-5 apearLeftRight
         lg:text-sm
           md:text-sm
           sm:text-xs sm:row-start-8
           max-sm:text-xs max-sm:row-start-8 max-sm:font-bold">
           DESKRIPSI KEBUTUHAN
         </h4>
-        <p className="px-4 w-full col-span-2 mb-4
+        <p className="px-4 w-full col-span-2 mb-4 apearLeftRight
         lg:text-sm
           md:text-sm
           sm:text-xs sm:row-start-9
