@@ -42,7 +42,7 @@ const AuthLayout = ({ children }) => {
         sm:text-md
         max-sm:text-sm max-sm:font-bold">Login</h2>
           <div className="max-w-max mx-auto p-2 rounded-lg">
-            <h4 className="
+            <h4 className="text-center
             lg:text-md
         md:text-sm
         sm:text-xs
@@ -65,7 +65,7 @@ const AuthLayout = ({ children }) => {
             </div>
           </div>
           <div className="max-w-max mx-auto p-2 rounded-lg">
-            <h4 className="
+            <h4 className=" text-center
             lg:text-md
         md:text-sm
         sm:text-xs
@@ -88,7 +88,7 @@ const AuthLayout = ({ children }) => {
             </div>
           </div>
           <div className="max-w-max mx-auto p-2 rounded-lg">
-            <h4 className="
+            <h4 className="text-center
             lg:text-md
         md:text-sm
         sm:text-xs
