@@ -71,10 +71,10 @@ const Navbar = () => {
             </div>
 
             {dropDown && (
-              <div className="absolute right-0 mt-3 rounded shadow-md z-50 bg-white flex justify-center items-center flex-col gap-2 transition-all duration-300 overflow-hidden">
+              <div className="absolute right-0 mt-4 rounded shadow-md z-50 bg-white flex justify-center items-center flex-col gap-2 transition-all duration-300 overflow-hidden ">
                 {!isNotSmall && (
                   <p
-                    className=" 
+                    className=" px-4 py-1.5 
               lg:text-md
               md:text-sm
               sm:text-sm
