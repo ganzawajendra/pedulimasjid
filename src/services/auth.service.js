@@ -43,5 +43,4 @@ export const loginFromDatabase = async (data) => {
 export const logout = () => {
   localStorage.removeItem("user");
   localStorage.removeItem("payment");
-  
 }

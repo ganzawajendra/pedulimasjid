@@ -10,8 +10,7 @@ import ButtonLink from "../elements/Button";
 const HomeLayout = ({ donasi, masjid, donatur }) => {
   const [masjidList, setMasjidList] = useState([]);
   const [isSmall, setIsSmall] = useState(false);
-
-  const user = JSON.parse(localStorage.getItem("user"));
+  const [navLogin, setNavLogin] = useState(false);
 
   // Fetch with API
   const fetchMasjid = async () => {
@@ -25,15 +24,23 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
 
   useEffect(() => {
     fetchMasjid();
+    const checkState = () => {
+      const isSmallScreen = window.innerWidth < 640;
+      const userStr = localStorage.getItem("user");
 
-    const checkSize = () => {
-      setIsSmall(window.innerWidth < 640);
+      setIsSmall(isSmallScreen);
+      setNavLogin(userStr); // hanya tampil jika belum login
     };
-    checkSize();
-    window.addEventListener("resize", checkSize);
+
+    checkState(); // jalankan saat mount
+
+    window.addEventListener("resize", checkState); // update saat resize
+    window.addEventListener("storage", checkState); // update saat localStorage berubah
+
     return () => {
-      window.removeEventListener("resize", checkSize);
-    }
+      window.removeEventListener("resize", checkState);
+      window.removeEventListener("storage", checkState);
+    };
   }, []);
 
   return (
@@ -105,14 +112,14 @@ const HomeLayout = ({ donasi, masjid, donatur }) => {
       </div>
 
       {/* Kalau Small */}
-      {!user && isSmall && (
+      {!navLogin && isSmall && (
         <div className="flex items-center justify-center gap-5 my-5 transition-all apearZoom">
-            <ButtonLink router="/login" variant="Black">
-              Login
-            </ButtonLink>
-            <ButtonLink router="/register" variant="White">
-              Register
-            </ButtonLink>
+          <ButtonLink router="/login" variant="Black">
+            Login
+          </ButtonLink>
+          <ButtonLink router="/register" variant="White">
+            Register
+          </ButtonLink>
         </div>
       )}
 

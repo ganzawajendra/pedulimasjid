@@ -9,9 +9,9 @@ const Navbar = () => {
   const [dropDown, setDropDown] = useState(false);
 
   const handleLogout = (e) => {
-    e.preventDefault();
     logout();
     navigate("/");
+    window.location.reload();
   };
 
   useEffect(() => {
