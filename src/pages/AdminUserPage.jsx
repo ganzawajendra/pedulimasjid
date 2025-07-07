@@ -1,14 +1,42 @@
-import React from 'react'
-import Navbar from '../components/fragments/Navbar'
-import AdminLayout from '../components/layouts/AdminLayout'
-import AdminManagementUser from '../components/fragments/AdminManagementUser'
-import Footer from '../components/fragments/Footer'
+import React, { useEffect, useState } from "react";
+import Navbar from "../components/fragments/Navbar";
+import AdminLayout from "../components/layouts/AdminLayout";
+import AdminManagementUser from "../components/fragments/AdminManagementUser";
+import Footer from "../components/fragments/Footer";
+import { useNavigate } from "react-router-dom";
 
 const AdminUserPage = () => {
-  if (localStorage.getItem("user") === null && localStorage.getItem("user").role !== "admin") window.location.href = "/login";
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userStr = localStorage.getItem("user");
+
+    if (!userStr) {
+      navigate("/");
+    } else {
+      try {
+        const user = JSON.parse(userStr);
+        if (user.role !== "admin") {
+          navigate("/");
+        } else {
+          setLoading(false); // akses admin, loading selesai
+          navigate("/admin/dashboard");
+        }
+      } catch (err) {
+        console.error("User parsing failed:", err);
+        navigate("/");
+      }
+    }
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // tampilkan loading selama pengecekan
+  }
+
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div
         className="transition-all  min-h-screen
     lg:px-20 lg:pt-12
@@ -22,7 +50,7 @@ const AdminUserPage = () => {
       </div>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default AdminUserPage
+export default AdminUserPage;

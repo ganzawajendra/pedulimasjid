@@ -17,7 +17,7 @@ const FormUpdateMasjid = () => {
       md:row-span-4 md:col-span-2
       sm:row-span-1 sm:col-span-4
       max-sm:row-span-1 max-sm:col-span-4 max-sm:rounded-none">
-        <img src="/images/hero.png" alt="" className="h-80 object-cover" />
+        <img src="/images/hero.png" alt="" className="h-80 object-cover apearZoom" />
       </div>
       <FormInputReadOnly type="text" name="id" value="1" style="
       lg:col-span-1 lg:col-start-3 lg:row-start-1

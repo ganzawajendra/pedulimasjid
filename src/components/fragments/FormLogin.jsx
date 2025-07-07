@@ -70,24 +70,28 @@ const FormLogin = () => {
     sm:col-span-2 sm:rounded-tr-none sm:rounded-bl-xl sm:rounded-br-xl
     max-sm:col-span-2 max-sm:rounded-tr-none max-sm:rounded-bl-xl max-sm:rounded-br-xl"
     >
+      <div className="overflow-hidden">
       <h3
-        className="font-semibold text-gray-800 transition-all
-      lg:text-xl
-      md:text-lg
-      sm:text-md
-      max-sm:text-sm max-sm:font-bold"
-      >
+        className="font-semibold text-gray-800 transition-all apearLeftRight
+        lg:text-xl
+        md:text-lg
+        sm:text-md
+        max-sm:text-sm max-sm:font-bold"
+        >
         Login
       </h3>
+      </div>
+      <div className="overflow-hidden">
       <p
-        className="text-gray-500 transition-all
-      lg:text-md
-      md:text-sm
-      sm:text-xs
-      max-sm:text-xs"
-      >
+        className="text-gray-500 transition-all apearUpDown
+        lg:text-md
+        md:text-sm
+        sm:text-xs
+        max-sm:text-xs"
+        >
         Silakan masukkan email dan kata sandi Anda untuk masuk.
       </p>
+        </div>
 
       <form
         onSubmit={handleLogin}
@@ -116,20 +120,22 @@ const FormLogin = () => {
         >
           Masukkan Password
         </FormInput>
-        <FormSubmit value="Login" name="login" />
+        <FormSubmit value="Login" name="login"/>
       </form>
+      <div className="overflow-hidden">
       <p
-        className="text-center text-gray-500 mt-3
-      lg:text-md
-      md:text-sm
-      sm:text-xs
-      max-sm:text-xs"
-      >
+        className="text-center text-gray-500 mt-3 apearUpDown
+        lg:text-md
+        md:text-sm
+        sm:text-xs
+        max-sm:text-xs"
+        >
         Belum punya akun?{" "}
         <Link to="/register" className="text-blue-500 hover:text-blue-800">
           Daftar disini
         </Link>
       </p>
+        </div>
     </div>
   );
 };

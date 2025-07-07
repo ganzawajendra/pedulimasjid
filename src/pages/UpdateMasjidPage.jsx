@@ -1,11 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/fragments/Navbar'
 import AdminUpdateLayout from '../components/layouts/AdminUpdateLayout'
 import Footer from '../components/fragments/Footer'
 import FormUpdateMasjid from '../components/fragments/FormUpdateMasjid'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const UpdateMasjidPage = () => {
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userStr = localStorage.getItem("user");
+
+    if (!userStr) {
+      navigate("/");
+    } else {
+      try {
+        const user = JSON.parse(userStr);
+        if (user.role !== "admin") {
+          navigate("/");
+        } else {
+          setLoading(false); // akses admin, loading selesai
+        }
+      } catch (err) {
+        console.error("User parsing failed:", err);
+        navigate("/");
+      }
+    }
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // tampilkan loading selama pengecekan
+  }
   return (
     <>
     <Navbar />

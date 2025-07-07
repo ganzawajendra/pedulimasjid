@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DashboardPengurusLayout from "../components/layouts/DashboardPengurusLayout";
 import Navbar from "../components/fragments/Navbar";
 import Footer from "../components/fragments/Footer";
+import { useNavigate } from "react-router-dom";
 
 const DashboardPengurusPage = () => {
-  if (localStorage.getItem("user") === null && localStorage.getItem("user").role !== "pengurus") window.location.href = "/login";
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userStr = localStorage.getItem("user");
+
+    if (!userStr) {
+      navigate("/");
+    } else {
+      try {
+        const user = JSON.parse(userStr);
+        if (user.role !== "pengurus") {
+          navigate("/");
+        } else {
+          setLoading(false); // akses admin, loading selesai
+          navigate("/dashboard/pengurus");
+        }
+      } catch (err) {
+        console.error("User parsing failed:", err);
+        navigate("/");
+      }
+    }
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // tampilkan loading selama pengecekan
+  }
   return (
     <>
       <Navbar />

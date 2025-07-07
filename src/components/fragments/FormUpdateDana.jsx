@@ -21,13 +21,13 @@ const FormUpdateDana = () => {
             <img
               src="/images/hero.png"
               alt=""
-              className="h-full object-cover"
+              className="h-full object-cover apearZoom"
             />
           </div>
           <div className="flex item-center justify-around
           max-sm:flex-col max-sm:items-center">
             <div className="max-w-max bg-white p-5 flex items-center gap-2">
-              <div className="size-7 bg-gray-300 rounded-full flex items-center justify-center relative transition-all overflow-hidden
+              <div className="size-7 bg-gray-300 rounded-full flex items-center justify-center relative transition-all overflow-hidden apearZoom
               lg:size-7
               md:size-7
               sm:size-6
@@ -39,47 +39,53 @@ const FormUpdateDana = () => {
                 max-sm:text-md"></i>
               </div>
               <div>
-                <div className="flex items-center gap-1">
-                  <h4 className="font-semibold transition-all
+                <div className="flex items-center gap-1 overflow-hidden">
+                  <h4 className="font-semibold transition-all apearLeftRight
                   lg:text-sm
                   md:text-sm
                   sm:text-xs
                   max-sm:text-xs">Budi Hartanto</h4>
                   {"|"}
-                  <p className="text-xs text-gray-500">budi@gmail.com</p>
+                  <div className="overflow-hidden">
+                  <p className="text-xs text-gray-500 apearLeftRight">budi@gmail.com</p>
+                  </div>
                 </div>
-                <p className=" text-gray-500 transition-all
+                <div className="overflow-hidden">
+                <p className=" text-gray-500 transition-all apearUpDown
                 lg:text-sm
                 md:text-sm
                 sm:text-xs
                 max-sm:text-xs">
                   Jl. Jendral Sudirman no.890
                 </p>
+                  </div>
               </div>
             </div>
             <div className=" flex items-center justify-center">
-              <i className="fa-solid fa-arrow-right transition-all
+              <i className="fa-solid fa-arrow-right transition-all apearZoom
               lg:text-xl
               md:text-lg
               sm:text-md
               max-sm:text-md max-sm:rotate-90"></i>
             </div>
             <div className="max-w-max p-5 flex items-center gap-5">
-              <div>
+              <div className="overflow-hidden">
                 <div className="flex items-center gap-1">
-                  <h4 className="font-semibold transition-all
+                  <h4 className="font-semibold transition-all apearLeftRight
                   lg:text-sm
                   md:text-sm
                   sm:text-xs
                   max-sm:text-xs">Masjid Al-Fatih</h4>
                 </div>
-                <p className=" text-gray-500 transition-all
+                <div className="overflow-hidden">
+                <p className=" text-gray-500 transition-all apearUpDown
                 lg:text-sm
                 md:text-sm
                 sm:text-xs
                 max-sm:text-xs">
                   Jl. Jendral Sudirman no.890
                 </p>
+                  </div>
               </div>
             </div>
           </div>

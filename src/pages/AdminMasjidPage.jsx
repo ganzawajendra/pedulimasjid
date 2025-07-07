@@ -1,11 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import AdminLayout from '../components/layouts/AdminLayout'
 import AdminManagementMasjid from '../components/fragments/AdminManagementMasjid'
 import Navbar from '../components/fragments/Navbar'
 import Footer from '../components/fragments/Footer'
+import { useNavigate } from 'react-router-dom'
 
 const AdminMasjidPage = () => {
-  if (localStorage.getItem("user") === null && localStorage.getItem("user").role !== "admin") window.location.href = "/login";
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userStr = localStorage.getItem("user");
+
+    if (!userStr) {
+      navigate("/");
+    } else {
+      try {
+        const user = JSON.parse(userStr);
+        if (user.role !== "admin") {
+          navigate("/");
+        } else {
+          setLoading(false); // akses admin, loading selesai
+          navigate("/admin/dashboard");
+        }
+      } catch (err) {
+        console.error("User parsing failed:", err);
+        navigate("/");
+      }
+    }
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // tampilkan loading selama pengecekan
+  }
+
   return (
     <>
     <Navbar />

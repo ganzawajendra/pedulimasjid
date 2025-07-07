@@ -37,18 +37,22 @@ const FormRegister = () => {
     md:col-span-1 md:rounded-tr-xl md:rounded-br-xl md:rounded-bl-none
     sm:col-span-2 sm:rounded-tr-none sm:rounded-bl-xl sm:rounded-br-xl
     max-sm:col-span-2 max-sm:rounded-tr-none max-sm:rounded-bl-xl max-sm:rounded-br-xl">
-      <h3 className="font-semibold text-gray-800 
+      <div className="overflow-hidden">
+      <h3 className="font-semibold text-gray-800 apearLeftRight
       lg:text-xl
       md:text-lg
       sm:text-md
       max-sm:text-sm max-sm:font-bold">Register</h3>
-      <p className=" text-gray-500 
+      </div>
+      <div className="overflow-hidden">
+      <p className=" text-gray-500 apearUpDown
       lg:text-md
       md:text-sm
       sm:text-xs
       max-sm:text-xs">
         Lengkapi form dibawah ini untuk mendaftar sebagai donatur
       </p>
+        </div>
 
       <form
         className="flex flex-col mt-5 gap-3"
@@ -98,7 +102,8 @@ const FormRegister = () => {
         </FormInput>
         <FormSubmit value="Register" name="register" />
       </form>
-      <p className="text-center text-gray-500 mt-3
+      <div className="overflow-hidden">
+      <p className="text-center text-gray-500 mt-3 apearUpDown
       lg:text-md
       md:text-sm
       sm:text-xs
@@ -108,6 +113,7 @@ const FormRegister = () => {
           Login disini
         </Link>
       </p>
+        </div>
     </div>
   );
 };
