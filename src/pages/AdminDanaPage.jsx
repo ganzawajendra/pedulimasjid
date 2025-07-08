@@ -21,7 +21,7 @@ const AdminDanaPage = () => {
             navigate("/");
           } else {
             setLoading(false); // akses admin, loading selesai
-            navigate("/admin/dashboard");
+            navigate("/admin/management-dana");
           }
         } catch (err) {
           console.error("User parsing failed:", err);

@@ -21,7 +21,7 @@ const AdminUserPage = () => {
           navigate("/");
         } else {
           setLoading(false); // akses admin, loading selesai
-          navigate("/admin/dashboard");
+          navigate("/admin/management-user");
         }
       } catch (err) {
         console.error("User parsing failed:", err);
