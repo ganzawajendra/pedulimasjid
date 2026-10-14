@@ -8,6 +8,8 @@ load_dotenv()
 
 # Menggunakan SQLite lokal (berkas database pedulimasjid.db akan dibuat otomatis)
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
+if not SQLALCHEMY_DATABASE_URL:
+    raise RuntimeError("DATABASE_URL belum diatur di file .env")
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,

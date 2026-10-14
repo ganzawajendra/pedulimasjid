@@ -1,10 +1,16 @@
-from fastapi import FastAPI, HTTPException, UploadFile, File, Form
+from typing import List
+ 
+from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from datetime import datetime
-import security
+from sqlalchemy.orm import Session
+ 
+import models
+import schemas
+from database import engine, get_db
+# from security import get_current_user, require_takmir
 
 app = FastAPI(
-    title="PeduliMasjid API Engine",
+    title="PeduliMasjid API",
     description="Backend API untuk Verifikasi CNN dan Cryptographic Hash Chain",
     version="1.0.0"
 )
@@ -37,64 +43,129 @@ LEDGER_DB = [
     }
 ]
 
-@app.get("/")
-def root():
-    return {"status": "Online", "service": "PeduliMasjid Core API"}
+# Status Publik
+PUBLIC_STATUSES = ["active", "completed"]
 
-@app.get("/api/v1/ledger", tags=["Ledger"])
-def get_ledger():
-    """Mengambil seluruh daftar blok transaksi di buku kas."""
-    return {"total_blocks": len(LEDGER_DB), "blocks": LEDGER_DB}
+# Campaign
+@app.get("/api/v1/campaigns", tags=["Campaign"], response_model = schemas.ProposalResponse)
+def get_all_active_campaigns(skip: int = 0, limit: int = 20, db: Session = Depends(get_db)):
+    """ Daftar seluruh campanye aktif """
+    return (
+        db.query(models.Proposal)
+        .filter(models.Proposal.status == "active")
+        .order_by(models.Proposal.created_at.desc())
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )
 
-@app.post("/api/v1/ledger/record-expense", tags=["Ledger"])
-async def record_expense(
-    amount: float = Form(...),
-    description: str = Form(...),
-    receipt_file: UploadFile = File(...)
-):
-    """
-    Mencatat pengeluaran kas belanja fisik, menghitung SHA-256 berkas nota,
-    lalu merantainya ke blok transaksi sebelumnya.
-    """
-    try:
-        file_bytes = await receipt_file.read()
-        evidence_hash = security.hash_file_bytes(file_bytes)
-        
-        last_block = LEDGER_DB[-1]
-        new_index = len(LEDGER_DB)
-        new_timestamp = datetime.utcnow().isoformat() + "Z"
-        prev_hash = last_block["current_hash"]
-        
-        current_hash = security.calculate_hash(
-            index=new_index,
-            timestamp=new_timestamp,
-            transaction_type="EXPENSE",
-            amount=amount,
-            evidence_hash=evidence_hash,
-            previous_hash=prev_hash
+@app.get("/api/v1/campaigns/mine", tags=["Campaign"], response_model = schemas.ProposalResponse)
+def get_my_campaings(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Semua campaign milik takmir yang login (semua status)"""
+    return (
+        db.query(models.Proposal)
+        .join(models.Proposal, models.Proposal.mosque_id == models.Mosque.mosque_id)
+        .filter(models.Mosque.takmir_id == current_user.user_id)
+        .order_by(models.Proposal.created_at.desc())
+        .all()
+    )
+
+@app.get("/api/v1/campaigns/mine/{campaigns_id}", tags=["Campaign"], response_model = schemas.ProposalResponse)
+def get_my_campaign(campaign_id: int, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Detail satu campaign milik takmir (semua status)"""
+    campaign = (
+        db.query(models.Proposal)
+        .join(models.Mosque, models.Proposal.mosque_id == models.Mosque.mosque_id)
+        .filter(
+            models.Proposal.proposal_id == campaign_id,
+            models.Mosque.takmir_id == current_user.user_id,
         )
-        
-        new_block = {
-            "index": new_index,
-            "timestamp": new_timestamp,
-            "transaction_type": "EXPENSE",
-            "amount": amount,
-            "description": description,
-            "evidence_hash": evidence_hash,
-            "previous_hash": prev_hash,
-            "current_hash": current_hash
-        }
-        
-        LEDGER_DB.append(new_block)
-        return {
-            "status": "Success",
-            "message": "Transaksi berhasil dirantai ke buku besar kriptografis",
-            "block": new_block
-        }
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Gagal memproses transaksi: {str(e)}")
+        .first()
+    )
+    if not campaign:
+        raise HTTPException(status_code=404, detail="Campaign tidak ditemukan")
+    return campaign
 
-@app.get("/api/v1/ledger/verify", tags=["Ledger"])
-def verify_ledger():
-    """Melakukan audit keutuhan buku kas dari awal hingga akhir."""
-    return security.verify_chain_integrity(LEDGER_DB)
+@app.get("/api/v1/campaigns/{campaign_id}", tags=["Campaign"], response_model=schemas.ProposalResponse)
+def get_campaign_by_id(campaign_id: int, db: Session = Depends(get_db)):
+    """Detail campaign publik berdasarkan ID"""
+    campaign = (
+        db.query(models.Proposal)
+        .filter(
+            models.Proposal.proposal_id == campaign_id,
+            models.Proposal.status.in_(PUBLIC_STATUSES),
+        )
+        .first()
+    )
+    if not campaign:
+        raise HTTPException(status_code=404, detail="Campaign tidak ditemukan")
+    return campaign
+
+@app.post("/api/v1/campaigns", tags=["Campaign"], response_model=schemas.ProposalResponse, status_code=201,)
+def create_campaign(data: schemas.ProposalCreate, current_user: models.User = Depends(require_takmir), db: Session = Depends(get_db)):
+    """Takmir membuat campaign untuk masjidnya (versi tanpa foto/ML)"""
+    mosque = (
+        db.query(models.Mosque)
+        .filter(
+            models.Mosque.mosque_id == data.mosque_id,
+            models.Mosque.takmir_id == current_user.user_id,
+        )
+        .first()
+    )
+    if not mosque:
+        raise HTTPException(status_code=404, detail="Masjid tidak ditemukan")
+ 
+    proposal = models.Proposal(
+        **data.model_dump(),
+        collected_amount=0,
+        status="active",  # sementara, nanti ditentukan hasil klasifikasi foto
+    )
+    db.add(proposal)
+    db.commit()
+    db.refresh(proposal)
+    return proposal
+
+@app.patch("/api/v1/campaigns/{campaign_id}/status", tags=["Campaign"], response_model=schemas.ProposalResponse,)
+def update_campaign_status(campaign_id: int, data: schemas.ProposalStatusUpdate, current_user: models.User = Depends(require_takmir), db: Session = Depends(get_db)):
+    """Takmir menutup campaign miliknya"""
+    campaign = (
+        db.query(models.Proposal)
+        .join(models.Mosque, models.Proposal.mosque_id == models.Mosque.mosque_id)
+        .filter(
+            models.Proposal.proposal_id == campaign_id,
+            models.Mosque.takmir_id == current_user.user_id,
+        )
+        .first()
+    )
+    if not campaign:
+        raise HTTPException(status_code=404, detail="Campaign tidak ditemukan")
+ 
+    if campaign.status != "active":
+        raise HTTPException(status_code=400, detail="Hanya campaign aktif yang bisa ditutup")
+ 
+    campaign.status = data.status
+    db.commit()
+    db.refresh(campaign)
+    return campaign
+
+# Mosque
+@app.post("/api/v1/mosques", tags=["Mosque"], response_model=schemas.MosqueResponse, status_code=201,)
+def register_mosque(data: schemas.MosqueCreate, current_user: models.User = Depends(require_takmir), db: Session = Depends(get_db)):
+    """Takmir mendaftarkan masjidnya"""
+    mosque = models.Mosque(
+        **data.model_dump(),
+        takmir_id=current_user.user_id,  # dari token, bukan dari client
+    )
+    db.add(mosque)
+    db.commit()
+    db.refresh(mosque)
+    return mosque
+
+@app.get("/api/v1/mosques/me", tags=["Mosque"], response_model=List[schemas.MosqueResponse],)
+def get_my_mosques(current_user: models.User = Depends(require_takmir), db: Session = Depends(get_db)):
+    """Daftar masjid milik takmir yang login"""
+    return (
+        db.query(models.Mosque)
+        .filter(models.Mosque.takmir_id == current_user.user_id)
+        .all()
+    )

@@ -8,13 +8,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM", "HS256")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 60))
 
-def calculate_hash(
-    index: int,
-    timestamp: str,
-    transaction_type: str,
-    amount: float,
-    evidence_hash: str,
-    previous_hash: str
+# def get_current_user
+# def require_takmir
+
+def calculate_hash(index: int, timestamp: str, transaction_type: str, amount: float, evidence_hash: str, previous_hash: str
 ) -> str:
     """
     Menghitung hash SHA-256 dari payload transaksi kas.
