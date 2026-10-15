@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 import models
 import schemas
 from database import engine, get_db
-# from security import get_current_user, require_takmir
+from security import get_current_user, require_takmir
 
 app = FastAPI(
     title="PeduliMasjid API",
@@ -140,7 +140,7 @@ def update_campaign_status(campaign_id: int, data: schemas.ProposalStatusUpdate,
     if not campaign:
         raise HTTPException(status_code=404, detail="Campaign tidak ditemukan")
  
-    if campaign.status != "active":
+    if str(campaign.status) != "active":
         raise HTTPException(status_code=400, detail="Hanya campaign aktif yang bisa ditutup")
  
     campaign.status = data.status
