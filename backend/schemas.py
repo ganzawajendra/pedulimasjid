@@ -10,10 +10,8 @@ class UserBase(BaseModel):
     role: Literal["takmir", "donatur"]
     phone_number: Optional[str] = None
 
-
 class UserCreate(UserBase):
     password: str  # mentahan dari form
-
 
 class UserResponse(UserBase):
     user_id: int
@@ -22,12 +20,10 @@ class UserResponse(UserBase):
     class Config:
         from_attributes = True
 
-
 # ---------- Auth ----------
 class Token(BaseModel):
     access_token: str
     token_type: str
-
 
 # ---------- Mosque ----------
 class MosqueBase(BaseModel):
@@ -36,10 +32,8 @@ class MosqueBase(BaseModel):
     city: str
     bank_account_number: str
 
-
 class MosqueCreate(MosqueBase):
     pass
-
 
 class MosqueResponse(MosqueBase):
     mosque_id: int
@@ -49,17 +43,14 @@ class MosqueResponse(MosqueBase):
     class Config:
         from_attributes = True
 
-
 # ---------- Proposal ----------
 class ProposalBase(BaseModel):
     title: str
     description: str
     target_amount: float
 
-
 class ProposalCreate(ProposalBase):
     mosque_id: int
-
 
 class ProposalResponse(ProposalBase):
     proposal_id: int
@@ -74,10 +65,8 @@ class ProposalResponse(ProposalBase):
     class Config:
         from_attributes = True
 
-
 class ProposalStatusUpdate(BaseModel):
     status: Literal["completed", "closed"]
-
 
 # ---------- Transaction Ledger ----------
 class LedgerCreate(BaseModel):
@@ -85,7 +74,6 @@ class LedgerCreate(BaseModel):
     transaction_type: str
     amount: float
     description: str
-
 
 class LedgerResponse(BaseModel):
     ledger_id: int

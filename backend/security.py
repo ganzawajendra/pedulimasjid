@@ -53,8 +53,7 @@ def require_takmir(current_user: models.User = Depends(get_current_user)) -> mod
         )
     return current_user
 
-def calculate_hash(index: int, timestamp: str, transaction_type: str, amount: float, evidence_hash: str, previous_hash: str
-) -> str:
+def calculate_hash(index: int, timestamp: str, transaction_type: str, amount: float, evidence_hash: str, previous_hash: str) -> str:
     """
     Menghitung hash SHA-256 dari payload transaksi kas.
     Rumus -> SHA-256(index + timestamp + transaction_type + amount + evidence_hash + previous_hash)
