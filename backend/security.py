@@ -9,6 +9,7 @@ from fastapi import Depends, HTTPException, status
 from database import get_db
 import models
 from sqlalchemy.orm import Session
+import bcrypt
 
 load_dotenv()
 _secret = os.getenv("SECRET_KEY")
@@ -104,3 +105,11 @@ def verify_chain_integrity(ledger: List[Dict[str, Any]]) -> Dict[str, Any]:
             }
 
     return {"is_valid": True, "message": "Seluruh rantai ledger valid dan utuh (Tamper-evident verified)"}
+
+def hash_password(password: str) -> str:
+    """Hashing password user menggunakan bcrypt"""
+    return bcrypt.hashpy(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """Memverifikasi password user"""
+    return bcrypt.checkpw(plain_password.encode("utf-8"), hashed_password.encode("utf-8"))
