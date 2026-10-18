@@ -7,7 +7,6 @@ from typing import Optional, Literal
 class UserBase(BaseModel):
     full_name: str
     email: EmailStr
-    role: Literal["takmir", "donatur"]
     phone_number: Optional[str] = None
 
 class UserCreate(UserBase):
@@ -15,6 +14,7 @@ class UserCreate(UserBase):
 
 class UserResponse(UserBase):
     user_id: int
+    role: Literal["takmir", "donatur"]
     created_at: datetime
 
     class Config:
