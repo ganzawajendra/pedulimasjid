@@ -10,6 +10,8 @@ import schemas
 from database import engine, get_db
 from security import create_access_token, get_current_user, hash_password, require_takmir, verify_password
 
+models.Base.metadata.create_all(bind=engine)
+
 app = FastAPI(
     title="PeduliMasjid API",
     description="Backend API untuk Verifikasi CNN dan Cryptographic Hash Chain",
@@ -48,7 +50,7 @@ LEDGER_DB = [
 PUBLIC_STATUSES = ["active", "completed"]
 
 # Campaign
-@app.get("/api/v1/campaigns", tags=["Campaign"], response_model = schemas.ProposalResponse)
+@app.get("/api/v1/campaigns", tags=["Campaign"], response_model=List[schemas.ProposalResponse])
 def get_all_active_campaigns(skip: int = 0, limit: int = 20, db: Session = Depends(get_db)):
     """ Daftar seluruh campanye aktif """
     return (
@@ -60,7 +62,7 @@ def get_all_active_campaigns(skip: int = 0, limit: int = 20, db: Session = Depen
         .all()
     )
 
-@app.get("/api/v1/campaigns/mine", tags=["Campaign"], response_model = schemas.ProposalResponse)
+@app.get("/api/v1/campaigns/mine", tags=["Campaign"], response_model=List[schemas.ProposalResponse])
 def get_my_campaings(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Semua campaign milik takmir yang login (semua status)"""
     return (
@@ -201,7 +203,7 @@ def login_user(form: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         .filter(models.User.email == form.username.lower())
         .first()
     )
-    if user or not verify_password(form.password, str(user.password_hash)):
+    if not user or not verify_password(form.password, str(user.password_hash)):
         raise HTTPException(
             status_code = 401,
             detail = "Email atau password salah",

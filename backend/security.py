@@ -108,7 +108,7 @@ def verify_chain_integrity(ledger: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 def hash_password(password: str) -> str:
     """Hashing password user menggunakan bcrypt"""
-    return bcrypt.hashpy(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
+    return bcrypt.hashpw(password.encode("utf-8"), bcrypt.gensalt()).decode("utf-8")
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """Memverifikasi password user"""
