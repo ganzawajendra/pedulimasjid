@@ -1,13 +1,14 @@
 from typing import List
  
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
  
 import models
 import schemas
 from database import engine, get_db
-from security import get_current_user, require_takmir
+from security import create_access_token, get_current_user, hash_password, require_takmir, verify_password
 
 app = FastAPI(
     title="PeduliMasjid API",
@@ -169,3 +170,51 @@ def get_my_mosques(current_user: models.User = Depends(require_takmir), db: Sess
         .filter(models.Mosque.takmir_id == current_user.user_id)
         .all()
     )
+
+# Auth
+@app.post("/api/v1/auth/register", tags = ["Auth"], response_model = schemas.UserResponse, status_code = 201)
+def register_user(data: schemas.UserCreate, db: Session = Depends(get_db)):
+    """Daftar akun khusus takmir"""
+    email = data.email.lower()
+    existing_email = db.query(models.User).filter(models.User.email == email).first()
+    if existing_email:
+        raise HTTPException(status_code = 409, detail = "Email telah terdaftar")
+    
+    user = models.User(
+        full_name = data.full_name,
+        email = email,
+        password_hash = hash_password(data.password),
+        role = "takmir",
+        phone_number = data.phone_number
+    )
+
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    return user
+
+@app.post("/api/v1/auth/login", tags = ["Auth"], response_model = schemas.Token)
+def login_user(form: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    """Login takmir"""
+    user = (
+        db.query(models.User)
+        .filter(models.User.email == form.username.lower())
+        .first()
+    )
+    if user or not verify_password(form.password, str(user.password_hash)):
+        raise HTTPException(
+            status_code = 401,
+            detail = "Email atau password salah",
+            headers = {"WWW-Authenticate" : "Bearer"}
+        )
+    
+    token = create_access_token(int(user.user_id))
+    return {
+        "access_token" : token,
+        "token_type" : "bearer"
+    }
+
+@app.get("/api/v1/auth/me", tags=["Auth"], response_model=schemas.UserResponse)
+def get_me(current_user: models.User = Depends(get_current_user)):
+    """Detail user yang sedang login"""
+    return current_user
