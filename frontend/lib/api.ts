@@ -3,6 +3,7 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
 const API = process.env.API_URL!
+if (!API) throw new Error("API_URL is not defined")
 
 export class ApiError extends Error {
     constructor(public status: number, public detail: unknown, message: string){

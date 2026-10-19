@@ -4,6 +4,17 @@ import { apiFetch, ApiError } from "@/lib/api";
 import { setSession, clearSession } from "@/lib/session";
 
 type Result = { ok: false; error: string; accountCreated?: boolean };
+type RegisterInput = {
+  full_name: string;
+  phone_number: string;
+  email: string;
+  password: string;
+  mosque_name: string;
+  city: string;
+  address: string;
+  bank_account_number: string;
+}
+type RegisterResult = | {ok: true} | {ok: false, error: string, status?: number, accountCreated?: boolean}
 
 async function loginRequest(email: string, password: string) {
   const data = await apiFetch<{ access_token: string }>("/auth/login", {
@@ -25,12 +36,9 @@ export async function loginAction(_prev: Result | null, formData: FormData): Pro
 }
 
 export async function registerTakmirAction(
-  data: {
-    fullName: string; phone: string; email: string; password: string;
-    mosqueName: string; city: string; address: string; accountNumber: string;
-  },
+  data: RegisterInput,
   skipRegister = false // true saat "coba lagi" setelah akun sudah terbuat
-): Promise<Result> {
+): Promise<RegisterResult> {
   let accountCreated = skipRegister;
   try {
     if (!skipRegister) {
@@ -38,8 +46,8 @@ export async function registerTakmirAction(
         method: "POST",
         auth: false,
         json: {
-          full_name: data.fullName,
-          phone_number: data.phone,
+          full_name: data.full_name,
+          phone_number: data.phone_number,
           email: data.email,
           password: data.password,
         },
@@ -52,17 +60,17 @@ export async function registerTakmirAction(
     await apiFetch("/mosques", {
       method: "POST",
       json: {
-        mosque_name: data.mosqueName,
+        mosque_name: data.mosque_name,
         city: data.city,
         address: data.address,
-        bank_account_number: data.accountNumber,
+        bank_account_number: data.bank_account_number,
       },
     });
   } catch (e) {
-    if (e instanceof ApiError) return { ok: false, error: e.message, accountCreated };
+    if (e instanceof ApiError) return { ok: false, error: e.message, status: e.status, accountCreated };
     throw e;
   }
-  redirect("/dashboard");
+  return {ok: true};
 }
 
 export async function logoutAction() {

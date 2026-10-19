@@ -14,41 +14,39 @@ export default function TakmirRegistrationForm() {
 
   const [formData, setFormData] = useState({
     // Form Step 1 -> Data Pengurus
-    fullName: "",
-    position: "",
-    phone: "",
+    full_name: "",
+    phone_number: "",
     email: "",
     password: "",
     // Form Step 2 -> Profil Rumah Ibadah
-    mosqueName: "",
+    mosque_name: "",
     city: "",
     address: "",
-    bankName: "",
-    accountNumber: "",
+    bank_name: "",
+    bank_account_number: "",
   });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if (error) setError(null);
   };
 
   // Validasi Semua field harus terisi
   const isStep1Valid =
-    formData.fullName.trim() !== "" &&
-    formData.position !== "" &&
-    formData.phone.trim() !== "" &&
+    formData.full_name.trim() !== "" &&
+    formData.phone_number.trim() !== "" &&
     formData.email.trim() !== "" &&
     formData.password.trim() !== "";
 
   // Validasi Semua field profil masjid harus terisi
   const isStep2Valid =
-    formData.mosqueName.trim() !== "" &&
+    formData.mosque_name.trim() !== "" &&
     formData.city.trim() !== "" &&
     formData.address.trim() !== "" &&
-    formData.bankName !== "" &&
-    formData.accountNumber.trim() !== "";
+    formData.bank_name !== "" &&
+    formData.bank_account_number.trim() !== "";
 
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
@@ -59,11 +57,23 @@ export default function TakmirRegistrationForm() {
 
   setIsSubmitting(true);
   setError(null);
-  const result = await registerTakmirAction(formData, accountCreated);
-  if (result && !result.ok) {
-    setError(result.error);
-    if (result.accountCreated) setAccountCreated(true);
-  }
+  try {
+      const result = await registerTakmirAction(formData, accountCreated);
+
+      if (result.ok) {
+        router.replace("/dashboard"); // replace: tombol Back tidak kembali ke form
+        router.refresh();             // paksa layout dasbor mengambil data baru
+        return;                       // jangan reset isSubmitting, cegah klik ganda
+      }
+
+      setError(result.error);
+      if(result.accountCreated) setAccountCreated(true);
+      if(result.status === 409 && !result.accountCreated){
+        setStep(1);
+      }
+    } catch {
+      setError("Terjadi kesalahan pada server. Coba lagi.");
+    }
   setIsSubmitting(false);
 };
 
@@ -123,8 +133,8 @@ export default function TakmirRegistrationForm() {
               </label>
               <input
                 type="text"
-                name="fullName"
-                value={formData.fullName}
+                name="full_name"
+                value={formData.full_name}
                 onChange={handleChange}
                 placeholder="contoh: H. Ahmad Fauzi"
                 className="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-lg text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black"
@@ -135,26 +145,6 @@ export default function TakmirRegistrationForm() {
               </p>
             </div>
 
-            {/* Jabatan Kepengurusan */}
-            <div className="mb-6">
-              <label className="block text-xs font-semibold text-neutral-800 mb-1">
-                Jabatan Kepengurusan <span className="text-red-500">*</span>
-              </label>
-              <select
-                name="position"
-                value={formData.position}
-                onChange={handleChange}
-                className="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-lg text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-black"
-                required
-              >
-                <option value="">-- Pilih Jabatan --</option>
-                <option value="Ketua DKM">Ketua DKM</option>
-                <option value="Sekretaris">Sekretaris</option>
-                <option value="Bendahara">Bendahara</option>
-                <option value="Ketua Panitia Pembangunan">Ketua Panitia Pembangunan</option>
-              </select>
-            </div>
-
             {/* Nomor WhatsApp / HP */}
             <div className="mb-6">
               <label className="block text-xs font-semibold text-neutral-800 mb-1">
@@ -162,8 +152,8 @@ export default function TakmirRegistrationForm() {
               </label>
               <input
                 type="tel"
-                name="phone"
-                value={formData.phone}
+                name="phone_number"
+                value={formData.phone_number}
                 onChange={handleChange}
                 placeholder="contoh: 081234567890"
                 className="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-lg text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black"
@@ -240,8 +230,8 @@ export default function TakmirRegistrationForm() {
               </label>
               <input
                 type="text"
-                name="mosqueName"
-                value={formData.mosqueName}
+                name="mosque_name"
+                value={formData.mosque_name}
                 onChange={handleChange}
                 placeholder="contoh: Masjid Jami' Baiturrahman"
                 className="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-lg text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black"
@@ -297,8 +287,8 @@ export default function TakmirRegistrationForm() {
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <select
-                  name="bankName"
-                  value={formData.bankName}
+                  name="bank_name"
+                  value={formData.bank_name}
                   onChange={handleChange}
                   className="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-lg text-sm text-neutral-900 focus:outline-none focus:ring-2 focus:ring-black"
                   required
@@ -311,8 +301,8 @@ export default function TakmirRegistrationForm() {
                 </select>
                 <input
                   type="text"
-                  name="accountNumber"
-                  value={formData.accountNumber}
+                  name="bank_account_number"
+                  value={formData.bank_account_number}
                   onChange={handleChange}
                   placeholder="Nomor Rekening (contoh: 7123456789)"
                   className="w-full px-3.5 py-2.5 bg-white border border-neutral-300 rounded-lg text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-black"
