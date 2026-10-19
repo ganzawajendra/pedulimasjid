@@ -19,10 +19,8 @@ import {
   ChevronRight,
   ExternalLink,
 } from "lucide-react";
-
-interface DashboardLayoutProps {
-  children: ReactNode;
-}
+import { apiFetch } from "@/lib/api";
+import { logoutAction } from "@/app/(auth)/actions";
 
 const NAVIGATION_ITEMS = [
   {
@@ -53,7 +51,9 @@ const NAVIGATION_ITEMS = [
   },
 ];
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+type Me = {user_id: number; full_name: string, email: string}
+
+export default async function DashboardLayout({ children }: {children: React.ReactNode}) {
   const pathname = usePathname();
   const router = useRouter();
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
@@ -75,6 +75,8 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     }
     return false;
   };
+
+  const me = await apiFetch<Me>("/auth/me")
 
   return (
     <div className="min-h-screen bg-neutral-50/60 flex">
@@ -173,7 +175,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           {/* Tombol Keluar Sesi */}
           <button
             type="button"
-            onClick={handleLogout}
+            onClick={logoutAction}
             className="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-rose-600 hover:text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer"
           >
             <LogOut className="w-4 h-4 shrink-0" />
