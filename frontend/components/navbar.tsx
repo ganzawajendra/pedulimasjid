@@ -83,6 +83,7 @@ export default function Navbar() {
         >
           Audit &amp; Transparansi
         </Link>
+        
       </div>
     </nav>
   );

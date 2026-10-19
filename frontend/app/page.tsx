@@ -214,6 +214,12 @@ export default function HomePage() {
           Daftarkan masjid Anda untuk mendapatkan verifikasi kondisi kerusakan fisik objektif dan pembukaan penggalangan dana renovasi yang akuntabel.
         </p>
         <TakmirRegistrationForm />
+        <Link
+          href={`/login`}
+          className="bg-foreground mt-10 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-neutral-800 transition-colors w-full text-center max-w-2xl"
+        >
+          Masuk Takmir
+        </Link>
       </div>
     </div>
   );
