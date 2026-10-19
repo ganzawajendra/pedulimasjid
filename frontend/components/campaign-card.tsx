@@ -43,6 +43,7 @@ export default function CampaignCard({
           src={imageSrc}
           alt={title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
           className="object-cover object-center hover:scale-105 transition-transform duration-300"
         />
         <div className="absolute top-3 right-0 bg-black/75 backdrop-blur-sm text-white text-xs px-2.5 py-1 flex items-center gap-1.5 border border-white/20">

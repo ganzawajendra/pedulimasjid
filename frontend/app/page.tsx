@@ -162,6 +162,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {SHOWCASE_TECHNOLOGY.map((item) => (
               <TechnologyCard
+                key={item.title}
                 badge={item.badge}
                 icon={item.icon}
                 title={item.title}

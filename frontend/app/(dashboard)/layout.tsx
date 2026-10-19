@@ -53,15 +53,10 @@ const NAVIGATION_ITEMS = [
 
 type Me = {user_id: number; full_name: string, email: string}
 
-export default async function DashboardLayout({ children }: {children: React.ReactNode}) {
+export default async function DashboardLayout({ children }: {children: ReactNode}) {
   const pathname = usePathname();
   const router = useRouter();
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
-
-  const handleLogout = () => {
-    // Simulasi pembersihan sesi login takmir
-    router.push("/");
-  };
 
   const isNavActive = (item: (typeof NAVIGATION_ITEMS)[0]) => {
     if (item.exact) {
