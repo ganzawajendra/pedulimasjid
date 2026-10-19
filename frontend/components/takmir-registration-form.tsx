@@ -3,10 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, ArrowLeft, CheckCircle2, UserCheck, Building2 } from "lucide-react";
+import { registerTakmirAction } from "@/app/(auth)/actions";
 
 export default function TakmirRegistrationForm() {
   const router = useRouter();
   const [step, setStep] = useState<1 | 2>(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [accountCreated, setAccountCreated] = useState(false);
 
   const [formData, setFormData] = useState({
     // Form Step 1 -> Data Pengurus
@@ -46,15 +50,22 @@ export default function TakmirRegistrationForm() {
     formData.bankName !== "" &&
     formData.accountNumber.trim() !== "";
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (step === 1 && isStep1Valid) {
-      setStep(2);
-    } else if (step === 2 && isStep2Valid) {
-      // Sementara diarahkan ke dasbor
-      router.push("/dashboard");
-    }
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (isSubmitting) return;
+
+  if (step === 1 && isStep1Valid) { setStep(2); return; }
+  if (!(step === 2 && isStep2Valid)) return;
+
+  setIsSubmitting(true);
+  setError(null);
+  const result = await registerTakmirAction(formData, accountCreated);
+  if (result && !result.ok) {
+    setError(result.error);
+    if (result.accountCreated) setAccountCreated(true);
+  }
+  setIsSubmitting(false);
+};
 
   return (
     <div className="w-full max-w-2xl bg-neutral-50 border border-neutral-300 rounded-2xl p-6 md:p-8 shadow-xs">
