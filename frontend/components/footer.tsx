@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white">
+    <footer className="relative z-[60] bg-black text-white">
       {/* Banner Penutup (CTA) */}
       <div className="border-b border-neutral-800 px-6 lg:px-20 py-10">
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-3">
