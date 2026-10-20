@@ -101,12 +101,12 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
   const [progressText, setProgressText] = useState("");
 
   const campaignId = "1";
-  const collectedAmount = 18500000;
-  const targetAmount = 35000000;
-  const percentage = Math.round((collectedAmount / targetAmount) * 100);
-  const availableBalance = 10300000;
-  const totalOutflow = 8200000;
-  const totalDonators = 142;
+  const collectedAmount = 0;
+  const targetAmount = 0;
+  const percentage = Math.max(Math.round((collectedAmount / targetAmount) * 100) || 0);
+  const availableBalance = 0;
+  const totalOutflow = 0;
+  const totalDonators = 0;
 
   const formatRupiah = (num: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -138,13 +138,9 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
           {/* Salam & Informasi Masjid */}
           <div className="space-y-2 max-w-3xl">
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold px-3 py-1 rounded-full">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                KAMPANYE AKTIF
-              </span>
-              <span className="inline-flex items-center gap-1.5 bg-neutral-900 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                Terverifikasi CNN: Rusak Berat (Akurasi 94.8%)
+              <span className="inline-flex items-center gap-1.5 bg-red-50 text-red-800 border border-red-200 text-xs font-bold px-3 py-1 rounded-full">
+                <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                KAMPANYE BELUM AKTIF
               </span>
             </div>
 
@@ -187,7 +183,7 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
         {/* Kartu 1: Total Donasi Terkumpul */}
         <div className="bg-white rounded-2xl p-5 sm:p-6 border border-neutral-200 shadow-xs flex flex-col justify-between space-y-4">
           <div className="flex items-center justify-between text-neutral-500">
-            <span className="text-[11px] font-bold uppercase tracking-wider">
+            <span className="text-xs font-bold uppercase tracking-wider">
               Total Donasi Terkumpul
             </span>
             <div className="w-8 h-8 rounded-lg bg-green-100 text-green-700 flex items-center justify-center">
@@ -211,9 +207,9 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
               />
             </div>
 
-            <div className="flex justify-between text-[11px] text-neutral-500 pt-0.5">
+            <div className="flex justify-between text-xs text-neutral-500 pt-0.5">
               <span>Target {formatRupiah(targetAmount)}</span>
-              <span className="font-semibold text-neutral-700">Sisa 24 hari</span>
+              <span className="font-semibold text-neutral-700">Sisa - hari</span>
             </div>
           </div>
         </div>
@@ -221,7 +217,7 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
         {/* Kartu 2: Saldo Kas Tersedia */}
         <div className="bg-white rounded-2xl p-5 sm:p-6 border border-neutral-200 shadow-xs flex flex-col justify-between space-y-4">
           <div className="flex items-center justify-between text-neutral-500">
-            <span className="text-[11px] font-bold uppercase tracking-wider">
+            <span className="text-xs font-bold uppercase tracking-wider">
               Saldo Kas Tersedia
             </span>
             <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center">
@@ -233,7 +229,7 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
             <span className="text-xl sm:text-2xl font-extrabold text-emerald-700 tracking-tight block">
               {formatRupiah(availableBalance)}
             </span>
-            <p className="text-[11px] text-neutral-500 leading-tight">
+            <p className="text-xs text-neutral-500 leading-tight">
               Dana donasi sah yang siap dicairkan untuk belanja fisik material.
             </p>
           </div>
@@ -242,7 +238,7 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
         {/* Kartu 3: Total Kas Terbelanja */}
         <div className="bg-white rounded-2xl p-5 sm:p-6 border border-neutral-200 shadow-xs flex flex-col justify-between space-y-4">
           <div className="flex items-center justify-between text-neutral-500">
-            <span className="text-[11px] font-bold uppercase tracking-wider">
+            <span className="text-xs font-bold uppercase tracking-wider">
               Kas Terbelanja (Outflow)
             </span>
             <div className="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center">
@@ -254,8 +250,8 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
             <span className="text-xl sm:text-2xl font-extrabold text-neutral-900 tracking-tight block">
               {formatRupiah(totalOutflow)}
             </span>
-            <p className="text-[11px] text-neutral-500 leading-tight">
-              3 transaksi pencairan telah dilampiri kuitansi/nota toko fisik.
+            <p className="text-xs text-neutral-500 leading-tight">
+              Informasi total kas terbelanja untuk kebutuhan fisik masjid.
             </p>
           </div>
         </div>
@@ -263,7 +259,7 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
         {/* Kartu 4: Total Donatur */}
         <div className="bg-white rounded-2xl p-5 sm:p-6 border border-neutral-200 shadow-xs flex flex-col justify-between space-y-4">
           <div className="flex items-center justify-between text-neutral-500">
-            <span className="text-[11px] font-bold uppercase tracking-wider">
+            <span className="text-xs font-bold uppercase tracking-wider">
               Total Donatur
             </span>
             <div className="w-8 h-8 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center">
@@ -275,8 +271,8 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
             <span className="text-xl sm:text-2xl font-extrabold text-neutral-900 tracking-tight block">
               {totalDonators} Donatur
             </span>
-            <p className="text-[11px] text-neutral-500 leading-tight">
-              Gabungan donatur terverifikasi dan donatur tamu (Hamba Allah).
+            <p className="text-xs text-neutral-500 leading-tight">
+              Informasi total donatur yang melakukan donasi pada campaign ini.
             </p>
           </div>
         </div>
@@ -298,9 +294,6 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
                   <BarChart3 className="w-4 h-4 text-emerald-600" />
                   <h2>Tren Arus Donasi Masuk</h2>
                 </div>
-                <p className="text-xs text-neutral-500 mt-0.5">
-                  Akumulasi donasi yang tercatat ke buku besar SHA-256
-                </p>
               </div>
 
               {/* Timeframe Selector */}
@@ -334,7 +327,7 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
             <div className="space-y-4 pt-2">
               <div className="h-56 flex items-end justify-between gap-3 pt-6 pb-2 px-2 border-b border-neutral-200">
                 {activeChartData.map((item, idx) => {
-                  const heightPercent = Math.max(15, Math.round((item.amount / maxAmount) * 100));
+                  const heightPercent = Math.max(15, Math.round((item.amount / maxAmount) * 100) || 0);
 
                   return (
                     <div
@@ -358,7 +351,7 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
               </div>
 
               {/* Label Sumbu X */}
-              <div className="flex justify-between text-[11px] font-medium text-neutral-500 px-2">
+              <div className="flex justify-between text-xs font-medium text-neutral-500 px-2">
                 {activeChartData.map((item, idx) => (
                   <span key={idx} className="truncate max-w-[70px] text-center">
                     {item.day}
@@ -375,13 +368,7 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
                 <h3 className="font-bold text-base text-neutral-900">
                   Riwayat 5 Mutasi Terakhir
                 </h3>
-                <p className="text-xs text-neutral-500 mt-0.5">
-                  Blok buku kas kriptografis terkunci paling baru
-                </p>
               </div>
-              <span className="text-[11px] font-mono bg-neutral-100 text-neutral-700 px-2.5 py-1 rounded-md">
-                SHA-256 Ledger
-              </span>
             </div>
 
             <div className="overflow-x-auto">
@@ -429,7 +416,7 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
                           {tx.receiptStatus}
                         </span>
                       </td>
-                      <td className="py-3.5 px-4 font-mono text-[11px] text-neutral-600 whitespace-nowrap">
+                      <td className="py-3.5 px-4 font-mono text-xs text-neutral-600 whitespace-nowrap">
                         <span className="bg-neutral-100 px-1.5 py-0.5 rounded text-neutral-800">
                           #{tx.hash.slice(0, 8)}...{tx.hash.slice(-4)}
                         </span>
@@ -456,17 +443,14 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
         {/* =============================================================== */}
         {/* B. KOLOM KANAN (LEBAR ~35% / 4 COLS): STATUS & PINTASAN AKSI     */}
         {/* =============================================================== */}
-        <div className="lg:col-span-4 space-y-6">
+        <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
           {/* 1. Kotak Status Integritas Rantai Kriptografi */}
           <div className="bg-gradient-to-br from-neutral-900 via-neutral-900 to-neutral-800 text-white rounded-3xl p-6 border border-neutral-700 shadow-sm space-y-4">
-            <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
+            <div className="flex items-center justify-between ">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-emerald-400" />
                 <h3 className="font-bold text-sm text-white">Status Integritas Hash</h3>
               </div>
-              <span className="text-[10px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-800/80 px-2 py-0.5 rounded">
-                SHA-256
-              </span>
             </div>
 
             {/* Badge Rantai Valid */}
@@ -475,22 +459,15 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Rantai Hash Valid &amp; Konsisten</span>
               </div>
-              <p className="text-[11px] text-emerald-200/90 leading-tight">
-                0 Anomali data terdeteksi. Seluruh riwayat donasi terkunci permanen.
-              </p>
             </div>
 
             {/* Blok Terakhir */}
             <div className="space-y-1 text-xs">
-              <span className="text-neutral-400 text-[11px] block">Blok Terkunci Terkini:</span>
-              <div className="p-2 bg-neutral-950 rounded-xl border border-neutral-800 font-mono text-[11px] text-emerald-400 truncate">
+              <span className="text-neutral-400 text-xs block">Blok Terkunci Terkini:</span>
+              <div className="p-2 bg-neutral-950 rounded-xl border border-neutral-800 font-mono text-xs text-emerald-400 truncate">
                 #005: 1f8e9a2b3c4d5e6f7a8b...
               </div>
             </div>
-
-            <p className="text-[11px] text-neutral-400 leading-relaxed pt-1">
-              Seluruh pencairan dana wajib menyertakan foto nota fisik yang akan di-hash otomatis ke rantai data publik.
-            </p>
           </div>
 
           {/* 2. Kotak Aksi Utama Pengurus (Quick Actions) */}
@@ -587,7 +564,7 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
                 <div className="border-2 border-dashed border-neutral-300 rounded-2xl p-6 text-center hover:bg-neutral-50 transition-colors cursor-pointer space-y-1">
                   <Camera className="w-6 h-6 text-neutral-400 mx-auto" />
                   <p className="font-medium text-neutral-700">Pilih foto kondisi terbaru bangunan</p>
-                  <p className="text-[11px] text-neutral-400">JPG, PNG (Maks 5MB)</p>
+                  <p className="text-xs text-neutral-400">JPG, PNG (Maks 5MB)</p>
                 </div>
               </div>
 
