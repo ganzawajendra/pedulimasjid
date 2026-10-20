@@ -119,6 +119,7 @@ export default function TakmirRegistrationForm() {
       
       {/* Form Data Takmir dan Rumah Ibadah */}
       <form onSubmit={handleSubmit} className="space-y-5">
+        <fieldset disabled={isSubmitting} className="contents">
         {/* Form Data Takmir */}
         {step === 1 && (
           <div className="space-y-4 animate-fadeIn">
@@ -329,19 +330,19 @@ export default function TakmirRegistrationForm() {
               {/* Submit */}
               <button
                 type="submit"
-                disabled={!isStep2Valid}
-                className={`flex-2 py-3 px-4 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all ${
-                  isStep2Valid
-                    ? "bg-black text-white hover:bg-neutral-800 cursor-pointer shadow-sm"
-                    : "bg-neutral-200 text-neutral-400 cursor-not-allowed"
-                }`}
+                disabled={isSubmitting || !isStep2Valid}
+                aria-busy={isSubmitting}
+                className={`flex-2 py-3 px-4 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all ${isSubmitting || !isStep2Valid
+                    ? "bg-neutral-200 text-neutral-400 cursor-not-allowed"
+                    : "bg-black text-white hover:bg-neutral-800 cursor-pointer shadow-sm"
+                  }`}
               >
-                <span>Daftar &amp; Masuk ke Dasbor</span>
-                <ArrowRight className="w-4 h-4" />
+                {isSubmitting ? "Memproses..." : "Kirim"}
               </button>
             </div>
           </div>
         )}
+        </fieldset>
       </form>
     </div>
   );
