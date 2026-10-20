@@ -25,7 +25,7 @@ import {
   BarChart3,
   X,
 } from "lucide-react";
-import type {Me} from "@/lib/data"
+import type {Me, Mosque} from "@/lib/data"
 
 // Mock Data Donasi Harian untuk Grafik Tren
 const DAILY_DONATION_DATA_7 = [
@@ -94,7 +94,7 @@ const RECENT_TRANSACTIONS = [
   },
 ];
 
-export default async function DashboardView({me}: {me: Me}) {
+export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosque}) {
   const [timeframe, setTimeframe] = useState<"7" | "30">("7");
   const [copiedLink, setCopiedLink] = useState(false);
   const [showProgressModal, setShowProgressModal] = useState(false);
@@ -149,11 +149,11 @@ export default async function DashboardView({me}: {me: Me}) {
             </div>
 
             <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight">
-              Assalamu&apos;alaikum, Pengurus {me.full_name}
+              Assalamu&apos;alaikum, {me.full_name}
             </h1>
             <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
               Berikut adalah ringkasan perkembangan donasi dan mutasi kas renovasi untuk{" "}
-              <strong>Masjid Al-Muhajirin</strong> (ID: PM-1).
+              <strong>{mosque.mosque_name}</strong> (ID: {mosque.mosque_id}).
             </p>
           </div>
 

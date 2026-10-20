@@ -1,7 +1,8 @@
-import { getMe } from "@/lib/data";
+import { getMe, getMyMosque } from "@/lib/data";
 import DashboardView from "./dashboard-view";
 
 export default async function DashboardPage() {
   const me = await getMe();
-  return <DashboardView me={me} />;
+  const mosque = await getMyMosque();
+  return <DashboardView me={me} mosque={mosque[0]} />;
 }

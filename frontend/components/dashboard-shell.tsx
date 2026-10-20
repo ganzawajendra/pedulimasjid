@@ -19,9 +19,12 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { Me, Mosque } from "@/lib/data";
 
 type Props = {
     full_name: string,
+    mosque_name: string,
+    mosque_city: string,
     children: React.ReactNode,
 }
 
@@ -54,7 +57,7 @@ const NAVIGATION_ITEMS = [
   },
 ];
 
-export default function DashboardShell({full_name, children}: Props) {
+export default function DashboardShell({full_name, mosque_name, mosque_city, children}: Props) {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
@@ -197,11 +200,11 @@ export default function DashboardShell({full_name, children}: Props) {
 
             <div className="space-y-0.5">
               <h2 className="font-bold text-sm sm:text-base text-neutral-900 leading-tight truncate max-w-xs sm:max-w-md">
-                Masjid Al-Muhajirin
+                {mosque_name}
               </h2>
-              <div className="flex items-center gap-1 text-[11px] text-neutral-500">
-                <MapPin className="w-3 h-3 text-neutral-400 shrink-0" />
-                <span className="truncate">Kab. Sleman, D.I. Yogyakarta</span>
+              <div className="flex items-center gap-1 text-xs text-neutral-500">
+                <MapPin className="size-4 text-neutral-400 shrink-0" />
+                <span className="truncate">{mosque_city}</span>
               </div>
             </div>
           </div>
@@ -217,14 +220,11 @@ export default function DashboardShell({full_name, children}: Props) {
             {/* Avatar Inisial & Profil */}
             <div className="flex items-center gap-2.5 pl-2 sm:border-l sm:border-neutral-200">
               <div className="w-9 h-9 rounded-full bg-neutral-900 text-white font-bold text-xs flex items-center justify-center shadow-xs ring-2 ring-neutral-200">
-                HD
+                {full_name.split(' ').map((n: string) => n[0]).join('')}
               </div>
               <div className="hidden md:block text-left leading-tight">
                 <span className="font-bold text-xs text-neutral-900 block">
-                  H. Ahmad Dahlan
-                </span>
-                <span className="text-[10px] text-neutral-500 font-medium">
-                  Ketua Takmir
+                  {full_name}
                 </span>
               </div>
             </div>
