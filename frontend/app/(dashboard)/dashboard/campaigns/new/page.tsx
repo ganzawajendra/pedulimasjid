@@ -186,33 +186,18 @@ export default function NewCampaignPage() {
       {/* ================================================================= */}
       {/* 1. HEADER FORMULIR & INDIKATOR LANGKAH (STEP HEADER)             */}
       {/* ================================================================= */}
-      <section className="space-y-3">
+      <section className="bg-white rounded p-6 sm:p-8 border border-neutral-200 shadow-xs space-y-6">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs text-neutral-500">
-          <Link href="/dashboard" className="hover:text-neutral-900 transition-colors">
-            Dasbor
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-neutral-500">Usulan Renovasi</span>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-neutral-900 font-semibold">Ajukan Baru</span>
-        </nav>
-
-        <div className="space-y-1">
-          <div className="flex flex-wrap items-center gap-2.5">
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight">
-              Pengajuan Usulan Renovasi &amp; Verifikasi AI
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          {/* Salam & Informasi Masjid */}
+          <div className="space-y-2">
+            <h1 className="text-xl sm:text-2xl font-extrabold text-neutral-900 tracking-tight">
+              Pengajuan Usulan Renovasi & Verifikasi AI
             </h1>
-            <span className="inline-flex items-center gap-1 bg-neutral-900 text-white text-xs font-mono px-3 py-0.5 rounded-full">
-              <Cpu className="w-3.5 h-3.5 text-emerald-400" />
-              CNN MobileNetV2
-            </span>
+            <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
+              Lengkapi rincian kebutuhan perbaikan masjid dan unggah bukti dokumentasi kerusakan fisik. Sistem kecerdasan buatan (CNN) akan memvalidasi tingkat keparahan kerusakan secara objektif sebelum usulan diterbitkan ke publik.
+            </p>
           </div>
-          <p className="text-xs sm:text-sm text-neutral-600 max-w-4xl leading-relaxed">
-            Lengkapi rincian kebutuhan perbaikan masjid dan unggah bukti dokumentasi kerusakan fisik.
-            Sistem kecerdasan buatan (CNN) akan memvalidasi tingkat keparahan kerusakan secara objektif
-            sebelum usulan diterbitkan ke publik.
-          </p>
         </div>
       </section>
 
@@ -225,7 +210,7 @@ export default function NewCampaignPage() {
         {/* =============================================================== */}
         <div className="lg:col-span-7 space-y-6">
           {/* 2. FORMULIR INFORMASI UMUM PROPOSAL */}
-          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-xs space-y-5">
+          <div className="bg-white rounded p-6 sm:p-7 border border-neutral-200 shadow-xs space-y-5">
             <div className="flex items-center gap-2 text-neutral-900 font-bold text-base border-b border-neutral-100 pb-3">
               <FileText className="w-4 h-4 text-emerald-600" />
               <h2>Informasi Umum Usulan</h2>
@@ -342,7 +327,7 @@ export default function NewCampaignPage() {
           </div>
 
           {/* 3. ZONA UNGGAH FOTO KERUSAKAN & TRIGGER AI */}
-          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-xs space-y-5">
+          <div className="bg-white rounded p-6 sm:p-7 border border-neutral-200 shadow-xs space-y-5">
             <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
               <div className="flex items-center gap-2 text-neutral-900 font-bold text-base">
                 <ImagePlus className="w-4 h-4 text-emerald-600" />
@@ -436,8 +421,7 @@ export default function NewCampaignPage() {
                   </>
                 ) : (
                   <>
-                    <Cpu className="w-4 h-4 text-emerald-400" />
-                    <span>Jalankan Verifikasi Visual AI (MobileNetV2)</span>
+                    <span>Jalankan Verifikasi AI</span>
                   </>
                 )}
               </button>
@@ -450,7 +434,7 @@ export default function NewCampaignPage() {
         {/* =============================================================== */}
         <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
           {/* 4. PANEL HASIL VERIFIKASI AI */}
-          <div className="bg-neutral-900 text-white rounded-3xl p-6 border border-neutral-700 shadow-sm space-y-5">
+          <div className="bg-neutral-900 text-white rounded p-6 border border-neutral-700 shadow-sm space-y-5">
             <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg bg-white/10 text-emerald-400 flex items-center justify-center">
@@ -583,13 +567,13 @@ export default function NewCampaignPage() {
           </div>
 
           {/* 5. TOMBOL AKSI AKHIR */}
-          <div className="bg-white rounded-3xl p-6 border border-neutral-200 shadow-xs space-y-4">
+          <div className="bg-white rounded p-6 border border-neutral-200 shadow-xs space-y-4">
             <div className="space-y-2.5">
               {/* Tombol Terbitkan Proposal */}
               <button
                 type="submit"
                 disabled={!isPublishEnabled || isSubmitting}
-                className={`w-full py-3.5 px-5 rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-xs ${
+                className={`w-full py-3.5 px-5 rounded font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-xs ${
                   isPublishEnabled
                     ? "bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer active:scale-99 shadow-md"
                     : "bg-neutral-200 text-neutral-400 border border-neutral-300 cursor-not-allowed"
@@ -603,21 +587,9 @@ export default function NewCampaignPage() {
                 ) : (
                   <>
                     <Check className="w-4 h-4" />
-                    <span>Terbitkan Kampanye Donasi Sekarang</span>
+                    <span>Aktifkan Kampanye Sekarang</span>
                   </>
                 )}
-              </button>
-
-              {/* Tombol Simpan Draf */}
-              <button
-                type="button"
-                onClick={() => {
-                  alert("Draft pengajuan renovasi berhasil disimpan di sistem lokal takmir.");
-                  router.push("/dashboard");
-                }}
-                className="w-full bg-white hover:bg-neutral-50 text-neutral-700 font-semibold text-xs py-2.5 px-4 rounded-xl border border-neutral-300 transition-colors"
-              >
-                Simpan sebagai Draf
               </button>
             </div>
 
