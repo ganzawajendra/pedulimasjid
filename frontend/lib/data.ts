@@ -25,22 +25,46 @@ export type Campaign = {
     status: string
 }
 
+export type TransactionLedger = {
+    ledger_id: number
+    transaction_type: string
+    amount: number
+    description: string
+    receipt_photo_url: string
+    receipt_hash: string
+    previous_hash: string
+    current_hash: string
+    timestamp: string
+}
+
 export const getMe = cache(() => apiFetch<Me>("/auth/me"))
 
-export const getMyMosque = cache(async () => {
+export const getMyMosque = cache(async (): Promise<Mosque[]> => {
   try {
-    return await apiFetch<Mosque[]>("/mosques/me");
+    const res = await apiFetch<Mosque[]>("/mosques/me");
+    return Array.isArray(res) ? res : [];
   } catch (err) {
-    if (err instanceof ApiError && err.status === 404) return [];
-    throw err;
+    console.warn("[getMyMosque] Tidak ada masjid / error:", err);
+    return [];
   }
 })
 
-export const getMyCampaigns = cache(async () => {
+export const getMyCampaigns = cache(async (): Promise<Campaign[]> => {
   try {
-    return await apiFetch<Campaign[]>("/campaigns/mine");
+    const res = await apiFetch<Campaign[]>("/campaigns/mine");
+    return Array.isArray(res) ? res : [];
   } catch (err) {
-    if (err instanceof ApiError && err.status === 404) return [];
-    throw err;
+    console.warn("[getMyCampaigns] Tidak ada campaign / error:", err);
+    return [];
+  }
+})
+
+export const getMyTransactionLedger = cache(async (): Promise<TransactionLedger[]> => {
+  try {
+    const res = await apiFetch<TransactionLedger[]>("/transactions/ledger");
+    return Array.isArray(res) ? res : [];
+  } catch (err) {
+    console.warn("[getMyTransactionLedger] Tidak ada transaksi / error:", err);
+    return [];
   }
 })

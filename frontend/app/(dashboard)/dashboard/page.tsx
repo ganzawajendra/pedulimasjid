@@ -1,7 +1,12 @@
-import { getMe, getMyMosque } from "@/lib/data";
+import { getMe, getMyMosque, getMyCampaigns, getMyTransactionLedger } from "@/lib/data";
 import DashboardView from "./dashboard-view";
 
 export default async function DashboardPage() {
-  const [me, mosque ] = await Promise.all([getMe(), getMyMosque()]);
-  return <DashboardView me={me} mosque={mosque?.[0]}/>;
+  const [me, mosques, campaigns, transactionLedger] = await Promise.all([
+    getMe(),
+    getMyMosque(),
+    getMyCampaigns(),
+    getMyTransactionLedger(),
+  ]);
+  return <DashboardView me={me} mosque={mosques?.[0]} campaign={campaigns?.[0]} transactionLedger={transactionLedger} />;
 }

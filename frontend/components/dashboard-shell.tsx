@@ -76,7 +76,7 @@ export default function DashboardShell({full_name, mosque_name, mosque_city, chi
       };
     
     return(
-        <div className="min-h-screen bg-neutral-50/60 flex">
+        <div className="min-h-screen bg-neutral-100 flex">
       {/* ================================================================= */}
       {/* 1. SIDEBAR KIRI (FIXED NAVIGATION SIDEBAR)                       */}
       {/* ================================================================= */}
