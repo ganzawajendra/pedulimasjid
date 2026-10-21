@@ -1,7 +1,8 @@
-from sqlalchemy import Column, Integer, String, Float, Text, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, Text, DateTime, ForeignKey, Enum
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from database import Base
+import enum
 
 class User(Base):
     __tablename__ = "users"
@@ -31,8 +32,15 @@ class Mosque(Base):
  
     takmir = relationship("User", back_populates="mosques")
     proposals = relationship("Proposal", back_populates="mosque")
- 
- 
+
+
+class ProposalStatus(str, enum.Enum):
+    PENDING= "pending" # kampanye belum di daftarkan
+    ACTIVE= "active" # kampanye aktif dan CNN berhasil mendeteksi kerusakan
+    REJECTED= "rejected" # kampanye ditolak dan CNN tidak berhasil mendeteksi kerusakan
+    FUNDED= "funded" # kampanye selesai dan dana terkumpul
+
+
 class Proposal(Base):
     __tablename__ = "proposals"
  
@@ -45,13 +53,13 @@ class Proposal(Base):
     damage_photo_url = Column(String, nullable=True)
     cnn_label = Column(String, nullable=True)
     cnn_confidence = Column(Float, nullable=True)
-    status = Column(String, default="active", nullable=False)
+    status = Column(Enum(ProposalStatus, values_callable=lambda e: [m.value for m in e]), default=ProposalStatus.PENDING, nullable=False)
     created_at = Column(DateTime, server_default=func.now())
  
     mosque = relationship("Mosque", back_populates="proposals")
     ledger_entries = relationship("TransactionLedger", back_populates="proposal")
- 
- 
+
+
 class TransactionLedger(Base):
     __tablename__ = "transaction_ledger"
  

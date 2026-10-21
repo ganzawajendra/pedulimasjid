@@ -65,8 +65,8 @@ class ProposalResponse(ProposalBase):
     class Config:
         from_attributes = True
 
-class ProposalStatusUpdate(BaseModel):
-    status: Literal["completed", "closed"]
+# class ProposalStatusUpdate(BaseModel):
+#     status: Literal["completed", "closed"]
 
 # ---------- Transaction Ledger ----------
 class LedgerCreate(BaseModel):

@@ -47,7 +47,7 @@ LEDGER_DB = [
 ]
 
 # Status Publik
-PUBLIC_STATUSES = ["active", "completed"]
+PUBLIC_STATUSES = [models.ProposalStatus.ACTIVE, models.ProposalStatus.FUNDED]
 
 # Campaign
 @app.get("/api/v1/campaigns", tags=["Campaign"], response_model=List[schemas.ProposalResponse])
@@ -55,7 +55,7 @@ def get_all_active_campaigns(skip: int = 0, limit: int = 20, db: Session = Depen
     """ Daftar seluruh campanye aktif """
     return (
         db.query(models.Proposal)
-        .filter(models.Proposal.status == "active")
+        .filter(models.Proposal.status == models.ProposalStatus.ACTIVE)
         .order_by(models.Proposal.created_at.desc())
         .offset(skip)
         .limit(limit)
@@ -128,28 +128,28 @@ def create_campaign(data: schemas.ProposalCreate, current_user: models.User = De
     db.refresh(proposal)
     return proposal
 
-@app.patch("/api/v1/campaigns/{campaign_id}/status", tags=["Campaign"], response_model=schemas.ProposalResponse,)
-def update_campaign_status(campaign_id: int, data: schemas.ProposalStatusUpdate, current_user: models.User = Depends(require_takmir), db: Session = Depends(get_db)):
-    """Takmir menutup campaign miliknya"""
-    campaign = (
-        db.query(models.Proposal)
-        .join(models.Mosque, models.Proposal.mosque_id == models.Mosque.mosque_id)
-        .filter(
-            models.Proposal.proposal_id == campaign_id,
-            models.Mosque.takmir_id == current_user.user_id,
-        )
-        .first()
-    )
-    if not campaign:
-        raise HTTPException(status_code=404, detail="Campaign tidak ditemukan")
+# @app.patch("/api/v1/campaigns/{campaign_id}/status", tags=["Campaign"], response_model=schemas.ProposalResponse,)
+# def update_campaign_status(campaign_id: int, data: schemas.ProposalStatusUpdate, current_user: models.User = Depends(require_takmir), db: Session = Depends(get_db)):
+#     """Takmir menutup campaign miliknya"""
+#     campaign = (
+#         db.query(models.Proposal)
+#         .join(models.Mosque, models.Proposal.mosque_id == models.Mosque.mosque_id)
+#         .filter(
+#             models.Proposal.proposal_id == campaign_id,
+#             models.Mosque.takmir_id == current_user.user_id,
+#         )
+#         .first()
+#     )
+#     if not campaign:
+#         raise HTTPException(status_code=404, detail="Campaign tidak ditemukan")
  
-    if str(campaign.status) != "active":
-        raise HTTPException(status_code=400, detail="Hanya campaign aktif yang bisa ditutup")
+#     if str(campaign.status) != models.ProposalStatus.ACTIVE:
+#         raise HTTPException(status_code=400, detail="Hanya campaign aktif yang bisa ditutup")
  
-    campaign.status = data.status
-    db.commit()
-    db.refresh(campaign)
-    return campaign
+#     campaign.status = data.status
+#     db.commit()
+#     db.refresh(campaign)
+#     return campaign
 
 # Mosque
 @app.post("/api/v1/mosques", tags=["Mosque"], response_model=schemas.MosqueResponse, status_code=201,)
