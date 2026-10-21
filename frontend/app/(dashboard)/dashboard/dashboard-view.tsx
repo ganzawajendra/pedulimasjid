@@ -26,6 +26,7 @@ import {
   X,
 } from "lucide-react";
 import type {Me, Mosque} from "@/lib/data"
+// import CampaignStatusBadge from "@/components/campaign-status-badge";
 
 // Mock Data Donasi Harian untuk Grafik Tren
 const DAILY_DONATION_DATA_7 = [
@@ -94,13 +95,13 @@ const RECENT_TRANSACTIONS = [
   },
 ];
 
-export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosque}) {
+export default async function DashboardView({me, mosque}: {me: Me; mosque?: Mosque}) {
   const [timeframe, setTimeframe] = useState<"7" | "30">("7");
   const [copiedLink, setCopiedLink] = useState(false);
   const [showProgressModal, setShowProgressModal] = useState(false);
   const [progressText, setProgressText] = useState("");
 
-  const campaignId = "1";
+  const campaignId = 0;
   const collectedAmount = 0;
   const targetAmount = 0;
   const percentage = Math.max(Math.round((collectedAmount / targetAmount) * 100) || 0);
@@ -145,11 +146,11 @@ export default async function DashboardView({me, mosque}: {me: Me; mosque: Mosqu
             </div>
 
             <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight">
-              Assalamu&apos;alaikum, {me.full_name}
+              Assalamu&apos;alaikum, {me?.full_name ?? "Pengurus"}
             </h1>
             <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
               Berikut adalah ringkasan perkembangan donasi dan mutasi kas renovasi untuk{" "}
-              <strong>{mosque.mosque_name}</strong> (ID: {mosque.mosque_id}).
+              <strong>{mosque?.mosque_name ?? "Masjid Anda"}</strong> (ID: {mosque?.mosque_id ?? "-"}).
             </p>
           </div>
 

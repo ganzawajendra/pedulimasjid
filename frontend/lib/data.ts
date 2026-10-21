@@ -1,6 +1,6 @@
 import "server-only"
 import {cache} from "react"
-import { apiFetch } from "./api"
+import { apiFetch, ApiError } from "./api"
 
 export type Me = {
     user_id: number
@@ -26,5 +26,21 @@ export type Campaign = {
 }
 
 export const getMe = cache(() => apiFetch<Me>("/auth/me"))
-export const getMyMosque = cache(() => apiFetch<Mosque[]>("/mosques/me"))
-export const getMyCampaigns = cache(() => apiFetch<Campaign[]>("/campaigns/mine"))
+
+export const getMyMosque = cache(async () => {
+  try {
+    return await apiFetch<Mosque[]>("/mosques/me");
+  } catch (err) {
+    if (err instanceof ApiError && err.status === 404) return [];
+    throw err;
+  }
+})
+
+export const getMyCampaigns = cache(async () => {
+  try {
+    return await apiFetch<Campaign[]>("/campaigns/mine");
+  } catch (err) {
+    if (err instanceof ApiError && err.status === 404) return [];
+    throw err;
+  }
+})
