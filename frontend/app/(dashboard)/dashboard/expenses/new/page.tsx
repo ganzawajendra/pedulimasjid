@@ -156,54 +156,37 @@ export default function ExpensesNewPage() {
       {/* ================================================================= */}
       {/* 1. HEADER & INDIKATOR KAS TERSEDIA (PAGE HEADER & BALANCE INFO)   */}
       {/* ================================================================= */}
-      <section className="space-y-4">
+      <section className="bg-white rounded p-6 sm:p-8 border border-neutral-200 shadow-xs space-y-6 grid grid-cols-3">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs text-neutral-500">
-          <Link href="/dashboard" className="hover:text-neutral-900 transition-colors">
-            Dasbor
-          </Link>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-neutral-500">Kas &amp; Pengeluaran</span>
-          <ChevronRight className="w-3.5 h-3.5" />
-          <span className="text-neutral-900 font-semibold">Catat Pengeluaran Baru</span>
-        </nav>
-
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-          <div className="space-y-1 max-w-3xl">
-            <div className="flex flex-wrap items-center gap-2.5">
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight">
-                Pencairan Dana Renovasi &amp; Pencatatan Nota Belanja
-              </h1>
-              <span className="inline-flex items-center gap-1 bg-neutral-900 text-white text-xs font-mono px-3 py-0.5 rounded-full">
-                <Database className="w-3.5 h-3.5 text-emerald-400" />
-                Linked Hash Chain
-              </span>
-            </div>
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 col-span-2">
+          {/* Salam & Informasi Masjid */}
+          <div className="space-y-2">
+            <h1 className="text-xl sm:text-2xl font-extrabold text-neutral-900 tracking-tight">
+              Pengajuan Usulan Renovasi & Verifikasi AI
+            </h1>
             <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed">
-              Catat alokasi pengeluaran dana material atau jasa tukang. Setiap pencairan wajib
-              melampirkan foto kuitansi/nota toko fisik yang sah untuk diikatkan secara
-              kriptografis ke dalam buku besar publik <em>(tamper-evident ledger)</em>.
+              Lengkapi rincian kebutuhan perbaikan masjid dan unggah bukti dokumentasi kerusakan fisik. Sistem kecerdasan buatan (CNN) akan memvalidasi tingkat keparahan kerusakan secara objektif sebelum usulan diterbitkan ke publik.
             </p>
           </div>
+        </div>
 
-          {/* Kartu Saldo Kas Siap Pakai (Available Balance Box) */}
-          <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 sm:p-5 flex items-center gap-4 shrink-0 shadow-xs">
-            <div className="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs">
-              <Wallet className="w-6 h-6" />
+        {/* Kartu Saldo Kas Siap Pakai (Available Balance Box) */}
+        <div className="bg-white border-l-2 border-black p-4 sm:p-5 flex items-center gap-4 shrink-0 shadow-xs">
+            <div>
+              <Wallet className="w-6 h-6 text-emerald-700" />
             </div>
             <div className="space-y-0.5">
-              <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider block">
+              <span className="text-xs font-semibold text-emerald-700 uppercase tracking-wider block">
                 Saldo Kas Siap Pakai
               </span>
-              <span className="text-xl sm:text-2xl font-extrabold text-emerald-950 tracking-tight block">
+              <span className="text-lg sm:text-xl font-extrabold text-emerald-700 tracking-tight block">
                 {formatRupiah(availableBalance)}
               </span>
-              <p className="text-[10px] text-emerald-700 font-medium">
+              <p className="text-xs text-emerald-700 font-medium">
                 Maksimal penarikan sesuai saldo tersedia
               </p>
             </div>
           </div>
-        </div>
       </section>
 
       {/* ================================================================= */}
@@ -215,7 +198,7 @@ export default function ExpensesNewPage() {
         {/* =============================================================== */}
         <div className="lg:col-span-7 space-y-6">
           {/* 2. FORMULIR RINCIAN PENGELUARAN */}
-          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-xs space-y-5">
+          <div className="bg-white rounded p-6 sm:p-7 border border-neutral-200 shadow-xs space-y-5">
             <div className="flex items-center gap-2 text-neutral-900 font-bold text-base border-b border-neutral-100 pb-3">
               <Receipt className="w-4 h-4 text-emerald-600" />
               <h2>Rincian Alokasi Belanja</h2>
@@ -381,7 +364,7 @@ export default function ExpensesNewPage() {
           </div>
 
           {/* 3. ZONA UNGGAH BUKTI NOTA / KUITANSI FISIK */}
-          <div className="bg-white rounded-3xl p-6 sm:p-7 border border-neutral-200 shadow-xs space-y-5">
+          <div className="bg-white rounded p-6 sm:p-7 border border-neutral-200 shadow-xs space-y-5">
             <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
               <div className="flex items-center gap-2 text-neutral-900 font-bold text-base">
                 <Camera className="w-4 h-4 text-emerald-600" />
@@ -441,7 +424,7 @@ export default function ExpensesNewPage() {
 
             {/* Ekstraksi Hash Nota (Real-Time Digest) */}
             {previewUrl && (
-              <div className="bg-neutral-950 text-white p-4 rounded-2xl border border-neutral-800 space-y-2">
+              <div className="bg-neutral-950 text-white p-4 rounded-lg border border-neutral-800 space-y-2">
                 <div className="flex items-center justify-between text-xs">
                   <div className="flex items-center gap-1.5 text-emerald-400 font-semibold">
                     <Hash className="w-4 h-4" />
@@ -467,7 +450,7 @@ export default function ExpensesNewPage() {
         {/* =============================================================== */}
         <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-24">
           {/* 4. PANEL SIMULASI BLOK KRIPTOGRAFI */}
-          <div className="bg-neutral-900 text-white rounded-3xl p-6 border border-neutral-700 shadow-sm space-y-5">
+          <div className="bg-neutral-900 text-white rounded p-6 border border-neutral-700 shadow-sm space-y-5">
             <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
@@ -489,7 +472,7 @@ export default function ExpensesNewPage() {
 
             {/* Pratinjau Bukti Nota */}
             {previewUrl ? (
-              <div className="relative aspect-4/3 w-full rounded-2xl overflow-hidden border border-neutral-700 bg-neutral-950">
+              <div className="relative aspect-4/3 w-full rounded-lg overflow-hidden border border-neutral-700 bg-neutral-950">
                 <Image
                   src={previewUrl}
                   alt="Pratinjau Nota Fisik"
@@ -508,7 +491,7 @@ export default function ExpensesNewPage() {
 
             {/* Previous Hash & Rumus */}
             <div className="space-y-3 text-xs">
-              <div className="bg-neutral-950 p-3.5 rounded-2xl border border-neutral-800 space-y-1.5">
+              <div className="bg-neutral-950 p-3.5 rounded-lg border border-neutral-800 space-y-1.5">
                 <span className="text-[11px] text-neutral-400 block font-medium">
                   Previous Hash (Induk Terakhir Blok #005):
                 </span>
@@ -517,7 +500,7 @@ export default function ExpensesNewPage() {
                 </div>
               </div>
 
-              <div className="bg-neutral-950 p-3.5 rounded-2xl border border-neutral-800 space-y-1.5">
+              <div className="bg-neutral-950 p-3.5 rounded-lg border border-neutral-800 space-y-1.5">
                 <span className="text-[11px] text-neutral-400 block font-medium">
                   Rumus Pembentukan Rantai:
                 </span>
@@ -526,7 +509,7 @@ export default function ExpensesNewPage() {
                 </code>
               </div>
 
-              <div className="flex items-center gap-2 text-emerald-400 text-xs bg-emerald-950/40 border border-emerald-800/60 p-3 rounded-2xl">
+              <div className="flex items-center gap-2 text-emerald-400 text-xs bg-emerald-950/40 border border-emerald-800/60 p-3 rounded-lg">
                 <CheckCircle2 className="w-4 h-4 shrink-0" />
                 <span>Siap Mengunci Transaksi ke Buku Kas Terbuka</span>
               </div>
@@ -534,7 +517,7 @@ export default function ExpensesNewPage() {
           </div>
 
           {/* 5. PERNYATAAN INTEGRITAS & TOMBOL SUBMIT */}
-          <div className="bg-white rounded-3xl p-6 border border-neutral-200 shadow-xs space-y-5">
+          <div className="bg-white rounded p-6 border border-neutral-200 shadow-xs space-y-5">
             {/* Checkbox Tanggung Jawab */}
             <label className="flex items-start gap-3 cursor-pointer select-none group">
               <input
@@ -554,7 +537,7 @@ export default function ExpensesNewPage() {
               <button
                 type="submit"
                 disabled={isSubmitDisabled}
-                className={`w-full py-3.5 px-5 rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-xs ${
+                className={`w-full py-3.5 px-5 rounded font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-xs ${
                   !isSubmitDisabled
                     ? "bg-emerald-600 hover:bg-emerald-700 text-white cursor-pointer active:scale-99 shadow-md"
                     : "bg-neutral-200 text-neutral-400 border border-neutral-300 cursor-not-allowed"
@@ -571,14 +554,6 @@ export default function ExpensesNewPage() {
                     <span>Kunci Transaksi &amp; Simpan Kas Keluar</span>
                   </>
                 )}
-              </button>
-
-              <button
-                type="button"
-                onClick={() => router.push("/dashboard")}
-                className="w-full bg-white hover:bg-neutral-50 text-neutral-700 font-semibold text-xs py-2.5 px-4 rounded-xl border border-neutral-300 transition-colors cursor-pointer text-center"
-              >
-                Batal dan Kembali
               </button>
             </div>
 
