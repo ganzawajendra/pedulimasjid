@@ -25,9 +25,9 @@ import {
 } from "lucide-react";
 
 interface AIAnalysisResult {
-  category: "RUSAK_BERAT" | "RUSAK_SEDANG" | "LAYAK_MINOR";
+  category: "TIDAK_RUSAK" | "RUSAK";
   label: string;
-  badgeColor: "red" | "yellow" | "gray";
+  badgeColor: "grey" | "green" ;
   confidenceScore: number;
   modelName: string;
   insights: string;
@@ -96,7 +96,7 @@ export default function NewCampaignPage() {
   };
 
   // Sample quick loader untuk demo sidang
-  const handleUseSampleImage = (imageSrc: string, condition: "RUSAK_BERAT" | "RUSAK_SEDANG") => {
+  const handleUseSampleImage = (imageSrc: string, condition: "TIDAK_RUSAK" | "RUSAK") => {
     setPreviewUrl(imageSrc);
     setSelectedFile(new File(["sample"], "sample-masjid.jpg", { type: "image/jpeg" }));
     setAnalysisResult(null);
@@ -124,27 +124,27 @@ export default function NewCampaignPage() {
       setIsAnalyzing(false);
       setAnalysisProgress("");
 
-      // Berdasarkan kategori kerusakan yang dipilih atau karakteristik gambar
+      // DEMO: Kerusakan dari gambar
       if (damageCategory.includes("Struktur") || damageCategory.includes("Atap")) {
         setAnalysisResult({
-          category: "RUSAK_BERAT",
-          label: "RUSAK PARAH / DARURAT",
-          badgeColor: "red",
-          confidenceScore: 94.8,
+          category: "TIDAK_RUSAK",
+          label: "TIDAK RUSAK",
+          badgeColor: "grey",
+          confidenceScore: 10.3,
           modelName: "MobileNetV2 Structural Damage Classifier",
           insights:
-            "Model MobileNetV2 mendeteksi pola retakan dinding struktural dan deformasi material atap yang membahayakan jamaah. Memenuhi syarat prioritas pembukaan kampanye donasi publik.",
-          isEligible: true,
+            "Model AI tidak mendeteksi adanya kerusakan. Silakan ambil ulang foto dengan pencahayaan yang baik agar AI dapat mendeteksi kerusakan.",
+          isEligible: false,
         });
       } else {
         setAnalysisResult({
-          category: "RUSAK_SEDANG",
-          label: "RUSAK SEDANG",
-          badgeColor: "yellow",
-          confidenceScore: 88.5,
+          category: "RUSAK",
+          label: "RUSAK",
+          badgeColor: "green",
+          confidenceScore: 94.5,
           modelName: "MobileNetV2 Structural Damage Classifier",
           insights:
-            "Model mengklasifikasikan kerusakan permukaan dan fasilitas non-struktural. Memenuhi kriteria renovasi bertahap.",
+            "Model AI mendeteksi adanya kerusakan. Usulan renovasi dapat diterbitkan.",
           isEligible: true,
         });
       }
@@ -233,34 +233,6 @@ export default function NewCampaignPage() {
                 />
               </div>
 
-              {/* Kategori Kerusakan */}
-              <div className="space-y-1.5">
-                <label htmlFor="categorySelect" className="block text-xs font-semibold text-neutral-800">
-                  Kategori Kerusakan Fisik <span className="text-red-500">*</span>
-                </label>
-                <select
-                  id="categorySelect"
-                  value={damageCategory}
-                  onChange={(e) => setDamageCategory(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-300 rounded-xl text-xs sm:text-sm text-neutral-900 focus:outline-hidden focus:border-neutral-900 focus:bg-white transition-colors cursor-pointer"
-                >
-                  <option value="Kerusakan Struktur / Dinding Retak">
-                    Kerusakan Struktur / Dinding Retak
-                  </option>
-                  <option value="Kerusakan Atap, Kubah, & Plafon Lapuk">
-                    Kerusakan Atap, Kubah, &amp; Plafon Lapuk
-                  </option>
-                  <option value="Fasilitas Tempat Wudhu & Sanitasi">
-                    Fasilitas Tempat Wudhu &amp; Sanitasi
-                  </option>
-                  <option value="Kerusakan Pasca-Bencana (Gempa / Banjir)">
-                    Kerusakan Pasca-Bencana (Gempa / Banjir)
-                  </option>
-                </select>
-              </div>
-
-              {/* Target Kebutuhan Dana & Durasi Waktu */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Target Dana */}
                 <div className="space-y-1.5">
                   <label htmlFor="amountInput" className="block text-xs font-semibold text-neutral-800">
@@ -285,33 +257,10 @@ export default function NewCampaignPage() {
                   </div>
                 </div>
 
-                {/* Target Durasi */}
-                <div className="space-y-1.5">
-                  <label htmlFor="durationInput" className="block text-xs font-semibold text-neutral-800">
-                    Target Durasi Penggalangan <span className="text-red-500">*</span>
-                  </label>
-                  <div className="relative">
-                    <input
-                      id="durationInput"
-                      type="number"
-                      min="7"
-                      max="180"
-                      required
-                      value={durationDays}
-                      onChange={(e) => setDurationDays(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-300 rounded-xl text-xs sm:text-sm text-neutral-900 focus:outline-hidden focus:border-neutral-900 focus:bg-white transition-colors"
-                    />
-                    <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs text-neutral-400 font-medium">
-                      Hari
-                    </span>
-                  </div>
-                </div>
-              </div>
-
               {/* Deskripsi Kronologi & Kebutuhan */}
               <div className="space-y-1.5">
                 <label htmlFor="descTextarea" className="block text-xs font-semibold text-neutral-800">
-                  Deskripsi Kronologi &amp; Rincian Kebutuhan <span className="text-red-500">*</span>
+                  Deskripsi &amp; Rincian Kebutuhan <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   id="descTextarea"
@@ -333,7 +282,6 @@ export default function NewCampaignPage() {
                 <ImagePlus className="w-4 h-4 text-emerald-600" />
                 <h2>Bukti Dokumentasi Kerusakan Fisik</h2>
               </div>
-              <span className="text-[11px] text-neutral-400 font-mono">Wajib untuk Uji AI</span>
             </div>
 
             {/* Hidden Native File Input */}
@@ -392,17 +340,17 @@ export default function NewCampaignPage() {
               <span className="text-[11px] font-medium">Contoh Demo Sidang:</span>
               <button
                 type="button"
-                onClick={() => handleUseSampleImage("/bg-masjid.jpg", "RUSAK_BERAT")}
+                onClick={() => handleUseSampleImage("/bg-masjid.jpg", "TIDAK_RUSAK")}
                 className="text-[11px] bg-neutral-100 hover:bg-neutral-200 text-neutral-800 px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
               >
-                Foto Kerusakan Atap &amp; Plafon (#Sample 1)
+                Contoh Gambar Tidak Rusak
               </button>
               <button
                 type="button"
-                onClick={() => handleUseSampleImage("/bg-masjid.jpeg", "RUSAK_SEDANG")}
+                onClick={() => handleUseSampleImage("/bg-masjid.jpeg", "RUSAK")}
                 className="text-[11px] bg-neutral-100 hover:bg-neutral-200 text-neutral-800 px-2.5 py-1 rounded-lg transition-colors cursor-pointer"
               >
-                Foto Dinding Bangunan (#Sample 2)
+                Contoh Gambar Rusak
               </button>
             </div>
 
@@ -516,20 +464,15 @@ export default function NewCampaignPage() {
                     Status Klasifikasi Kerusakan:
                   </span>
                   <div>
-                    {analysisResult.badgeColor === "red" && (
-                      <span className="inline-flex items-center gap-1.5 bg-red-500/20 text-red-300 border border-red-500/40 text-xs font-bold px-3 py-1 rounded-full">
-                        <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
+                    {analysisResult.badgeColor === "grey" && (
+                      <span className="inline-flex items-center gap-1.5 bg-grey-500/20 text-grey-300 border border-grey-500/40 text-xs font-bold px-3 py-1 rounded-full">
+                        <AlertTriangle className="w-3.5 h-3.5 text-grey-400" />
                         <span>{analysisResult.label}</span>
                       </span>
                     )}
-                    {analysisResult.badgeColor === "yellow" && (
-                      <span className="inline-flex items-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-bold px-3 py-1 rounded-full">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
-                        <span>{analysisResult.label}</span>
-                      </span>
-                    )}
-                    {analysisResult.badgeColor === "gray" && (
-                      <span className="inline-flex items-center gap-1.5 bg-neutral-800 text-neutral-400 border border-neutral-700 text-xs font-bold px-3 py-1 rounded-full">
+                    {analysisResult.badgeColor === "green" && (
+                      <span className="inline-flex items-center gap-1.5 bg-green-500/20 text-green-300 border border-green-500/40 text-xs font-bold px-3 py-1 rounded-full">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-green-400" />
                         <span>{analysisResult.label}</span>
                       </span>
                     )}
