@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, ConfigDict, EmailStr
 from datetime import datetime
 from typing import Optional, Literal
 
@@ -17,8 +17,7 @@ class UserResponse(UserBase):
     role: Literal["takmir", "donatur"]
     created_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # ---------- Auth ----------
 class Token(BaseModel):
@@ -40,8 +39,7 @@ class MosqueResponse(MosqueBase):
     takmir_id: int
     created_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # ---------- Proposal ----------
 class ProposalBase(BaseModel):
@@ -50,7 +48,11 @@ class ProposalBase(BaseModel):
     target_amount: float
 
 class ProposalCreate(ProposalBase):
-    mosque_id: int
+    # mosque_id: int
+    damage_photo_url: Optional[str] = None
+    cnn_label: Optional[str] = None
+    cnn_confidence: Optional[float] = None
+    status: Optional[str] = "pending"
 
 class ProposalResponse(ProposalBase):
     proposal_id: int
@@ -62,8 +64,7 @@ class ProposalResponse(ProposalBase):
     status: str
     created_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 # class ProposalStatusUpdate(BaseModel):
 #     status: Literal["completed", "closed"]
@@ -88,5 +89,4 @@ class LedgerResponse(BaseModel):
     current_hash: str
     timestamp: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

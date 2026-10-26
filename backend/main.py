@@ -65,11 +65,13 @@ def get_all_active_campaigns(skip: int = 0, limit: int = 20, db: Session = Depen
 @app.get("/api/v1/campaigns/mine", tags=["Campaign"], response_model=List[schemas.ProposalResponse])
 def get_my_campaings(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Semua campaign milik takmir yang login (semua status)"""
+    mosque = db.query(models.Mosque).filter(models.Mosque.takmir_id == current_user.user_id).first()
+    if not mosque:
+        raise HTTPException(status_code=404, detail = "Masjid tidak ditemukan")
+
     return (
         db.query(models.Proposal)
-        .join(models.Proposal, models.Proposal.mosque_id == models.Mosque.mosque_id)
-        .filter(models.Mosque.takmir_id == current_user.user_id)
-        .order_by(models.Proposal.created_at.desc())
+        .filter(models.Proposal.mosque_id == mosque.mosque_id)
         .all()
     )
 
@@ -109,47 +111,33 @@ def create_campaign(data: schemas.ProposalCreate, current_user: models.User = De
     """Takmir membuat campaign untuk masjidnya (versi tanpa foto/ML)"""
     mosque = (
         db.query(models.Mosque)
-        .filter(
-            models.Mosque.mosque_id == data.mosque_id,
-            models.Mosque.takmir_id == current_user.user_id,
-        )
+        .filter(models.Mosque.takmir_id == current_user.user_id)
         .first()
     )
     if not mosque:
         raise HTTPException(status_code=404, detail="Masjid tidak ditemukan")
- 
+
+    if data.cnn_confidence is not None:
+        if data.cnn_confidence >= 50.0:
+            status = models.ProposalStatus.ACTIVE
+        else:
+            status = models.ProposalStatus.REJECTED
+    else:
+        status = models.ProposalStatus.PENDING
+
+    proposal_data = data.model_dump()
+    proposal_data.pop("status", None)
+
     proposal = models.Proposal(
-        **data.model_dump(),
+        **proposal_data,
         collected_amount=0,
-        status="active",  # sementara, nanti ditentukan hasil klasifikasi foto
+        mosque_id = mosque.mosque_id,
+        status = status
     )
     db.add(proposal)
     db.commit()
     db.refresh(proposal)
     return proposal
-
-# @app.patch("/api/v1/campaigns/{campaign_id}/status", tags=["Campaign"], response_model=schemas.ProposalResponse,)
-# def update_campaign_status(campaign_id: int, data: schemas.ProposalStatusUpdate, current_user: models.User = Depends(require_takmir), db: Session = Depends(get_db)):
-#     """Takmir menutup campaign miliknya"""
-#     campaign = (
-#         db.query(models.Proposal)
-#         .join(models.Mosque, models.Proposal.mosque_id == models.Mosque.mosque_id)
-#         .filter(
-#             models.Proposal.proposal_id == campaign_id,
-#             models.Mosque.takmir_id == current_user.user_id,
-#         )
-#         .first()
-#     )
-#     if not campaign:
-#         raise HTTPException(status_code=404, detail="Campaign tidak ditemukan")
- 
-#     if str(campaign.status) != models.ProposalStatus.ACTIVE:
-#         raise HTTPException(status_code=400, detail="Hanya campaign aktif yang bisa ditutup")
- 
-#     campaign.status = data.status
-#     db.commit()
-#     db.refresh(campaign)
-#     return campaign
 
 # Mosque
 @app.post("/api/v1/mosques", tags=["Mosque"], response_model=schemas.MosqueResponse, status_code=201,)
@@ -172,6 +160,22 @@ def get_my_mosques(current_user: models.User = Depends(require_takmir), db: Sess
         .filter(models.Mosque.takmir_id == current_user.user_id)
         .all()
     )
+
+# Transaction Ledger
+@app.get("/api/v1/transactions/ledger", tags=["Transaction"], response_model=List[schemas.LedgerResponse])
+def get_my_transaction_ledger(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Daftar transaksi donatur yang terhubung dengan proposal masjid takmir yang login"""
+    mosque = db.query(models.Mosque).filter(models.Mosque.takmir_id == current_user.user_id).first()
+    if not mosque:
+        return []
+
+    ledger_entries = (
+        db.query(models.TransactionLedger)
+        .join(models.Proposal)
+        .filter(models.Proposal.mosque_id == mosque.mosque_id)
+        .all()
+    )
+    return ledger_entries
 
 # Auth
 @app.post("/api/v1/auth/register", tags = ["Auth"], response_model = schemas.UserResponse, status_code = 201)
