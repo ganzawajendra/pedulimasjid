@@ -22,6 +22,7 @@ export type Campaign = {
     title: string
     description: string,
     target_amount: number
+    end_date: string,
     collected_amount: number
     status: string
 }

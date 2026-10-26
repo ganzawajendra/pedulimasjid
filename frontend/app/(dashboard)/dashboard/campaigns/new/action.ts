@@ -7,6 +7,7 @@ type CampaignInput = {
     target_amount: number,
     collected_amount: number,
     damage_photo_url: string,
+    end_date: string,
     cnn_label: string,
     cnn_confidence: number,
     status: string

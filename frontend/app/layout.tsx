@@ -24,7 +24,7 @@ export default function RootLayout({
       lang="id"
       className={`${inter.className} h-full antialiased scroll-smooth`}
     >
-      <body className={`${inter.className} min-h-full flex flex-col`}>
+      <body suppressHydrationWarning={true} className={`${inter.className} min-h-full flex flex-col`}>
         <Navbar />
         {children}
         <Footer />

@@ -78,6 +78,10 @@ export default function DashboardView({
   const percentage = targetAmount > 0 ? Math.min(100, Math.round((collectedAmount / targetAmount) * 100)) : 0;
   const availableBalance = Math.max(0, collectedAmount - totalOutflow);
 
+  // Handle end date
+  const endDate = campaign?.end_date ?? "";
+  const daysLeft = endDate ? Math.max(0, Math.ceil((new Date(endDate).getTime() - Date.now()) / (1000 * 60 * 60 * 24))) : 0;
+
   const formatRupiah = (num: number) => {
     return new Intl.NumberFormat("id-ID", {
       style: "currency",
@@ -195,11 +199,17 @@ export default function DashboardView({
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border border-neutral-200 shadow-xs p-6 rounded bg-white">
           <div className="col-span-4 mb-6">
             <p className="text-xs uppercase tracking-wide font-semibold text-neutral-500 pb-1">Kampanye Saat Ini</p>
-            <div className="flex items-center gap-2 mt-1">
-              <h2 className="text-xl font-semibold">{campaign?.title || "-"}</h2>
-              <CampaignStatusBadge status={campaign?.status} />
-            </div>
-            <p className="text-xs text-neutral-600 pt-2">{campaign?.description || "-"}</p>
+              {campaign?.title ? (
+                <>
+                <div className="flex items-center gap-2 mt-1">
+                  <h2 className="text-xl font-semibold">{campaign?.title}</h2>
+                  <CampaignStatusBadge status={campaign?.status} />
+                </div>
+                <p className="text-xs text-neutral-600 pt-2">{campaign?.description || "Tidak ada Deskripsi"}</p>
+                </>
+              ) : (
+                <CampaignStatusBadge status={campaign?.status} />
+              )}
           </div>
           {/* Kartu 1: Total Donasi Terkumpul */}
           <div className="bg-white px-3 sm:px-4 border-x border-neutral-400 flex flex-col justify-between ">
@@ -230,7 +240,9 @@ export default function DashboardView({
 
               <div className="flex justify-between text-xs text-neutral-500 pt-0.5">
                 <span>Target {targetAmount > 0 ? formatRupiah(targetAmount) : "-"}</span>
-                <span className="font-semibold text-neutral-700">Sisa - hari</span>
+                <span className="font-semibold text-neutral-700">
+                  Sisa {daysLeft > 0 ? `${daysLeft} hari` : "0 hari"}
+                </span>
               </div>
             </div>
           </div>

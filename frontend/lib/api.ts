@@ -12,6 +12,7 @@ export class ApiError extends Error {
 }
 
 function detailToMessage(detail: unknown): string{
+    if(detail === null || detail === undefined) return "Terjadi kesalahan, coba lagi."
     if(typeof detail === "string") return detail
     if(Array.isArray(detail)) return detail.map((d) => d?.msg).filter(Boolean).join(", ")
     return "Terjadi kesalahan, coba lagi."
@@ -53,9 +54,12 @@ export async function apiFetch<T = unknown>(path: string, opts: Opts = {}): Prom
     const data = await res.json().catch(() => null);
     console.error(`[API ERROR] ${init.method || "GET"} ${path} -> ${res.status}:`, data);
     const detailMsg = detailToMessage(data?.detail);
-    const finalMsg = detailMsg !== "Terjadi kesalahan, coba lagi." 
-      ? detailMsg 
-      : (data?.message || (typeof data === "string" ? data : JSON.stringify(data)) || res.statusText || "Terjadi kesalahan, coba lagi.");
+    const finalMsg = detailMsg !== "Terjadi kesalahan, coba lagi."
+      ? detailMsg
+      : (data?.message ||
+         (data !== null && typeof data === "string" ? data : null) ||
+         res.statusText ||
+         "Terjadi kesalahan, coba lagi.");
     throw new ApiError(res.status, data?.detail, `[HTTP ${res.status} on ${path}]: ${finalMsg}`);
   }
   return res.status === 204 ? (null as T) : ((await res.json()) as T);

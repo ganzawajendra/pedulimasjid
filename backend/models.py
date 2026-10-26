@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, Text, DateTime, ForeignKey, Enum
+from sqlalchemy import Column, Date, Integer, String, Float, Text, DateTime, ForeignKey, Enum
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from database import Base
@@ -53,6 +53,7 @@ class Proposal(Base):
     damage_photo_url = Column(String, nullable=True)
     cnn_label = Column(String, nullable=True)
     cnn_confidence = Column(Float, nullable=True)
+    end_date = Column(Date, nullable=False)
     status = Column(Enum(ProposalStatus, values_callable=lambda e: [m.value for m in e]), default=ProposalStatus.PENDING, nullable=False)
     created_at = Column(DateTime, server_default=func.now())
  

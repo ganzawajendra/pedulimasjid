@@ -1,3 +1,4 @@
+from datetime import timedelta, datetime
 from typing import List
  
 from fastapi import FastAPI, Depends, HTTPException, status
@@ -67,7 +68,7 @@ def get_my_campaings(current_user: models.User = Depends(get_current_user), db: 
     """Semua campaign milik takmir yang login (semua status)"""
     mosque = db.query(models.Mosque).filter(models.Mosque.takmir_id == current_user.user_id).first()
     if not mosque:
-        raise HTTPException(status_code=404, detail = "Masjid tidak ditemukan")
+        return []
 
     return (
         db.query(models.Proposal)
@@ -131,6 +132,7 @@ def create_campaign(data: schemas.ProposalCreate, current_user: models.User = De
     proposal = models.Proposal(
         **proposal_data,
         collected_amount=0,
+        # end_date = datetime.now() + timedelta(days= data.end_date),
         mosque_id = mosque.mosque_id,
         status = status
     )

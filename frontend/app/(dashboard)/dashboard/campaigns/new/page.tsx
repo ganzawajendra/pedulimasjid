@@ -53,6 +53,9 @@ export default function NewCampaignPage() {
   // State Aksi Form
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Handle Date
+  const minDate = new Date().toLocaleDateString('en-CA')
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -61,6 +64,7 @@ export default function NewCampaignPage() {
     damage_photo_url: "",
     cnn_label: "",
     cnn_confidence: 0,
+    end_date: "",
     status: "PENDING"
   })
 
@@ -198,7 +202,6 @@ export default function NewCampaignPage() {
       alert("Usulan harus lolos verifikasi visual AI sebelum diterbitkan.");
       return;
     }
-
     setIsSubmitting(true);
     try {
       const result = await createCampaignAction(formData);
@@ -279,7 +282,8 @@ export default function NewCampaignPage() {
                 />
               </div>
 
-                {/* Target Dana */}
+                {/* Target Dana dan Tenggat waktu*/}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
                   <label htmlFor="amountInput" className="block text-xs font-semibold text-neutral-800">
                     Target Kebutuhan Dana <span className="text-red-500">*</span>
@@ -305,6 +309,24 @@ export default function NewCampaignPage() {
                     />
                   </div>
                 </div>
+                
+                <div className="space-y-1.5">
+                  <label htmlFor="endDate" className="block text-xs font-semibold text-neutral-800">
+                    Tenggat Waktu Pengajuan <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="endDate"
+                    name="end_date"
+                    type="date"
+                    required
+                    min={minDate}
+                    value={formData.end_date || ""}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-300 rounded-xl text-xs sm:text-sm text-neutral-900 focus:outline-hidden focus:border-neutral-900 focus:bg-white transition-colors"
+                  />
+                </div>
+
+              </div>
 
               {/* Deskripsi Kronologi & Kebutuhan */}
               <div className="space-y-1.5">

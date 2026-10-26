@@ -1,5 +1,5 @@
 from pydantic import BaseModel, ConfigDict, EmailStr
-from datetime import datetime
+from datetime import date, datetime
 from typing import Optional, Literal
 
 
@@ -52,6 +52,7 @@ class ProposalCreate(ProposalBase):
     damage_photo_url: Optional[str] = None
     cnn_label: Optional[str] = None
     cnn_confidence: Optional[float] = None
+    end_date: date
     status: Optional[str] = "pending"
 
 class ProposalResponse(ProposalBase):
@@ -61,6 +62,7 @@ class ProposalResponse(ProposalBase):
     damage_photo_url: Optional[str] = None
     cnn_label: Optional[str] = None
     cnn_confidence: Optional[float] = None
+    end_date: Optional[datetime] = None
     status: str
     created_at: datetime
 
