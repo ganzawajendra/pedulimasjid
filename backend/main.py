@@ -141,6 +141,30 @@ def create_campaign(data: schemas.ProposalCreate, current_user: models.User = De
     db.refresh(proposal)
     return proposal
 
+@app.patch("/api/v1/campaigns/{campaign_id}/end", tags=["Campaign"], response_model=schemas.ProposalResponse)
+def end_campaign(proposal_id: int, current_user: models.User = Depends(require_takmir), db: Session = Depends(get_db)):
+    """Takmir Mengakhiri Kampanye Manual"""
+    proposal = (
+        db.query(models.Proposal)
+        .join(models.Mosque)
+        .filter(
+            models.Proposal.proposal_id == proposal_id,
+            models.Mosque.takmir_id == current_user.user_id
+        )
+        .first()
+    )
+
+    if not proposal:
+        raise HTTPException(status_code = 404, detail = "Kampanye tidak ditemukan")
+    
+    if proposal.status != models.ProposalStatus.ACTIVE:
+        raise HTTPException(status_code = 400, detail = "Kampanye tidak sedang aktif")
+    
+    proposal.status = models.ProposalStatus.FUNDED
+    db.commit()
+    db.refresh(proposal)
+    return proposal
+
 # Mosque
 @app.post("/api/v1/mosques", tags=["Mosque"], response_model=schemas.MosqueResponse, status_code=201,)
 def register_mosque(data: schemas.MosqueCreate, current_user: models.User = Depends(require_takmir), db: Session = Depends(get_db)):

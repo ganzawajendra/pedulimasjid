@@ -23,8 +23,10 @@ export type Campaign = {
     description: string,
     target_amount: number
     end_date: string,
+    cnn_confidence: number
     collected_amount: number
     status: string
+    created_at: string
 }
 
 export type TransactionLedger = {
