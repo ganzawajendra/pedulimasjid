@@ -17,6 +17,7 @@ import {
   ArrowRight,
   Info,
   X,
+  Pause,
 } from "lucide-react";
 import type {Me, Mosque, Campaign, TransactionLedger} from "@/lib/data"
 import CampaignStatusBadge from "@/components/campaign-status-badge";
@@ -172,7 +173,7 @@ export default function DashboardView({
           {/* Tombol Pintas Header */}
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <Link
-              href={`/campaigns/${campaignId}`}
+              href={`/campaigns/mine/${campaignId}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-semibold py-2.5 px-4 rounded border border-neutral-300 transition-colors shadow-xs"
@@ -201,9 +202,21 @@ export default function DashboardView({
             <p className="text-xs uppercase tracking-wide font-semibold text-neutral-500 pb-1">Kampanye Saat Ini</p>
               {campaign?.title ? (
                 <>
-                <div className="flex items-center gap-2 mt-1">
+                <div className="flex items-center justify-between mt-1">
+                  <div className="flex items-center gap-2">
                   <h2 className="text-xl font-semibold">{campaign?.title}</h2>
                   <CampaignStatusBadge status={campaign?.status} />
+                  </div>
+                  <div>
+                    {/* Akhiri Kampanye */}
+                    <Link
+                      href={`/dashboard/campaigns/mine/${campaignId}`}
+                      className=" text-xs font-semibold cursor-pointer flex items-center gap-2 text-neutral-900 hover:bg-neutral-200 transition-all py-2 px-4 rounded"
+                    >
+                      Detail Kampanye
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
                 </div>
                 <p className="text-xs text-neutral-600 pt-2">{campaign?.description || "Tidak ada Deskripsi"}</p>
                 </>
