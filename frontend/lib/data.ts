@@ -20,6 +20,7 @@ export type Mosque = {
 export type Campaign = {
     proposal_id: number
     title: string
+    description: string,
     target_amount: number
     collected_amount: number
     status: string

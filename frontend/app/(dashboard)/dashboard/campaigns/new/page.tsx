@@ -11,18 +11,12 @@ import {
   CheckCircle2,
   AlertTriangle,
   Sparkles,
-  ShieldCheck,
-  ChevronRight,
-  ArrowRight,
   Loader2,
-  RefreshCw,
   FileText,
-  Calendar,
-  Building2,
-  X,
   Info,
   Check,
 } from "lucide-react";
+import { createCampaignAction } from "./action";
 
 interface AIAnalysisResult {
   category: "TIDAK_RUSAK" | "RUSAK";
@@ -54,9 +48,27 @@ export default function NewCampaignPage() {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [analysisProgress, setAnalysisProgress] = useState("");
   const [analysisResult, setAnalysisResult] = useState<AIAnalysisResult | null>(null);
+  const [selectedCondition, setSelectedCondition] = useState<"TIDAK_RUSAK" | "RUSAK">("RUSAK");
 
   // State Aksi Form
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    target_amount: 0,
+    collected_amount: 0,
+    damage_photo_url: "",
+    cnn_label: "",
+    cnn_confidence: 0,
+    status: "PENDING"
+  })
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
   const formatRupiah = (num: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -68,7 +80,8 @@ export default function NewCampaignPage() {
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const rawVal = e.target.value.replace(/\D/g, "");
-    setTargetAmountRaw(rawVal);
+    setFormData((prev) => ({ ...prev, target_amount: Number(rawVal) }));
+    // setTargetAmountRaw(rawVal);
   };
 
   const handleFileSelect = (file: File) => {
@@ -83,6 +96,7 @@ export default function NewCampaignPage() {
 
     setSelectedFile(file);
     const objectUrl = URL.createObjectURL(file);
+    setFormData((prev) => ({ ...prev, damage_photo_url: objectUrl }));
     setPreviewUrl(objectUrl);
     setAnalysisResult(null); // Reset hasil jika foto diganti
   };
@@ -99,6 +113,7 @@ export default function NewCampaignPage() {
   const handleUseSampleImage = (imageSrc: string, condition: "TIDAK_RUSAK" | "RUSAK") => {
     setPreviewUrl(imageSrc);
     setSelectedFile(new File(["sample"], "sample-masjid.jpg", { type: "image/jpeg" }));
+    setSelectedCondition(condition);
     setAnalysisResult(null);
   };
 
@@ -124,37 +139,58 @@ export default function NewCampaignPage() {
       setIsAnalyzing(false);
       setAnalysisProgress("");
 
-      // DEMO: Kerusakan dari gambar
-      if (damageCategory.includes("Struktur") || damageCategory.includes("Atap")) {
-        setAnalysisResult({
-          category: "TIDAK_RUSAK",
-          label: "TIDAK RUSAK",
-          badgeColor: "grey",
-          confidenceScore: 10.3,
-          modelName: "MobileNetV2 Structural Damage Classifier",
-          insights:
-            "Model AI tidak mendeteksi adanya kerusakan. Silakan ambil ulang foto dengan pencahayaan yang baik agar AI dapat mendeteksi kerusakan.",
-          isEligible: false,
-        });
-      } else {
-        setAnalysisResult({
+      if (selectedCondition === "RUSAK") {
+        const resultData: AIAnalysisResult = {
           category: "RUSAK",
           label: "RUSAK",
           badgeColor: "green",
           confidenceScore: 94.5,
           modelName: "MobileNetV2 Structural Damage Classifier",
-          insights:
-            "Model AI mendeteksi adanya kerusakan. Usulan renovasi dapat diterbitkan.",
+          insights: "Model AI mendeteksi adanya kerusakan. Usulan renovasi dapat diterbitkan.",
           isEligible: true,
-        });
+        };
+
+        setAnalysisResult(resultData);
+
+        // Sinkronkan ke formData
+        setFormData((prev) => ({
+          ...prev,
+          cnn_label: resultData.label,
+          cnn_confidence: resultData.confidenceScore,
+          damage_photo_url: previewUrl || "",
+          status: "ACTIVE",
+        }));
+      } else {
+        const resultData: AIAnalysisResult = {
+          category: "TIDAK_RUSAK",
+          label: "TIDAK RUSAK",
+          badgeColor: "grey", // <--- Bertipe "grey" | "green"
+          confidenceScore: 10.3,
+          modelName: "MobileNetV2 Structural Damage Classifier",
+          insights:
+            "Model AI tidak mendeteksi adanya kerusakan. Silakan ambil ulang foto dengan pencahayaan yang baik agar AI dapat mendeteksi kerusakan.",
+          isEligible: false,
+        };
+
+        setAnalysisResult(resultData);
+
+        // Simpan juga ke formData (dengan status belum lolos/pending)
+        setFormData((prev) => ({
+          ...prev,
+          cnn_label: resultData.label,
+          cnn_confidence: resultData.confidenceScore,
+          damage_photo_url: previewUrl || "",
+          status: "PENDING",
+        }));
       }
     }, 1800);
   };
 
   // Handler Submit Terbitkan Proposal
-  const handlePublishCampaign = (e: React.FormEvent) => {
+  const handlePublishCampaign = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim()) {
+
+    if (!formData.title.trim()) {
       alert("Mohon isi judul pengajuan renovasi.");
       return;
     }
@@ -164,17 +200,26 @@ export default function NewCampaignPage() {
     }
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      alert(
-        "Alhamdulillah! Proposal usulan renovasi berhasil diverifikasi oleh AI dan resmi diterbitkan ke publik."
-      );
-      router.push("/dashboard");
-    }, 1000);
+    try {
+      const result = await createCampaignAction(formData);
+      if (result.ok) {
+        router.replace("/dashboard");
+        router.refresh();
+      } else {
+        alert(result.error);
+      }
+    } catch (error: any) {
+      alert(error.message || "Terjadi kesalahan saat membuat kampanye.");
+    } finally {
+      setIsSubmitting(false); // Memastikan state loading selalu mati kembali
+    }
   };
 
   const isPublishEnabled = Boolean(
-    title.trim() &&
+    formData.title.trim() &&
+    formData.description.trim() &&
+    formData.target_amount > 0 &&
+    formData.damage_photo_url &&
     previewUrl &&
     analysisResult &&
     analysisResult.isEligible &&
@@ -224,10 +269,11 @@ export default function NewCampaignPage() {
                 </label>
                 <input
                   id="titleInput"
+                  name="title"
                   type="text"
                   required
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  value={formData.title}
+                  onChange={handleChange}
                   placeholder="Contoh: Renovasi Dinding Retak Struktur & Plafon Ruang Utama"
                   className="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-300 rounded-xl text-xs sm:text-sm text-neutral-900 placeholder-neutral-400 focus:outline-hidden focus:border-neutral-900 focus:bg-white transition-colors"
                 />
@@ -244,11 +290,14 @@ export default function NewCampaignPage() {
                     </span>
                     <input
                       id="amountInput"
+                      name="target_amount"
                       type="text"
                       inputMode="numeric"
                       required
                       value={
-                        targetAmountRaw ? Number(targetAmountRaw).toLocaleString("id-ID") : ""
+                        formData.target_amount
+                        ? formData.target_amount.toLocaleString("id-ID")
+                        : ""
                       }
                       onChange={handleAmountChange}
                       placeholder="0"
@@ -264,10 +313,11 @@ export default function NewCampaignPage() {
                 </label>
                 <textarea
                   id="descTextarea"
+                  name="description"
                   rows={4}
                   required
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  value={formData.description}
+                  onChange={handleChange}
                   placeholder="Jelaskan latar belakang kerusakan fasilitas, kendala jamaah saat beribadah, serta rincian alokasi kebutuhan material secara ringkas..."
                   className="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-300 rounded-xl text-xs sm:text-sm text-neutral-900 placeholder-neutral-400 focus:outline-hidden focus:border-neutral-900 focus:bg-white transition-colors resize-none leading-relaxed"
                 />
@@ -288,6 +338,7 @@ export default function NewCampaignPage() {
             <input
               type="file"
               ref={fileInputRef}
+              name="damage_photo_url"
               accept="image/png, image/jpeg, image/jpg"
               className="hidden"
               onChange={(e) => {

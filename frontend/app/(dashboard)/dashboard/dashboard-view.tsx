@@ -40,7 +40,7 @@ function formatTimestamp(tsString?: string) {
   }
 }
 
-export default async function DashboardView({
+export default function DashboardView({
   me,
   mosque,
   campaign,
@@ -199,6 +199,7 @@ export default async function DashboardView({
               <h2 className="text-xl font-semibold">{campaign?.title || "-"}</h2>
               <CampaignStatusBadge status={campaign?.status} />
             </div>
+            <p className="text-xs text-neutral-600 pt-2">{campaign?.description || "-"}</p>
           </div>
           {/* Kartu 1: Total Donasi Terkumpul */}
           <div className="bg-white px-3 sm:px-4 border-x border-neutral-400 flex flex-col justify-between ">
