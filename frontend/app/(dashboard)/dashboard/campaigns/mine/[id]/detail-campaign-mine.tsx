@@ -8,14 +8,10 @@ import { useState } from "react";
 import { endCampaignAction } from "./action";
 
 export default function DetailCampaignMineView({
-    me,
-    mosque,
     campaign,
     transactionLedger = [],
 } : {
-    me: Me,
     campaign?: Campaign,
-    mosque?: Mosque,
     transactionLedger?: TransactionLedger[]}) {
 
   // State
@@ -27,7 +23,21 @@ export default function DetailCampaignMineView({
   const targetAmount = campaign?.target_amount ?? 0;
   const percentage = targetAmount > 0 ? Math.min(100, Math.round((collectedAmount / targetAmount) * 100)) : 0;
   const campaignId = campaign?.proposal_id ?? 0;
-  const statusCampaign = CampaignStatusBadge({status: campaign?.status})
+  const statusCampaign = (() => {
+    switch (campaign?.status) {
+    case "pending":
+      return "Menunggu Persetujuan";
+    case "approved":
+      return "Disetujui";
+    case "rejected":
+      return "Ditolak";
+    case "active":
+      return "Aktif";
+    case "completed":
+      return "Selesai";
+    default:
+      return "Status Tidak Diketahui";
+  }});
   // const startDateCampaign = String(campaign?.created_at);
 
   const endDate = campaign?.end_date ?? "";
@@ -82,7 +92,7 @@ export default function DetailCampaignMineView({
         <div className="w-full lg:w-[65%] space-y-8">
           {/* A. Header Kampanye & Tag Lokasi */}
           <div className="bg-white rounded p-6 sm:p-8 border border-neutral-200 space-y-2">
-            <h1 className="text-xl sm:text-2xl font-extrabold text-neutral-900 tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">
               {campaign?.title ?? "Judul Kampanye"}
             </h1>
             <div className="flex items-center gap-1.5 text-xs sm:text-sm text-neutral-600 leading-relaxed">
@@ -108,12 +118,16 @@ export default function DetailCampaignMineView({
             </div>
           </div>
 
-          {/* D. Narasi & Rincian Kebutuhan */}
+          {/* C. Detail Kampanye */}
           <div className="bg-white rounded p-6 border border-neutral-200 shadow-xs space-y-6">
             <div>
-              <h2 className="text-lg font-bold text-neutral-900 mb-2">
-                Detail Kampanye
-              </h2>
+              <div className="flex items-center gap-2">
+                <Building2 className="w-5 h-5 text-neutral-700" />
+                <h2 className="text-xl font-semibold text-neutral-900">
+                  Detail Kampanye
+                </h2>
+              </div>
+              <hr className="border-neutral-300 my-3"/>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <span className="text-xs font-semibold tracking-wider uppercase text-neutral-500">Judul Kampanye</span>
@@ -129,13 +143,16 @@ export default function DetailCampaignMineView({
                 </div>
                 <div>
                   <span className="text-xs font-semibold tracking-wider uppercase text-neutral-500">Tanggal Pengajuan</span>
-                  <p className="text-sm">{formatDate(campaign?.created_at ?? "")}</p>
+                  <p className="text-sm font-medium">{formatDate(campaign?.created_at ?? "")}</p>
                 </div>
                 <div>
                   <span className="text-xs font-semibold tracking-wider uppercase text-neutral-500">Tanggal Berakhir</span>
-                  <p className="text-sm">{formatDate(campaign?.end_date ?? "")}</p>
+                  <p className="text-sm font-medium">{formatDate(campaign?.end_date ?? "")}</p>
                 </div>
-
+                <div>
+                  <span className="text-xs font-semibold tracking-wider uppercase text-neutral-500">Status</span>
+                  <p className="text-sm font-medium">{statusCampaign()}</p>
+                </div>
               </div>
               <div>
 
@@ -143,7 +160,7 @@ export default function DetailCampaignMineView({
             </div>
           </div>
 
-          {/* E. Cuplikan Buku Kas Terbuka (Cryptographic Ledger) */}
+          {/* D. Cuplikan Buku Kas Terbuka (Cryptographic Ledger) */}
           <div className="bg-white rounded p-6 border border-neutral-200 shadow-xs space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -216,7 +233,7 @@ export default function DetailCampaignMineView({
         {/* ======================================================== */}
         <div className="w-full lg:w-[35%] lg:sticky lg:top-24 space-y-6 self-start">
           {/* A & B. Panel Donasi & Aksi Utama */}
-          <div className="bg-white rounded p-6 sm:p-8 border border-neutral-200 space-y-6">
+          <div className="bg-white rounded p-4 sm:p-6 border border-neutral-200 space-y-6">
             {/* A. Ringkasan Angka Donasi */}
             <div className="space-y-4">
               <div>
@@ -224,7 +241,7 @@ export default function DetailCampaignMineView({
                   Donasi Terkumpul
                 </span>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-bold text-neutral-900 tracking-tight">
+                  <span className="text-xl font-bold text-neutral-900 tracking-tight">
                     {formatRupiah(collectedAmount)}
                   </span>
                 </div>
@@ -268,6 +285,7 @@ export default function DetailCampaignMineView({
             </div>
           </div>
 
+          {/* C. Tingkat Akurasi Prediksi */}
           <div className="bg-gradient-to-br from-neutral-900 to-neutral-800 text-white rounded p-6 border border-neutral-700 shadow-sm space-y-4">
             <div className="flex items-center justify-between border-b border-neutral-700/80 pb-4">
               <div className="flex items-center gap-2.5">
@@ -275,25 +293,24 @@ export default function DetailCampaignMineView({
                   <Cpu className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm uppercase tracking-wider">
+                  <h3 className="font-semibold text-xs uppercase tracking-wider">
                     Tingkat Akurasi Prediksi
                   </h3>
                   
                 </div>
               </div>
-              {statusCampaign}
             </div>
 
             <div className="pt-1">
                 <div className="flex items-baseline gap-2">
-                  <span className="text font-bold text-white">{campaign?.cnn_confidence}%</span>
+                  <span className="text-xl font-bold text-white">{campaign?.cnn_confidence}%</span>
                 </div>
-                <p className="text-sm text-neutral-400">
+                <p className="text-xs text-neutral-400">
                     Otomasi Penilaian Gambar CNN dengan Model MobileNetV2
                   </p>
             </div>
           </div>
-      </div>
+        </div>
       </div>
     </div>
     </div>

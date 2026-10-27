@@ -178,16 +178,8 @@ export default function DashboardView({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-semibold py-2.5 px-4 rounded border border-neutral-300 transition-colors shadow-xs"
             >
-              <span>Lihat Halaman Publik</span>
+              <span>Detail Masjid</span>
               <ExternalLink className="w-3.5 h-3.5 text-neutral-500" />
-            </Link>
-
-            <Link
-              href="/dashboard/expenses/new"
-              className="inline-flex items-center gap-2 bg-neutral-900 hover:bg-neutral-800 active:scale-95 text-white text-xs font-semibold py-2.5 px-4 rounded transition-all shadow-xs cursor-pointer"
-            >
-              <Plus className="w-4 h-4 text-emerald-400" />
-              <span>Ajukan Pencairan Dana</span>
             </Link>
           </div>
         </div>
@@ -205,20 +197,20 @@ export default function DashboardView({
                 <div className="flex items-center justify-between mt-1">
                   <div className="flex items-center gap-2">
                   <h2 className="text-xl font-semibold">{campaign?.title}</h2>
-                  <CampaignStatusBadge status={campaign?.status} />
                   </div>
                   <div>
-                    {/* Akhiri Kampanye */}
+                    {/* Detail Kampanye */}
                     <Link
                       href={`/dashboard/campaigns/mine/${campaignId}`}
-                      className=" text-xs font-semibold cursor-pointer flex items-center gap-2 text-neutral-900 hover:bg-neutral-200 transition-all py-2 px-4 rounded"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-semibold py-2.5 px-4 rounded border border-neutral-300 transition-colors shadow-xs"
                     >
-                      Detail Kampanye
-                      <ArrowRight className="w-4 h-4" />
+                      <span>Detail Kampanye</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-neutral-500" />
                     </Link>
                   </div>
                 </div>
-                <p className="text-xs text-neutral-600 pt-2">{campaign?.description || "Tidak ada Deskripsi"}</p>
                 </>
               ) : (
                 <CampaignStatusBadge status={campaign?.status} />
