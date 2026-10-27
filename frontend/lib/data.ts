@@ -15,6 +15,7 @@ export type Mosque = {
     address: string
     city: string
     bank_account_number: string
+    created_at: string
 }
 
 export type Campaign = {

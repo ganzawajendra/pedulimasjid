@@ -5,7 +5,7 @@ import { ArrowRight, BadgeCheck, Building2, Calendar, CheckCircle2, Cpu, Heart, 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { endCampaignAction } from "./action";
+import { endCampaignAction } from "./actions";
 
 export default function DetailCampaignMineView({
     campaign,

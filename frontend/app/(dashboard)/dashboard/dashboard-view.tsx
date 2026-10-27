@@ -173,9 +173,7 @@ export default function DashboardView({
           {/* Tombol Pintas Header */}
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <Link
-              href={`/campaigns/mine/${campaignId}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`/dashboard/mosques/me`}
               className="inline-flex items-center gap-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-semibold py-2.5 px-4 rounded border border-neutral-300 transition-colors shadow-xs"
             >
               <span>Detail Masjid</span>
