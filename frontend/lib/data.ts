@@ -6,6 +6,7 @@ export type Me = {
     user_id: number
     full_name: string
     email: string
+    role: string
     phone_number: string
 }
 
