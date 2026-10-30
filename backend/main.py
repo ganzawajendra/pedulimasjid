@@ -117,6 +117,18 @@ def create_campaign(data: schemas.ProposalCreate, current_user: models.User = De
     )
     if not mosque:
         raise HTTPException(status_code=404, detail="Masjid tidak ditemukan")
+    
+    active_campaign = (
+        db.query(models.Proposal)
+        .filter(
+            models.Proposal.mosque_id == mosque.mosque_id,
+            models.Proposal.status == models.ProposalStatus.ACTIVE
+        )
+        .first()
+    )
+    
+    if active_campaign:
+        raise HTTPException(status_code = 400, detail = "Masjid ini sudah punya campaign aktif")
 
     if data.cnn_confidence is not None:
         if data.cnn_confidence >= 50.0:
