@@ -158,16 +158,6 @@ export default function DashboardShell({full_name, mosque_name, mosque_city, chi
 
         {/* C. FOOTER SIDEBAR (PROFIL STATUS & AKSI KELUAR) */}
         <div className="p-4 border-t border-neutral-100 space-y-3">
-          {/* Indikator Status Akun Takmir */}
-          <div className="bg-emerald-50/80 border border-emerald-200/80 rounded-xl p-3 space-y-1 text-xs">
-            <div className="flex items-center gap-1.5 text-emerald-800 font-bold">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>Akun Terverifikasi</span>
-            </div>
-            <p className="text-[10px] text-emerald-700 leading-tight">
-              KTP & SK Takmir terdaftar resmi di sistem PeduliMasjid.
-            </p>
-          </div>
 
           {/* Tombol Keluar Sesi */}
           <button
@@ -176,7 +166,7 @@ export default function DashboardShell({full_name, mosque_name, mosque_city, chi
             className="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-rose-600 hover:text-rose-700 hover:bg-rose-50 transition-colors cursor-pointer"
           >
             <LogOut className="w-4 h-4 shrink-0" />
-            <span>Keluar Sesi</span>
+            <span>Keluar</span>
           </button>
         </div>
       </aside>

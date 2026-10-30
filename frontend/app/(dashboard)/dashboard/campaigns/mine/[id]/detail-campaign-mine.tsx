@@ -1,11 +1,12 @@
 "use client"
 import CampaignStatusBadge from "@/components/campaign-status-badge";
 import { Campaign, Me, Mosque, TransactionLedger } from "@/lib/data";
-import { ArrowRight, BadgeCheck, Building2, Calendar, CheckCircle2, Cpu, Heart, Link, MapPin, Receipt, ShieldCheck, TrendingDown, TrendingUp } from "lucide-react";
+import { ArrowRight, BadgeCheck, Building2, Calendar, CheckCircle2, ChevronLeft, ChevronRight, Cpu, Heart, MapPin, Receipt, ShieldCheck, TrendingDown, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { endCampaignAction } from "./actions";
+import Link from "next/link";
 
 export default function DetailCampaignMineView({
     campaign,
@@ -82,8 +83,16 @@ export default function DetailCampaignMineView({
   }
 
   return (
-    <div>
-      <div className="space-y-8 max-w-7xl mx-auto">
+    <div className="space-y-8 max-w-7xl mx-auto">
+      <nav className="flex items-center gap-2 text-xs text-neutral-500">
+            <Link href="/dashboard" className="hover:text-neutral-900 transition-colors">
+              Dashboard
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5" />
+            <Link href={`/dashboard/campaigns/mine/${campaignId}`} className="hover:text-neutral-900 transition-colors">
+              Kampanye Saya
+            </Link>
+          </nav>
       {/* 2 Kolom (~65% kiri & ~35% kanan) */}
       <div className="flex flex-col lg:flex-row gap-10 items-start">
         {/* ======================================================== */}
@@ -312,7 +321,6 @@ export default function DetailCampaignMineView({
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }

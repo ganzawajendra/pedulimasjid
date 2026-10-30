@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Building2, PlusCircle, ShieldCheck, BadgeCheck } from "lucide-react";
+import { Building2, PlusCircle, ShieldCheck, BadgeCheck, ChevronRight } from "lucide-react";
 import { Me, Mosque, Campaign } from "@/lib/data";
 import HistoryCampaignCardMosqueMinePage from "@/components/history-campaign-card"
 
@@ -34,7 +34,17 @@ export default function MosqueMineView({ user, mosque, campaigns }: { user: Me; 
     : "-";
 
   return (
+    
     <div className="space-y-8 max-w-7xl mx-auto">
+      <nav className="flex items-center gap-2 text-xs text-neutral-500">
+            <Link href="/dashboard" className="hover:text-neutral-900 transition-colors">
+              Dashboard
+            </Link>
+            <ChevronRight className="w-3.5 h-3.5" />
+            <Link href="/dashboard/mosques/me" className="hover:text-neutral-900 transition-colors">
+              Masjid Saya
+            </Link>
+          </nav>
       {/* Header */}
       <div className="bg-white rounded p-6 sm:p-8 border border-neutral-200 shadow-xs space-y-2">
         <h1 className="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">Profil Masjid</h1>

@@ -200,8 +200,6 @@ export default function DashboardView({
                     {/* Detail Kampanye */}
                     <Link
                       href={`/dashboard/campaigns/mine/${campaignId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-semibold py-2.5 px-4 rounded border border-neutral-300 transition-colors shadow-xs"
                     >
                       <span>Detail Kampanye</span>
@@ -562,23 +560,10 @@ export default function DashboardView({
               >
                 <div className="flex items-center gap-2.5">
                   <Receipt className="w-4 h-4 text-emerald-400" />
-                  <span>Ajukan Pencairan &amp; Unggah Nota</span>
+                  <span>Pencairan &amp; Nota Belanja</span>
                 </div>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </Link>
-
-              {/* Tombol 2 */}
-              <button
-                type="button"
-                onClick={() => setShowProgressModal(true)}
-                className="w-full bg-white hover:bg-neutral-50 text-neutral-800 text-xs font-semibold py-3 px-4 rounded border border-neutral-300 flex items-center justify-between transition-colors cursor-pointer"
-              >
-                <div className="flex items-center gap-2.5">
-                  <Camera className="w-4 h-4 text-neutral-600" />
-                  <span>Perbarui Foto Progres Lapangan</span>
-                </div>
-                <Plus className="w-3.5 h-3.5 text-neutral-400" />
-              </button>
 
               {/* Tombol 3 */}
               <button
