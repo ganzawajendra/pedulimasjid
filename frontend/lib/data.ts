@@ -10,6 +10,12 @@ export type Me = {
     phone_number: string
 }
 
+export interface MosqueSimple {
+  mosque_id: number;
+  mosque_name: string;
+  city: string;
+}
+
 export type Mosque = {
     mosque_id: number
     mosque_name: string
@@ -29,6 +35,8 @@ export type Campaign = {
     collected_amount: number
     status: string
     created_at: string
+    mosque?: MosqueSimple;
+    damage_photo_url?: string;
 }
 
 export type TransactionLedger = {

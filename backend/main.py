@@ -4,7 +4,7 @@ from typing import List
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordRequestForm
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
  
 import models
 import schemas
@@ -56,6 +56,7 @@ def get_all_active_campaigns(skip: int = 0, limit: int = 20, db: Session = Depen
     """ Daftar seluruh campanye aktif """
     return (
         db.query(models.Proposal)
+        .options(joinedload(models.Proposal.mosque))
         .filter(models.Proposal.status == models.ProposalStatus.ACTIVE)
         .order_by(models.Proposal.created_at.desc())
         .offset(skip)
