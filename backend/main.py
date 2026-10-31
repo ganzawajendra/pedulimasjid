@@ -1,4 +1,4 @@
-from datetime import timedelta, datetime
+from datetime import date, timedelta, datetime
 from typing import List
  
 from fastapi import FastAPI, Depends, HTTPException, status
@@ -40,12 +40,28 @@ PUBLIC_STATUSES = [models.ProposalStatus.ACTIVE, models.ProposalStatus.FUNDED]
 @app.get("/api/v1/campaigns", tags=["Campaign"], response_model=List[schemas.ProposalResponse])
 def get_all_active_campaigns(skip: int = 0, limit: int = 20, db: Session = Depends(get_db)):
     """Mengambil daftar kampanye aktif publik"""
+    today = date.today()
+
+    expired_campaigns = (
+        db.query(models.Proposal)
+        .filter (
+            models.Proposal.status == models.ProposalStatus.ACTIVE,
+            models.Proposal.end_date < today
+        ). all()
+    )
+    if expired_campaigns:
+        for campaign in expired_campaigns:
+            campaign.status = models.ProposalStatus.FUNDED
+        db.commit()
     campaigns = (
         db.query(models.Proposal)
         .options(
             joinedload(models.Proposal.mosque).joinedload(models.Mosque.takmir)  # Load mosque + takmir
         )
-        .filter(models.Proposal.status == models.ProposalStatus.ACTIVE)  # Gunakan Enum model SQLAlchemy
+        .filter(
+            models.Proposal.status == models.ProposalStatus.ACTIVE,
+            models.Proposal.end_date >= today
+        )
         .offset(skip)
         .limit(limit)
         .all()

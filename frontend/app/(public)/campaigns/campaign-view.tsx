@@ -90,8 +90,13 @@ export default function CampaignView({ activeCampaign }: { activeCampaign: Campa
 
       {/* Grid Campaign */}
       <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {activeCampaign.map((campaign) => (
-          <CampaignCard
+        {activeCampaign.length === 0 ? (
+          <div className="lg:col-span-3 flex flex-col items-center justify-center py-16">
+            <p className="text-neutral-500">Tidak ada kampanye aktif saat ini.</p>
+          </div>
+        ) : (
+          activeCampaign.map((campaign) => (
+            <CampaignCard
             key={campaign.proposal_id}
             id={campaign.proposal_id}
             title={campaign.title}
@@ -105,7 +110,7 @@ export default function CampaignView({ activeCampaign }: { activeCampaign: Campa
             targetAmount={campaign.target_amount}
             imageSrc={campaign.damage_photo_url || "/placeholder-mosque.jpg"}
           />
-        ))}
+        )))}
       </div>
     </div>
   );
