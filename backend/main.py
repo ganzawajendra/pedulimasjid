@@ -33,36 +33,24 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Buku Besar In-Memory Sementara (Blok Pertama: Genesis Block)
-LEDGER_DB = [
-    {
-        "index": 0,
-        "timestamp": "2026-09-25T00:00:00Z",
-        "transaction_type": "GENESIS",
-        "amount": 0.0,
-        "description": "Genesis Block",
-        "evidence_hash": "0" * 64,
-        "previous_hash": "0" * 64,
-        "current_hash": "0000000000000000000000000000000000000000000000000000000000000000"
-    }
-]
-
 # Status Publik
 PUBLIC_STATUSES = [models.ProposalStatus.ACTIVE, models.ProposalStatus.FUNDED]
 
 # Campaign
 @app.get("/api/v1/campaigns", tags=["Campaign"], response_model=List[schemas.ProposalResponse])
 def get_all_active_campaigns(skip: int = 0, limit: int = 20, db: Session = Depends(get_db)):
-    """ Daftar seluruh campanye aktif """
-    return (
+    """Mengambil daftar kampanye aktif publik"""
+    campaigns = (
         db.query(models.Proposal)
-        .options(joinedload(models.Proposal.mosque))
-        .filter(models.Proposal.status == models.ProposalStatus.ACTIVE)
-        .order_by(models.Proposal.created_at.desc())
+        .options(
+            joinedload(models.Proposal.mosque).joinedload(models.Mosque.takmir)  # Load mosque + takmir
+        )
+        .filter(models.Proposal.status == models.ProposalStatus.ACTIVE)  # Gunakan Enum model SQLAlchemy
         .offset(skip)
         .limit(limit)
         .all()
     )
+    return campaigns
 
 @app.get("/api/v1/campaigns/mine", tags=["Campaign"], response_model=List[schemas.ProposalResponse])
 def get_my_campaings(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
@@ -95,17 +83,19 @@ def get_my_campaign(campaign_id: int, current_user: models.User = Depends(get_cu
 
 @app.get("/api/v1/campaigns/{campaign_id}", tags=["Campaign"], response_model=schemas.ProposalResponse)
 def get_campaign_by_id(campaign_id: int, db: Session = Depends(get_db)):
-    """Detail campaign publik berdasarkan ID"""
+    """Detail kampanye publik beserta data Masjid & Takmir pengelola"""
     campaign = (
         db.query(models.Proposal)
-        .filter(
-            models.Proposal.proposal_id == campaign_id,
-            models.Proposal.status.in_(PUBLIC_STATUSES),
+        .options(
+            joinedload(models.Proposal.mosque).joinedload(models.Mosque.takmir) # Eager load Masjid & Takmir
         )
+        .filter(models.Proposal.proposal_id == campaign_id)
         .first()
     )
+    
     if not campaign:
-        raise HTTPException(status_code=404, detail="Campaign tidak ditemukan")
+        raise HTTPException(status_code=404, detail="Kampanye tidak ditemukan")
+        
     return campaign
 
 @app.post("/api/v1/campaigns", tags=["Campaign"], response_model=schemas.ProposalResponse, status_code=201,)

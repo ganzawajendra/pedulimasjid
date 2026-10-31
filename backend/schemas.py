@@ -2,15 +2,24 @@ from pydantic import BaseModel, ConfigDict, EmailStr
 from datetime import date, datetime
 from typing import Optional, Literal
 
-
-# ---------- User ----------
+# ==========================================
+# 1. USER & AUTH SCHEMAS
+# ==========================================
 class UserBase(BaseModel):
     full_name: str
     email: EmailStr
     phone_number: Optional[str] = None
 
 class UserCreate(UserBase):
-    password: str  # mentahan dari form
+    password: str
+    role: Optional[Literal["takmir", "donatur"]] = "donatur"
+
+class UserSimpleResponse(UserBase):
+    """Skema ringkas user untuk relasi nested di Mosque/Proposal"""
+    user_id: int
+    role: Literal["takmir", "donatur"]
+
+    model_config = ConfigDict(from_attributes=True)
 
 class UserResponse(UserBase):
     user_id: int
@@ -19,12 +28,18 @@ class UserResponse(UserBase):
 
     model_config = ConfigDict(from_attributes=True)
 
-# ---------- Auth ----------
 class Token(BaseModel):
     access_token: str
     token_type: str
 
-# ---------- Mosque ----------
+class TokenData(BaseModel):
+    user_id: Optional[int] = None
+    role: Optional[str] = None
+
+
+# ==========================================
+# 2. MOSQUE SCHEMAS
+# ==========================================
 class MosqueBase(BaseModel):
     mosque_name: str
     address: str
@@ -37,23 +52,28 @@ class MosqueCreate(MosqueBase):
 class MosqueResponse(MosqueBase):
     mosque_id: int
     takmir_id: int
+    takmir: Optional[UserSimpleResponse] = None  # Sertakan data takmir pengelola
     created_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
 
-# ---------- Proposal ----------
+
+# ==========================================
+# 3. PROPOSAL / CAMPAIGN SCHEMAS
+# ==========================================
+ProposalStatusType = Literal["pending", "active", "rejected", "funded"]
+
 class ProposalBase(BaseModel):
     title: str
     description: str
     target_amount: float
 
 class ProposalCreate(ProposalBase):
-    # mosque_id: int
     damage_photo_url: Optional[str] = None
     cnn_label: Optional[str] = None
     cnn_confidence: Optional[float] = None
     end_date: date
-    status: Optional[str] = "pending"
+    status: Optional[ProposalStatusType] = "pending"
 
 class ProposalResponse(ProposalBase):
     proposal_id: int
@@ -62,22 +82,25 @@ class ProposalResponse(ProposalBase):
     damage_photo_url: Optional[str] = None
     cnn_label: Optional[str] = None
     cnn_confidence: Optional[float] = None
-    end_date: Optional[datetime] = None
-    status: str
-    mosque: Optional[MosqueBase] = None
+    end_date: Optional[date] = None
+    status: ProposalStatusType
+    mosque: Optional[MosqueResponse] = None
     created_at: datetime
 
     model_config = ConfigDict(from_attributes=True)
 
-# class ProposalStatusUpdate(BaseModel):
-#     status: Literal["completed", "closed"]
 
-# ---------- Transaction Ledger ----------
+# ==========================================
+# 4. TRANSACTION LEDGER SCHEMAS
+# ==========================================
+TransactionType = Literal["DONATION", "EXPENSE", "IN", "OUT"]
+
 class LedgerCreate(BaseModel):
     proposal_id: int
-    transaction_type: str
+    transaction_type: TransactionType
     amount: float
     description: str
+    receipt_photo_url: Optional[str] = None  # Ditambahkan untuk pencatatan pengeluaran takmir
 
 class LedgerResponse(BaseModel):
     ledger_id: int
@@ -87,7 +110,7 @@ class LedgerResponse(BaseModel):
     amount: float
     description: Optional[str] = None
     receipt_photo_url: Optional[str] = None
-    receipt_hash: str
+    receipt_hash: Optional[str] = None  # Opsional karena donasi masuk tidak punya nota
     previous_hash: str
     current_hash: str
     timestamp: datetime
