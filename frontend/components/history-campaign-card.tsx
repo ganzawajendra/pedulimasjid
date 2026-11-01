@@ -6,7 +6,6 @@ interface HistoryCampaignCard{
     description: string
     target_amount: string | Number
     collected_amount: string | Number
-    cnn_confidence: string | Number
     status: string
 }
 
@@ -15,8 +14,7 @@ export default function HistoryCampaignCardMosqueMinePage({
     title, 
     description, 
     target_amount, 
-    collected_amount, 
-    cnn_confidence, 
+    collected_amount,
     status 
 }: HistoryCampaignCard) {
 
@@ -42,10 +40,6 @@ export default function HistoryCampaignCardMosqueMinePage({
                 <div className="flex items-end flex-col">
                   <span className="text-xs font-semibold tracking-wider uppercase text-neutral-500">Donasi Terkumpul</span>
                   <p className="font-medium">{formatRupiah(Number(collected_amount))}</p>
-                </div>
-                <div className="text-end">
-                  <span className="text-xs font-semibold tracking-wider uppercase text-neutral-500">Tingkat Akurasi</span>
-                  <p className="font-medium">{cnn_confidence}%</p>
                 </div>
                 <CampaignStatusBadge status={status as string}/>
               </div>

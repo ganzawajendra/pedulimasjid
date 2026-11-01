@@ -146,7 +146,6 @@ export default function MosqueMineView({ user, mosque, campaigns, allCampaigns }
                 description={campaign.description}
                 target_amount={campaign.target_amount}
                 collected_amount={campaign.collected_amount}
-                cnn_confidence={campaign.cnn_confidence}
                 status={campaign.status}
               />
             ))}

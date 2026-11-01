@@ -64,7 +64,7 @@ export default function NewCampaignView({ activeCampaign }: NewCampaignViewProps
     cnn_label: "",
     cnn_confidence: 0,
     end_date: "",
-    status: "PENDING",
+    status: "pending",
   });
 
   const handleChange = (
@@ -152,7 +152,7 @@ export default function NewCampaignView({ activeCampaign }: NewCampaignViewProps
           cnn_label: resultData.label,
           cnn_confidence: resultData.confidenceScore,
           damage_photo_url: previewUrl || "",
-          status: "ACTIVE",
+          status: "active",
         }));
       } else {
         const resultData: AIAnalysisResult = {
@@ -174,7 +174,7 @@ export default function NewCampaignView({ activeCampaign }: NewCampaignViewProps
           cnn_label: resultData.label,
           cnn_confidence: resultData.confidenceScore,
           damage_photo_url: previewUrl || "",
-          status: "PENDING",
+          status: "pending",
         }));
       }
     }, 1800);
@@ -348,8 +348,10 @@ export default function NewCampaignView({ activeCampaign }: NewCampaignViewProps
                 <textarea
                   id="descTextarea"
                   name="description"
-                  rows={4}
+                  rows={6}
                   required
+                  minLength={10}
+                  maxLength={5000}
                   value={formData.description}
                   onChange={handleChange}
                   placeholder="Jelaskan latar belakang kerusakan fasilitas, kendala jamaah saat beribadah, serta rincian alokasi kebutuhan material secara ringkas..."

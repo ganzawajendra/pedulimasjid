@@ -84,7 +84,10 @@ def get_my_campaings(current_user: models.User = Depends(get_current_user), db: 
 
     return (
         db.query(models.Proposal)
-        .filter(models.Proposal.mosque_id == mosque.mosque_id)
+        .filter(
+            models.Proposal.mosque_id == mosque.mosque_id,
+            models.Proposal.status == models.ProposalStatus.ACTIVE
+        )
         .all()
     )
 

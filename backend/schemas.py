@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, EmailStr
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 from datetime import date, datetime
 from typing import Optional, Literal
 
@@ -65,7 +65,7 @@ ProposalStatusType = Literal["pending", "active", "rejected", "funded"]
 
 class ProposalBase(BaseModel):
     title: str
-    description: str
+    description: str = Field(max_length=5000, min_length=10)
     target_amount: float
 
 class ProposalCreate(ProposalBase):
