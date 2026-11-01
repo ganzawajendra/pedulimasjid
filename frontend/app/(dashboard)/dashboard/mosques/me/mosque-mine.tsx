@@ -5,7 +5,7 @@ import { Building2, PlusCircle, ShieldCheck, BadgeCheck, ChevronRight } from "lu
 import { Me, Mosque, Campaign } from "@/lib/data";
 import HistoryCampaignCardMosqueMinePage from "@/components/history-campaign-card"
 
-export default function MosqueMineView({ user, mosque, campaigns }: { user: Me; mosque: Mosque | null, campaigns: Campaign[] }) {
+export default function MosqueMineView({ user, mosque, campaigns, allCampaigns }: { user: Me; mosque: Mosque | null, campaigns: Campaign[], allCampaigns: Campaign[] }) {
   if (!mosque) {
     return (
       <div className="max-w-4xl mx-auto p-8 text-center border border-dashed border-neutral-300 rounded-2xl bg-white my-8 space-y-3">
@@ -138,7 +138,7 @@ export default function MosqueMineView({ user, mosque, campaigns }: { user: Me; 
           </div>
           <hr className="border-neutral-300 my-3"/>
           <div className="grid grid-col-2">
-            {campaigns.map((campaign) => (
+            {allCampaigns.map((campaign) => (
               <HistoryCampaignCardMosqueMinePage 
                 key={campaign.proposal_id}
                 proposal_id={campaign.proposal_id}

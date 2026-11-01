@@ -88,6 +88,25 @@ def get_my_campaings(current_user: models.User = Depends(get_current_user), db: 
         .all()
     )
 
+@app.get("/api/v1/campaigns/mine/all", tags=["Campaign"], response_model=List[schemas.ProposalResponse])
+def get_all_my_campaigns(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
+    """Semua campaign milik takmir yang login (semua status)"""
+    mosque = (
+        db.query(models.Mosque)
+        .filter(
+            models.Mosque.takmir_id == current_user.user_id,
+        )
+        .first()
+    )
+    if not mosque:
+        return []
+
+    return (
+        db.query(models.Proposal)
+        .filter(models.Proposal.mosque_id == mosque.mosque_id)
+        .all()
+    )
+
 @app.get("/api/v1/campaigns/mine/{campaigns_id}", tags=["Campaign"], response_model = schemas.ProposalResponse)
 def get_my_campaign(campaign_id: int, current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Detail satu campaign milik takmir (semua status)"""

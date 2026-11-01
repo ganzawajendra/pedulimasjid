@@ -71,6 +71,16 @@ export const getMyCampaigns = cache(async (): Promise<Campaign[]> => {
   }
 })
 
+export const getAllMyCampaigns = cache(async (): Promise<Campaign[]> => {
+  try {
+    const res = await apiFetch<Campaign[]>("/campaigns/mine/all");
+    return Array.isArray(res) ? res : [];
+  } catch (err) {
+    console.warn("[getAllMyCampaigns] Tidak ada campaign / error:", err);
+    return [];
+  }
+})
+
 export const getMyTransactionLedger = cache(async (): Promise<TransactionLedger[]> => {
   try {
     const res = await apiFetch<TransactionLedger[]>("/transactions/ledger");
