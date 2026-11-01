@@ -71,7 +71,14 @@ def get_all_active_campaigns(skip: int = 0, limit: int = 20, db: Session = Depen
 @app.get("/api/v1/campaigns/mine", tags=["Campaign"], response_model=List[schemas.ProposalResponse])
 def get_my_campaings(current_user: models.User = Depends(get_current_user), db: Session = Depends(get_db)):
     """Semua campaign milik takmir yang login (semua status)"""
-    mosque = db.query(models.Mosque).filter(models.Mosque.takmir_id == current_user.user_id).first()
+    mosque = (
+        db.query(models.Mosque)
+        .filter(
+            models.Mosque.takmir_id == current_user.user_id,
+            models.Proposal.status == models.ProposalStatus.ACTIVE
+        )
+        .first()
+    )
     if not mosque:
         return []
 
