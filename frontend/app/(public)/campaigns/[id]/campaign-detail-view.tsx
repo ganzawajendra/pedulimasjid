@@ -174,9 +174,19 @@ export default function CampaignDetailView({ params, campaign }: { params: { id:
                 Deskripsi dan Alasan Pengajuan
               </h2>
               <div className="text-neutral-700 text-sm leading-relaxed space-y-3">
-                <p>
-                  {campaign?.description}
-                </p>
+                <div className="space-y-2 text-neutral-700 leading-relaxed">
+                  {campaign.description ? (
+                    campaign.description.split("\n").map((line, index) => {
+                      // Jika baris kosong (pengguna menekan Enter 2x), tampilkan jarak antar paragraf
+                      if (line.trim() === "") {
+                        return <div key={index} className="h-2" />;
+                      }
+                      return <p key={index}>{line}</p>;
+                    })
+                  ) : (
+                    <p>Tidak ada deskripsi.</p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
