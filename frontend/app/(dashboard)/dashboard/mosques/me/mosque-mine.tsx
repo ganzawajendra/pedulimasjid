@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Building2, PlusCircle, ShieldCheck, BadgeCheck, ChevronRight } from "lucide-react";
+import { Building2, PlusCircle, ShieldCheck, BadgeCheck, ChevronRight, User } from "lucide-react";
 import { Me, Mosque, Campaign } from "@/lib/data";
 import HistoryCampaignCardMosqueMinePage from "@/components/history-campaign-card"
 
@@ -25,6 +25,7 @@ export default function MosqueMineView({ user, mosque, campaigns, allCampaigns }
     );
   }
 
+  const totalCampaigns = allCampaigns.length
   const formattedDate = mosque.created_at
     ? new Date(mosque.created_at).toLocaleDateString("id-ID", {
         day: "numeric",
@@ -84,7 +85,7 @@ export default function MosqueMineView({ user, mosque, campaigns, allCampaigns }
                     </div>
                     <div>
                       <span className="text-xs font-semibold tracking-wider uppercase text-neutral-500">Total Kampanye</span>
-                      <p className="text-sm font-medium">4 (dummy)</p>
+                      <p className="text-sm font-medium">{totalCampaigns}</p>
                     </div>
                   </div>
                   <div>
@@ -97,7 +98,7 @@ export default function MosqueMineView({ user, mosque, campaigns, allCampaigns }
               <div className="lg:col-span-4 bg-white rounded p-5 border border-neutral-200 shadow-xs space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-11 h-11 rounded-full bg-neutral-900 text-white flex items-center justify-center shrink-0 font-bold text-base">
-                  <Building2 className="w-5 h-5" />
+                  <User className="w-5 h-5" />
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-1.5">
